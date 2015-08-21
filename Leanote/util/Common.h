@@ -32,4 +32,6 @@
 +(void) setBarStyleBlack;
 
 + (BOOL)isiOSVersionEarlierThan8;
+
++ (NSDate *)goDate:(NSString *)dateStr;
 @end

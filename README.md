@@ -1,4 +1,4 @@
-# Leanote-IOS
+# Leanote IOS
 
 <a href="https://itunes.apple.com/cn/app/leanote/id1022302858?mt=8" title="Download From App Store" class="ios-download">
     <img style="width: 200px;" src="./preview/apple-store-logo.png" alt="Download From App Store">

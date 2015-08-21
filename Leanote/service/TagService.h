@@ -18,6 +18,7 @@
 	  inContext:(NSManagedObjectContext *)inContext;
 
 -(Tag *)addTag:(NSString *)title isForce:(BOOL)isForce usn:(NSNumber *)usn;
+- (Tag *) addTagForce:(id)obj;
 + (Tag *) addTag:(NSString *)title isForce:(BOOL)isForce usn:(NSNumber *)usn
 	   inContext:(NSManagedObjectContext *)inContext;
 

@@ -51,8 +51,42 @@
 	return [self.class addTag:title isForce:isForce usn:usn inContext:self.tmpContext];
 }
 
+- (Tag *) addTagForce:(id)obj
+{
+	NSString *title = obj[@"Tag"];
+	NSNumber *usn = obj[@"Usn"];
+	
+	NSDate *createdTime = [Common goDate:obj[@"CreatedTime"]];
+	NSDate *updatedTime = [Common goDate:obj[@"UpdatedTime"]];
+	
+	return [self.class addTag:title
+				isForce:YES
+			createdTime:createdTime
+			updatedTime:updatedTime
+					usn:usn
+			  inContext:self.tmpContext];
+	
+}
+
 // 新增或更新
-+ (Tag *) addTag:(NSString *)title isForce:(BOOL)isForce usn:(NSNumber *)usn
++ (Tag *) addTag:(NSString *)title
+		 isForce:(BOOL)isForce
+			 usn:(NSNumber *)usn
+	   inContext:(NSManagedObjectContext *)inContext
+{
+	return [self addTag:title
+				isForce:isForce
+			createdTime:[NSDate date]
+			updatedTime:[NSDate date]
+					usn:usn inContext:inContext];
+}
+
+// 新增或更新
++ (Tag *) addTag:(NSString *)title
+		 isForce:(BOOL)isForce
+	 createdTime:(NSDate *)createdTime
+	 updatedTime:(NSDate *)updatedTime
+			 usn:(NSNumber *)usn
 	   inContext:(NSManagedObjectContext *)inContext
 {
 	// 空标题不让新增
@@ -77,12 +111,12 @@
 	// 新增
 	tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:inContext];
 	tag.title = title;
-	tag.createdTime = [NSDate date];
-	tag.updatedTime = tag.createdTime;
+	tag.createdTime = createdTime;
+	tag.updatedTime = updatedTime;
 	tag.isDirty = isForce ? M_NO : M_YES;
 	tag.localIsDelete = M_NO;
 	tag.userId = [UserService getCurUserId];
-	
+
 	if(isForce) {
 		tag.usn = usn;
 	}
@@ -90,7 +124,7 @@
 	if(!isForce) {
 		[self saveContext];
 	}
-	
+
 	// 发送改变之
 	/*
 	[self push:tag success:^{

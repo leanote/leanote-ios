@@ -252,7 +252,7 @@
 	note.isInitSync = M_YES; // 需要重新同步笔记
 	note.isDirty = M_NO;
 	note.localIsNew = M_NO;
-	note.updatedTime = [NSDate date];
+	note.updatedTime = [Common goDate:obj[@"UpdatedTime"]];
 	
 	NSString *tagsStr;
 	if(![Common isNull:tags]) {
@@ -296,18 +296,21 @@
 	NSNumber *isBlog = obj[@"IsBlog"];
 	NSNumber *isTrash = obj[@"IsTrash"];
 	
+	NSString *createdTime = obj[@"CreatedTime"];
+	NSString *updatedTime = obj[@"UpdatedTime"];
+	
 	Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.tmpContext];
 	
 	note.title = title;
 	note.content = @"";
 	note.serverNoteId = serverNoteId;
 	
-	note.createdTime = [NSDate date];
-	note.updatedTime = note.createdTime;
 	note.isMarkdown = isMarkdown;
 	note.isBlog = isBlog;
 	note.usn = usn;
 	note.isTrash = isTrash;
+	note.createdTime = [Common goDate:createdTime];
+	note.updatedTime = [Common goDate:updatedTime];
 	
 	note.isDirty = M_NO;
 	note.localIsNew = M_NO;

@@ -232,7 +232,7 @@ BOOL inSyncing = NO;
 				continue;
 			}
 			
-			[_tagService addTag:title isForce:YES usn:usn];
+			[_tagService addTagForce:eachObj];
 		}
 		
 		// push到context中, 并写

@@ -189,4 +189,32 @@
 	return [[[UIDevice currentDevice] systemVersion] floatValue] < 8.0;
 }
 
+/*
+ //2014-01-06T18:29:48.802+08:00
+ function goNowToDatetime(goNow) {
+	if(!goNow) {
+ return "";
+	}
+	// new Date();
+	if(typeof goNow == 'object') {
+ var date = new Date(goNow);
+ return date.format("yyyy-MM-dd hh:mm:ss");
+	}
+	return goNow.substr(0, 10) + " " + goNow.substr(11, 8);
+*/
++ (NSDate *)goDate:(NSString *)dateStr
+{
+	if ([Common isBlankString:dateStr]) {
+		return [NSDate date];
+	}
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	
+	NSString *ymd = [dateStr substringWithRange:NSMakeRange(0, 10)];
+	NSString *hms = [dateStr substringWithRange:NSMakeRange(11, 8)];
+	NSDate *date = [dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", ymd, hms]];
+	return date;
+}
+
 @end

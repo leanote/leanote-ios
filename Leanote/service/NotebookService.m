@@ -181,6 +181,7 @@ static Notebook * curNotebook = nil;
 	notebook.title = title;
 	notebook.seq = seq;
 	notebook.usn = usn;
+	notebook.updatedTime = [Common goDate:obj[@"UpdatedTime"]];
 	
 	NSString *parentNotebookId = @"";
 	if (![parentServerNotebookId isEqualToString:@""]) {
@@ -223,6 +224,9 @@ static Notebook * curNotebook = nil;
 		notebook.parentNotebookId = parentNotebookId;
 		notebook.title = title;
 		notebook.userId = [UserService getCurUserId];
+		
+		notebook.createdTime = [Common goDate:obj[@"CreatedTime"]];
+		notebook.updatedTime = [Common goDate:obj[@"UpdatedTime"]];
 		
 		notebook.seq = seq;
 		notebook.usn = usn;
