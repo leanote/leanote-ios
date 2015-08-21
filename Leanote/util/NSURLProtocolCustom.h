@@ -1,0 +1,4 @@
+
+
+@interface NSURLProtocolCustom : NSURLProtocol
+@end

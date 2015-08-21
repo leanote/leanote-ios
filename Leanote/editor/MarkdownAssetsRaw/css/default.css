@@ -1,0 +1,287 @@
+
+@font-face {
+    font-family: 'OpenSans';
+    src: local("OpenSans");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: local("OpenSans-Italic");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: local("OpenSans-Bold");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: local("OpenSans-BoldItalic");
+    font-weight: bold;
+    font-style: italic;
+}
+
+* {
+	outline: 0px solid transparent;
+	/*点击没有高亮focus*/
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    word-wrap: break-word;
+}
+
+body {
+	font-weight: normal;
+	font-size: 14px;
+	font-family:OpenSans, sans-serif;
+	overflow-x: hidden;
+}
+h1,
+h2,
+h3 {
+	font-weight: 300;
+}
+
+#title {
+	font-family:'Merriweather', serif;
+	font-size: 16px;
+}
+
+#left-column, #wmd-input,
+#right-column {
+	font-size: 16px;
+	/*font-family: "Source Code Pro", monospace;
+	font-family: OpenSans;*/
+	font-family:OpenSans, sans-serif;
+	/*font-family:'Merriweather', serif;*/
+}
+#title {
+	line-height: 1;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 15px 10px 5px 10px;
+	min-height: 42px;
+	font-weight: bold;
+	font-size: 18px;
+	margin-bottom: 0px;
+}
+#title:focus {
+	outline: none;
+}
+#wmd-input-sub {
+	padding: 15px 8px 5px 10px;
+	margin-bottom: 10px;
+	box-sizing: border-box; /*防止因内容而撑开了*/
+}
+
+#mdEditor {
+	background-color: #fff;
+}
+#mdEditor #md-section-helper,
+#mdEditor #wmd-input {
+	line-height: 22px;
+}
+
+#mdEditorPreview {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#left-column,
+#right-column
+{
+}
+
+#wmd-input,
+#wmd-input-sub {
+	overflow-x: hidden;
+	width: 100%;
+	max-width: 100%;
+	word-wrap: break-word;
+}
+#wmd-input-sub * {
+	word-wrap: break-word;
+	max-width: 100%;
+}
+
+.preview-container {
+	overflow: auto;
+}
+.wmd-preview {
+	width: 100%;
+	font-size: 14px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+.wmd-button-row,
+.preview-button-row {
+	padding: 0px;
+	height: auto;
+	margin: 0;
+}
+.wmd-spacer {
+	width: 0px;
+	height: 20px;
+	margin-left: 10px;
+	background-color: Silver;
+	display: inline-block;
+	list-style: none;
+}
+.wmd-button,
+.preview-button {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	list-style: none;
+	cursor: pointer;
+	font-size: 17px;
+}
+.wmd-button {
+	margin-left: 10px;
+}
+.preview-button {
+	margin-right: 10px;
+}
+.wmd-button > span,
+.preview-button > span {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	font-size: 14px;
+}
+
+/* 编辑区 */
+#mdEditor .layout-wrapper-l3 {
+	margin-top: 0 !important;
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+/* 工具栏 */
+#wmd-button-bar {
+	width: 1000px; /* 使得可以左右滑动 */
+}
+#tools {
+	overflow-x: scroll;
+	transition: bottom 1s;
+	display: none;
+}
+
+/* 切换 */
+#left-column {
+	display: none;
+}
+.write #left-column {
+	visibility: visible;
+	display: block;
+}
+.write #right-column {
+	display: none;
+}
+
+#preview-contents {
+	padding-bottom: 40px;
+}
+
+#separatorDiv {
+    -webkit-user-select: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#separatorDiv hr {
+  border: none;
+  height: 1px;
+  color: #E9EFF3;
+  background-color: #E9EFF3;
+  width: 100%;
+  margin: 8px 0;
+}
+
+div.field[placeholderText][contenteditable=true]:empty:before {
+    content: attr(placeholderText);
+    transition: 0.2s ease opacity;
+}
+
+div.field[placeholderText][contenteditable=true]:empty:focus:before {
+    opacity: 0.6;
+}
+
+
+/**/
+p {
+    line-height: 24px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    color: #E9EFF3;
+    background-color: #E9EFF3;
+    width: 100%;
+}
+
+img {
+    width: auto;
+    height: auto;
+    margin: 0px 0 0px 0;
+    min-width: 30px;
+    min-height: 30px;
+    max-width: 100%;
+    opacity:1;
+}
+
+video {
+    width: auto;
+    height: auto;
+    margin: 0px 0px 0px 0px;
+    min-width: 30px;
+    min-height: 30px;
+    max-width: 100%;
+    opacity:1;
+    background:#2e4453
+}
+
+a {
+    color: #0087be;
+    text-decoration: none;
+}
+
+blockquote {
+    background: #e8f0f5;
+    padding: 10px 10px 10px 20px;
+    margin: 10px 0 10px 0;
+    border-radius: 2px;
+}
+blockquote p:last-child {
+  margin: 0;
+}
+
+/* 点击图片的状态 */
+img:active {
+	/*-webkit-filter: blur(4px) grayscale(0.3);*/
+}
+
+span.token.p {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+#wmd-input-sub p {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+#wmd-input-sub span.token.h1,
+#wmd-input-sub span.token.h2,
+#wmd-input-sub span.token.h3,
+#wmd-input-sub span.token.h4
+{
+    display: inline-block;
+    margin-bottom: 10px;
+}

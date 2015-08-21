@@ -1,0 +1,28 @@
+/*
+ DRColorPickerLocalizable.strings
+ YouDoodle
+
+ Created by Jeff on 8/10/14.
+ Copyright (c) 2014 Digital Ruby, LLC. All rights reserved.
+ */// title for the main view that shows all the colors the user has created
+"Colors" = "Cores";
+// favorite color view
+"Favorites" = "Favoritas";
+// recent color view
+"Recent" = "Recentes";
+// color wheel view (Google it if you're not sure what a color wheel is)
+"ColorWheel" = "Roda de Cores";
+// select color by hue
+"Hue" = "Tom";
+// load a texture as a color
+"LoadTexture" = "Carregar Textura";
+// the current color
+"CurrentColor" = "Cor atual";
+// i.e. Opacity: 0.5 - this is a slider that let's them change the alpha value / opacity of the color
+"Opacity" = "Opacidade: %.3f";
+// move a color to the front of a list
+"MoveToFront" = "Mover para Frente";
+// delete a color
+"Delete" = "Apagar";
+// cancel a color command
+"Cancel" = "Cancelar";

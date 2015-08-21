@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="W9p-he-k9r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5B7-DU-BuO">
+            <objects>
+                <viewController id="W9p-he-k9r" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PO0-ce-ZPl"/>
+                        <viewControllerLayoutGuide type="bottom" id="zrR-iD-txQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cez-yo-1vp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="leanote-lauch-screen" translatesAutoresizingMaskIntoConstraints="NO" id="flk-nN-QC3">
+                                <rect key="frame" x="186" y="241" width="117" height="117"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="312" id="Jor-90-EtI">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="182"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="285" id="MEa-f1-P0i">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="167"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Jor-90-EtI"/>
+                                        <exclude reference="MEa-f1-P0i"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Jor-90-EtI"/>
+                                        <include reference="MEa-f1-P0i"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="flk-nN-QC3" secondAttribute="centerY" multiplier="4:3" id="Vvw-Y8-c7d"/>
+                            <constraint firstAttribute="centerX" secondItem="flk-nN-QC3" secondAttribute="centerX" id="rF1-hU-dyH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Vvw-Y8-c7d"/>
+                                <exclude reference="rF1-hU-dyH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Vvw-Y8-c7d"/>
+                                <include reference="rF1-hU-dyH"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1g-bP-vF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.5" y="226.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="leanote-lauch-screen" width="285" height="312"/>
+    </resources>
+</document>

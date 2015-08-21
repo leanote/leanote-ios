@@ -1,0 +1,159 @@
+/* 
+  Localizable.strings
+  Leanote
+
+  Created by life on 15/7/12.
+  Copyright (c) 2015 Leanote.com. All rights reserved.
+*/
+
+/* common */
+
+"YES" = "确定";
+"NO" = "取消";
+"Warning" = "警告";
+"Tip" = "提示";
+"Are you sure?" = "你确定?";
+"Error" = "错误";
+
+"Save" = "保存";
+"Edit" = "编辑";
+"Delete" = "删除";
+"Options" = "配置";
+"Cancel" = "取消";
+"Back" = "返回";
+
+"Notebook" = "笔记本";
+"Note" = "笔记";
+"note" = "笔记";
+"Tag" = "标签";
+"Tags" = "标签";
+
+"Need sync" = "未同步";
+"Untitled" = "无标题";
+
+"Title" = "笔记标题";
+"Content" = "笔记内容";
+
+"The note's notebook is not exists, please try to pull to sync" = "笔记本不存在, 请尝试下拉同步";
+"Conflict" = "冲突";
+"Not exists" = "不存在";
+"File/Image upload failure" = "文件上传失败";
+
+"No Data" = "无数据";
+
+/* notebook */
+
+"The notebook has notes, please delete all notebooks' notes before"  = "笔记本下有笔记, 不能删除";
+"Synchronize deleted notebook successful" = "同步删除笔记本成功";
+"Synchronize deleted notebook failed" = "同步删除笔记本失败";
+"Edit Notebook" = "编辑笔记本";
+"Add Notebook" = "添加笔记本";
+"Title is required" = "名称不能为空";
+"Synchronize notebook successful" = "同步笔记本成功";
+"Synchronize notebook failed" = "同步笔记本失败";
+"Title" = "标题";
+"Parent Notebook" = "上级笔记本";
+
+
+/* note */
+
+"Pull to synchronize" = "下拉同步数据";
+"Synchronizing" = "正在同步...";
+"Synchronizing..." = "正在同步数据...";
+"Syncing..." = "正在同步...";
+"Synchronize successful" = "同步成功";
+"Synchronize failed" = "同步失败";
+"Synchronize deleted note successful" = "同步删除笔记成功";
+"Synchronize deleted note failed" = "同步删除笔记失败";
+"Synchronize note successful" = "同步笔记成功";
+"Synchronize note failed" = "同步笔记失败";
+
+"Cannot fetch note's content" = "无法获取笔记内容";
+"Image unavailable" = "无法获取该图片";
+"This Photo Stream image cannot be added to note. Try saving it to your Camera Roll before." = "该图片无法插入到笔记中, 请先保存到本地";
+"You can only add %i photos at a time." = "一次性最多添加 %i 个图片";
+
+"Save Image" = "保存图片到相册";
+"Save image successful" = "图片保存成功";
+"Save image failed" = "图片保存失败";
+
+/* note options */
+"Comma separated" = "逗号分隔";
+"Public to blog" = "公开为博客";
+
+/* tag */
+"Delete tag successful" = "删除标签成功";
+"Synchronize deleted tag successful" = "同步删除标签成功";
+"Synchronize deleted tag failed" = "同步删除标签失败";
+
+/* me */
+"Me" = "我";
+"Visit my blog" = "我的博客";
+"Default editor" = "编辑器";
+"Rich text" = "富文本";
+"Markdown" = "Markdown";
+"Account" = "帐户";
+"Settings" = "设置";
+"Blog & Lea++" = "博客 & Lea++";
+"Remove account successful" = "删除用户成功";
+"The account's data will be removed, are you sure?" = "该用户所有数据将被清除, 确定删除?";
+"Toggle account successful" = "切换用户成功";
+"Add account" = "添加帐户";
+"Add account successful and Synchronizing..." = "添加帐户成功, 正在同步数据...";
+
+/* auth */
+"Help" = "帮助";
+
+"Username / Email" = "用户名/邮箱";
+"Password" = "密码";
+"Site Address (URL)" = "自建服务器地址";
+"Create Account" = "创建帐户";
+"Lost your password?" = "忘记密码?";
+"Sign In" = "登录";
+"Authenticating" = "正在登录...";
+"Add Site" = "登录";
+"Add Self-Hosted Service" = "添加自建服务";
+"Sign in to Leanote.com" = "登录Leanote.com";
+"Please fill out all the fields" = "请完善信息";
+
+"Create an account on Leanote.com" = "创建Leanote.com帐户";
+"Email Address" = "Email地址";
+"Username" = "用户名";
+"Register failed" = "注册失败";
+"Email is not valid" = "请输入合法的Email地址";
+"Username or password is not valid" = "用户名或密码错误";
+"Create account failed" = "帐户创建失败";
+"The account has been registered, please choose another one" = "该帐户已注册, 请使用其它帐号注册";
+"Self hosted url is invalid" = "自建服务地址非法";
+
+/* share */
+"WeChat Session" = "微信好友";
+"WeChat Timeline" = "微信朋友圈";
+"%@ Share" = "%@ 分享";
+
+/* Category */
+"Category" = "分类";
+
+/* Post */
+"Post" = "博文";
+"Visit Blog" = "访问博客";
+"Visit Post" = "访问博文";
+
+/* search bar placeholder */
+"Search Tag" = "搜索标签";
+"Search Notebook" = "搜索笔记本";
+"Search Note" = "搜索笔记";
+"Search Post" = "搜索博文";
+
+/* editor */
+"Remove Link" = "删除链接";
+"Update" = "更新";
+"Text Color" = "文字颜色";
+"BG Color" = "背景颜色";
+
+/* web view */
+"Loading..." = "正在加载...";
+"Back" = "后退";
+"Forward" = "前进";
+"Refresh" = "刷新";
+

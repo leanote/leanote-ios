@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Leanote Markdown Editor</title>
+</head>
+<body class="clearfix writting">
+
+<div id="title" class="field" contentEditable="false"></div>
+
+<div contenteditable="false" id="separatorDiv"><hr></div>
+
+<div id="mdEditor">
+    <div class="layout-wrapper-l1">
+        <div class="layout-wrapper-l2">
+           
+            <div class="layout-wrapper-l3">
+                <div id="left-column">
+                  <pre id="wmd-input" class="form-control"><div id="wmd-input-sub" class="editor-content mousetrap field" contenteditable="false"></div><div class="editor-margin"></div></pre>
+                </div>
+                <div id="right-column">
+                  <div class="preview-panel panel-open" id="preview-panel">
+                      <div class="preview-container">
+                          <div id="preview-contents">
+                              <div id="wmd-preview" class="preview-content"></div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+
+             <div class="navbar navbar-default" id="tools">
+                <div class="navbar-inner" id="wmd-button-bar">
+                    <ul class="nav left-buttons">
+                        <li class="wmd-button-group1 btn-group"></li>
+                    </ul>
+                    <ul class="nav left-buttons">
+                        <li class="wmd-button-group2 btn-group"></li>
+                    </ul>
+                    <ul class="nav left-buttons">
+                        <li class="wmd-button-group3 btn-group"></li>
+                    </ul>
+                    <ul class="nav left-buttons">
+                        <li class="wmd-button-group5 btn-group"></li>
+                    </ul>
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>  
+
+  </div>
+
+
+<textarea id="life"  style="display: none">
+**strong text**
+Hey! I'm your first Markdown document in **Leanote**[^Leanote]. 
+ 
+Markdown Extra
+--------------------
+
+Leanote supports **Markdown Extra**, which extends **Markdown** syntax with some nice features.
+ 
+> **Tip:** You can disable any **Markdown Extra** feature in the **Extensions** tab of the <i class="icon-cog"></i> **Settings** dialog.
+
+> **Note:** You can find more information about **Markdown** syntax [here][2] and **Markdown Extra** extension [here][3].
+
+### Tables
+
+**Markdown Extra** has a special syntax for tables:
+
+Item     | Value
+-------- | ---
+Computer | $1600
+Phone    | $12
+Pipe     | $1
+ 
+You can specify column alignment with one or two colons:
+ 
+| Item     | Value | Qty   |
+| :------- | ----: | :---: |
+| Computer | $1600 |  5    |
+| Phone    | $12   |  12   |
+| Pipe     | $1    |  234  |
+ 
+ 
+### Definition Lists
+ 
+**Markdown Extra** has a special syntax for definition lists too:
+ 
+Term 1
+Term 2
+:   Definition A
+:   Definition B
+ 
+Term 3
+ 
+:   Definition C
+ 
+:   Definition D
+ 
+  > part of definition D
+ 
+ 
+### Fenced code blocks
+ 
+GitHub's fenced code blocks are also supported with **Highlight.js** syntax highlighting:
+ 
+```
+// Foo
+var bar = 0;
+```
+ 
+</textarea>
+
+<div style="display: none">
+  $$
+\begin{array}{lll}
+    %最上面的一小行
+    \,\,\,微分形式 & &\,\,\,积分形式\\
+    %微分形式
+    \begin{cases}
+        \vec\nabla \times \vec H = \vec J + {\partial \vec D \over \partial \vec t} & (1)\\
+        \vec\nabla \times \vec E = -{\partial \vec B \over \partial t} & (2)\\
+        \vec\nabla \cdot \vec B = 0 & (3)\\
+        \vec\nabla \cdot \vec D = \rho & (4)
+    \end{cases}
+    &
+    %推导条件
+    \begin{array}[]{}
+        \underleftrightarrow{\iint_\vec S (\vec\nabla \times \vec F)d\vec S = \oint_\vec l \vec F \cdot d \vec l}\\
+        %下面的两行是为了空出来中间的位置
+        \,\\
+        \,\\
+        \underleftrightarrow{\iiint_\vec S \vec\nabla \cdot \vec Fd\vec V = \iint_\vec S \vec F \cdot d \vec S}\\ 
+        %实在是没有办法，不支持\oiint ,只能用\iint代替了，见谅
+    \end{array} 
+    &
+    %积分形式
+    \begin{cases}
+        \oint_\vec l \vec H \cdot d\vec l=-\int_\vec S (\vec J + {\partial \vec D \over \partial t} \cdot d\vec S) & (1)\\
+        \oint_\vec l \vec E \cdot d \vec l = - \int _ \vec S({\partial \vec B \over \partial \vec t})\cdot d \vec S & (2)\\
+        \int_\vec S \vec B\cdot d \vec S = 0& (3)\\
+        \int_\vec S \vec D \cdot d \vec S = Q&(4)
+    \end{cases}
+\end{array}
+$$
+</div>
+
+<link rel="stylesheet" href="css/default.css" type="text/css"/>
+<link rel="stylesheet" href="css/md.css" type="text/css"/>
+
+<script src="res-min/jquery.min.js" ></script>
+<script src="res-min/before.js" ></script>
+<script src="res-min/require.min.js"></script>
+<script src="res-min/main.js"></script>
+<script src="res-min/editor.js"></script>
+
+<!-- inject:css -->
+<!-- endinject -->
+
+<!-- inject:js -->
+<!-- endinject -->
+
+</body>
+</html>

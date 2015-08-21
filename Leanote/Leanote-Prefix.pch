@@ -1,0 +1,47 @@
+//
+// Prefix header for all source files of the 'Leanote' target in the 'Leanote' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+// for editor
+
+#ifdef __OBJC__
+#import "DDLog.h"
+#import "WPEditorLoggingConfiguration.h"
+
+#ifndef IS_IPAD
+#define IS_IPAD   ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+#endif
+#ifndef IS_IPHONE
+#define IS_IPHONE   (!IS_IPAD)
+#endif
+#ifndef IS_RETINA
+#define IS_RETINA ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+#endif
+
+// life
+#define M_YES [NSNumber numberWithBool:YES]
+
+//! Shorthand for returning an NSNumber object initialized with a BOOL value of
+//! NO.
+#define M_NO [NSNumber numberWithBool:NO]
+
+
+#endif

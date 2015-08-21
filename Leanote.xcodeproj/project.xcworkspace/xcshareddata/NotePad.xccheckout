@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F496FCEF-8EFB-482D-86C5-08383B6C9D26</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Leanote</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>483E6C336DBC08BEB6B33E0633E2F1643253BA12</key>
+		<string>bitbucket.org:lealife/leanote-ios-notepad.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Leanote.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>483E6C336DBC08BEB6B33E0633E2F1643253BA12</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:lealife/leanote-ios-notepad.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>483E6C336DBC08BEB6B33E0633E2F1643253BA12</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>483E6C336DBC08BEB6B33E0633E2F1643253BA12</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Leanote-master</string>
+		</dict>
+	</array>
+</dict>
+</plist>
