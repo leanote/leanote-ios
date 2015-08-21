@@ -527,7 +527,8 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 		return NO;
 	}
 	// 判断是否合法 http://leanote.com
-	NSString *urlRegEx = @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([:|\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+	// http://www.no-ip.biz
+	NSString *urlRegEx = @"(http|https)://((\\w)*([0-9]*)|([-|_])*)+\\.([\\w0-9\\-|_\\./:])*";
 	NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
 	return [urlTest evaluateWithObject:url];
 	//	NSURL *siteURL = [NSURL URLWithString:[NSURL IDNEncodedURL:self.siteUrlText.text]];
