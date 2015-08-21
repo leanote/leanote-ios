@@ -4,9 +4,9 @@
     <img style="width: 200px;" src="./preview/apple-store-logo.png" alt="Download From App Store">
 </a>
 
-## Building
+## 1 Building
 
-### 1. Pod install third party libraries.
+### 1.1. Pod install third party libraries
 
 Leanote for iOS uses Cocoapods (http://cocoapods.org/) to manage third party libraries. 
 
@@ -14,22 +14,22 @@ Run `pod install` from the command line to install dependencies for the project.
 
 *The current version of CocoaPods is recommended.*
 
-### 2. Run On Xcode
+### 1.2. Run On Xcode
 
 Launch the workspace by either double clicking on Leanote.xcworkspace file, or launch Xcode and choose File > Open and browse to Leanote.xcworkspace.
 
-## Support & Join us
+## 2. Support & Join us
 
 * Email: leanote@leanote.com
 * [Leanote BBS](http://bbs.leanote.com)
 * [Leanote Google Group](https://groups.google.com/forum/#!forum/leanote)
 * QQ Group: 256076853, 158716820
 
-## Preview
+## 3. Preview
 
 ![](./preview/leanote-preview-list.png)
 
-## Acknowledgement
+## 4. Acknowledgement
 
 * [WordPress-iOS](https://github.com/wordpress-mobile/WordPress-iOS)
 * [WPMediaPicker](https://github.com/wordpress-mobile/MediaPicker-iOS)
@@ -37,7 +37,9 @@ Launch the workspace by either double clicking on Leanote.xcworkspace file, or l
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell)
 * [ZSSRichTextEditor](https://github.com/nnhubbard/ZSSRichTextEditor)
 
-## LICENSE
+## 5. LICENSE
+
+[LICENSE](https://github.com/leanote/leanote-ios/blob/master/LICENSE)
 
 ```
 LEANOTE - NOT JUST A NOTEPAD!
@@ -56,4 +58,3 @@ GNU General Public License for more details.
 
 Leanote IOS is licensed under the GPL v2.
 ```
-[LICENSE](https://github.com/leanote/leanote-ios/blob/master/LICENSE)
