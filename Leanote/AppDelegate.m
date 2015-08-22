@@ -142,6 +142,7 @@
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self customizeAppearance];
+    return YES;
 }
 
 // 全局样式设置

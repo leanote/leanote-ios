@@ -92,7 +92,7 @@ BOOL inSyncing = NO;
 // 同步笔记本
 - (void) syncNotebook:(NSNumber *)afterUsn callback:(void (^)(BOOL))callback
 {
-	NSNumber *maxEntry = [NSNumber numberWithInt:maxEntryInt];
+	NSNumber *maxEntry = [NSNumber numberWithUnsignedInteger:maxEntryInt];
 	[ApiService getSyncNotebooks:afterUsn maxEntry:maxEntry success:^(NSArray * notebookObjs) {
 		if(self.canceled) {
 			return;
@@ -100,7 +100,7 @@ BOOL inSyncing = NO;
 		[self syncNotebookToLocal:notebookObjs];
 		
 		// 如果一样, 表示很可能还有笔记本, 得到最大的usn, 递归调用之
-		int count = [notebookObjs count];
+		NSUInteger count = [notebookObjs count];
 		if (count == maxEntryInt) {
 			NSNumber *maxUsn = notebookObjs[count-1][@"Usn"];
 			[self syncNotebook:maxUsn callback:callback];
@@ -186,7 +186,7 @@ BOOL inSyncing = NO;
 // 同步笔记
 - (void) syncNote:(NSNumber *)afterUsn callback:(void (^)(BOOL))callback
 {
-	NSNumber *maxEntry = [NSNumber numberWithInt:maxEntryInt];
+	NSNumber *maxEntry = [NSNumber numberWithUnsignedInteger:maxEntryInt];
 	[ApiService getSyncNotes:afterUsn maxEntry:maxEntry success:^(NSArray * noteObjs) {
 		if(self.canceled) {
 			return;
@@ -194,7 +194,7 @@ BOOL inSyncing = NO;
 		[self syncNoteToLocal:noteObjs];
 		
 		// 如果一样, 表示很可能还有笔记本, 得到最大的usn, 递归调用之
-		int count = [noteObjs count];
+		NSUInteger count = [noteObjs count];
 		if (count == maxEntryInt) {
 			NSNumber *maxUsn = noteObjs[count-1][@"Usn"];
 			[self syncNote:maxUsn callback:callback];
@@ -244,7 +244,7 @@ BOOL inSyncing = NO;
 // 同步标签
 - (void) syncTag:(NSNumber *)afterUsn callback:(void (^)(BOOL))callback
 {
-	NSNumber *maxEntry = [NSNumber numberWithInt:maxEntryInt];
+	NSNumber *maxEntry = [NSNumber numberWithUnsignedInteger:maxEntryInt];
 	[ApiService getSyncTags:afterUsn maxEntry:maxEntry success:^(NSArray * tagObjs) {
 		if(self.canceled) {
 			return;
@@ -252,7 +252,7 @@ BOOL inSyncing = NO;
 		[self syncTagToLocal:tagObjs];
 		
 		// 如果一样, 表示很可能还有Tag, 得到最大的usn, 递归调用之
-		int count = [tagObjs count];
+		NSUInteger count = [tagObjs count];
 		if (count == maxEntryInt) {
 			NSNumber *maxUsn = tagObjs[count-1][@"Usn"];
 			[self syncTag:maxUsn callback:callback];
