@@ -42,7 +42,7 @@ static CGPoint const LoginOnePasswordPadding                    = {9.0, 0.0f};
 static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL isFromAddAccount;
 

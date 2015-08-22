@@ -23,7 +23,7 @@
 
 #import <SGNavigationProgress/UINavigationController+SGProgress.h>
 
-@interface NoteController ()
+@interface NoteController ()<SWTableViewCellDelegate>
 
 @property (strong, nonatomic) NSIndexPath *indexPathToBeDeleted;
 @property (strong, nonatomic) NSFetchedResultsController *searchedResultsController;
@@ -724,7 +724,10 @@
 		case NSFetchedResultsChangeDelete:
 			[tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
 					 withRowAnimation:UITableViewRowAnimationFade];
-			break;
+            break;
+        case NSFetchedResultsChangeUpdate:
+        case NSFetchedResultsChangeMove:
+            break;
 	}
 	
 }

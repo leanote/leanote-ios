@@ -64,7 +64,7 @@ static NSDictionary *EnabledButtonBarStyle;
 static NSInteger const MaximumNumberOfPictures = 10;
 
 
-@interface NoteViewController () <CTAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface NoteViewController () <CTAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, WPMediaPickerViewControllerDelegate>
 
 @property(nonatomic, strong) NSMutableDictionary *mediaAdded;
 @property(nonatomic, strong) NSString *selectedMediaID;
@@ -539,7 +539,7 @@ BOOL hiddenBar = NO;
 	}
 	
 	// 得到当前的url
-	int count = [realUrls count];
+	NSUInteger count = [realUrls count];
 	if(count < 1) {
 		return;
 	}
