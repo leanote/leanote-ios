@@ -47,7 +47,7 @@ typedef enum {
 @property UIBarButtonItem *doneButton;
 @property UIBarButtonItem *cancelButton;
 
-@property (assign) BOOL *textFieldDidHaveFocusBeforeOrientationChange;
+@property (assign) BOOL textFieldDidHaveFocusBeforeOrientationChange;
 
 @end
 
