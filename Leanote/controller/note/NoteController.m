@@ -724,7 +724,10 @@
 		case NSFetchedResultsChangeDelete:
 			[tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
 					 withRowAnimation:UITableViewRowAnimationFade];
-			break;
+            break;
+        case NSFetchedResultsChangeUpdate:
+        case NSFetchedResultsChangeMove:
+            break;
 	}
 	
 }
