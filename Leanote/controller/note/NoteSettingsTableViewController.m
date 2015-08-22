@@ -43,7 +43,7 @@ typedef enum {
 } PostSettingsRow;
 
 
-@interface NoteSettingsTableViewController ()
+@interface NoteSettingsTableViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL preIsBlog;
 

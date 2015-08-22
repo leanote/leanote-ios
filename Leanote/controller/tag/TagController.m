@@ -17,7 +17,7 @@
 #import "Leas.h"
 #import "NoteController.h"
 
-@interface TagController ()
+@interface TagController ()<SWTableViewCellDelegate>
 
 // 从setting过来要用
 @property (nonatomic, strong) Note *note;

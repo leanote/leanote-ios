@@ -13,7 +13,7 @@
 
 #import "Common.h"
 
-@interface LeaImageSliderViewController ()
+@interface LeaImageSliderViewController ()<UIPageViewControllerDelegate>
 {
 	UILabel *_label;
 }

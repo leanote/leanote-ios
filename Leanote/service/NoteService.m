@@ -23,7 +23,7 @@
 // 把关于数据库操作的抽出来放到这里
 
 - (NSFetchedResultsController *) fetchedResultsControllerWithPredicate:(NSString *)predicateStr
-														withController:(UIViewController *)controller
+														withController:(UIViewController<NSFetchedResultsControllerDelegate> *)controller
 															  notebook:(Notebook *)notebook
 																   tag:(Tag *)tag
 																isBlog:(BOOL)isBlog

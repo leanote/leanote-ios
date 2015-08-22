@@ -64,7 +64,7 @@ static NSDictionary *EnabledButtonBarStyle;
 static NSInteger const MaximumNumberOfPictures = 10;
 
 
-@interface NoteViewController () <CTAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface NoteViewController () <CTAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, WPMediaPickerViewControllerDelegate>
 
 @property(nonatomic, strong) NSMutableDictionary *mediaAdded;
 @property(nonatomic, strong) NSString *selectedMediaID;
