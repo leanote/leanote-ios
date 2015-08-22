@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) UIButton *saveBtn;
 
-@property int count;
+@property NSUInteger count;
 @property (strong, nonatomic) NSMutableArray *views;
 @end
 
@@ -222,7 +222,7 @@
 }
 -(void)setIndexLabel
 {
-	_label.text = [NSString stringWithFormat:@"%i/%i", self.curIndex + 1, self.count];
+	_label.text = [NSString stringWithFormat:@"%lu/%lu", self.curIndex + 1, self.count];
 }
 
 @end

@@ -539,7 +539,7 @@ BOOL hiddenBar = NO;
 	}
 	
 	// 得到当前的url
-	int count = [realUrls count];
+	NSUInteger count = [realUrls count];
 	if(count < 1) {
 		return;
 	}
