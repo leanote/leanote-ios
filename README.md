@@ -4,7 +4,7 @@
     <img style="width: 200px;" src="./preview/apple-store-logo.png" alt="Download From App Store">
 </a>
 
-## 1 Building
+## 1. Building
 
 ### 1.1. Pod install third party libraries
 
