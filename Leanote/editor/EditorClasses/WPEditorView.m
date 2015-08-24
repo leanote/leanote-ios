@@ -500,7 +500,6 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
     
     self.lastEditorHeight = newHeight;
 	
-	// 我靠, 重新resize啊
 	// contentSize是scrollview可以滚动的区域, 所以, contentSize就是内容的高度
     self.webView.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame), newHeight);
 }

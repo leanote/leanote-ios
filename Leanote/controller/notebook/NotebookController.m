@@ -124,7 +124,6 @@
 	self.title = NSLocalizedString(@"Notebook", nil);
 	
 	
-	// 我靠, 我不是故意的, 如果不加这两名, search bar动画会有突现, 突下的动画
 	// http://stackoverflow.com/a/20975075/4269908
 	[self setAutomaticallyAdjustsScrollViewInsets:YES];
 	[self setExtendedLayoutIncludesOpaqueBars:YES];
