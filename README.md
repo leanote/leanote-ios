@@ -1,5 +1,7 @@
 # Leanote IOS
 
+[![Join the chat at https://gitter.im/leanote/leanote-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leanote/leanote-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <a href="https://itunes.apple.com/cn/app/leanote/id1022302858?mt=8" title="Download From App Store" class="ios-download">
     <img style="width: 200px;" src="./preview/apple-store-logo.png" alt="Download From App Store">
 </a>
