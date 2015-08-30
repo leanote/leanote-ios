@@ -216,7 +216,8 @@ NSArray *users;
 	}
 	// 访问博客
 	else {
-		LeaWebViewController *webViewController = [[LeaWebViewController alloc] init];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        LeaWebViewController *webViewController = [sb instantiateViewControllerWithIdentifier:@"LeaWebViewController"];
 		webViewController.needsLogin = YES;
 		User *user = [UserService getCurUser];
 		webViewController.host = user.host;

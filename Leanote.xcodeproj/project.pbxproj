@@ -182,7 +182,6 @@
 		1CD878131B5F62DA002E5F7B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */; };
 		1CDB4FAE1B305C7C007CC245 /* MeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB4FAB1B305C7C007CC245 /* MeController.m */; };
 		1CDB4FAF1B305C7C007CC245 /* MeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB4FAD1B305C7C007CC245 /* MeTab.m */; };
-		1CDCB1461B50E66700838D17 /* WPWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CDCB1451B50E66700838D17 /* WPWebViewController.xib */; };
 		1CDCB1731B52B77E00838D17 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CDCB1751B52B77E00838D17 /* Localizable.strings */; };
 		1CDD486C1B30074500AC625F /* TagService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD486B1B30074500AC625F /* TagService.m */; };
 		1CDD486F1B30131B00AC625F /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD486E1B30131B00AC625F /* Tag.m */; };
@@ -512,7 +511,6 @@
 		1CDB4FAB1B305C7C007CC245 /* MeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeController.m; sourceTree = "<group>"; };
 		1CDB4FAC1B305C7C007CC245 /* MeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeTab.h; sourceTree = "<group>"; };
 		1CDB4FAD1B305C7C007CC245 /* MeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeTab.m; sourceTree = "<group>"; };
-		1CDCB1451B50E66700838D17 /* WPWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPWebViewController.xib; sourceTree = "<group>"; };
 		1CDCB16F1B52B4AA00838D17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1CDCB1741B52B77E00838D17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1CDCB1761B52B78E00838D17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1066,7 +1064,6 @@
 		1CDCB1441B50E66700838D17 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				1CDCB1451B50E66700838D17 /* WPWebViewController.xib */,
 				1CD878101B5F5E1D002E5F7B /* Launch Screen.xib */,
 				1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */,
 			);
@@ -1191,13 +1188,13 @@
 				1CEF0D791B876B4800C2B2F3 /* LeaImageSliderViewController.m */,
 				1CEF0D7A1B876B4800C2B2F3 /* LeaSearchDisplayController.h */,
 				1CEF0D7B1B876B4800C2B2F3 /* LeaSearchDisplayController.m */,
-				1CEF0D7C1B876B4800C2B2F3 /* LeaUITabBar.h */,
 				1CEF0DD81B87714400C2B2F3 /* LeaWebViewController.h */,
 				1CEF0DD91B87714400C2B2F3 /* LeaWebViewController.m */,
+				1CEF0D7C1B876B4800C2B2F3 /* LeaUITabBar.h */,
 				1CEF0D7D1B876B4800C2B2F3 /* LeaUITabBar.m */,
-				1CEF0DDB1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.h */,
 				1CEF0DDE1B87738400C2B2F3 /* LeaImageViewController.h */,
 				1CEF0DDF1B87738400C2B2F3 /* LeaImageViewController.m */,
+				1CEF0DDB1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.h */,
 				1CEF0DDC1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.m */,
 			);
 			path = view;
@@ -1504,7 +1501,6 @@
 				1CA4CEE11B68D91200E500F4 /* icon_format_keyboard.png in Resources */,
 				1CA4CEEF1B68D91200E500F4 /* icon_format_media_highlighted@2x.png in Resources */,
 				1CA4CEEC1B68D91200E500F4 /* icon_format_media@2x.png in Resources */,
-				1CDCB1461B50E66700838D17 /* WPWebViewController.xib in Resources */,
 				1CA4CF451B68D91200E500F4 /* ZSSleftjustify.png in Resources */,
 				1CA4CF381B68D91200E500F4 /* ZSSh3.png in Resources */,
 				1CA4CF121B68D91200E500F4 /* icon_format_underline_highlighted@2x.png in Resources */,

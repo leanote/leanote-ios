@@ -183,13 +183,13 @@
 }
 -(void) visitUrl:(Note *)note
 {
-	LeaWebViewController *webViewController = [[LeaWebViewController alloc] init];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    LeaWebViewController *webViewController = [sb instantiateViewControllerWithIdentifier:@"LeaWebViewController"];
 	webViewController.needsLogin = YES;
 	User *user = [UserService getCurUser];
 	webViewController.host = user.host;
 	webViewController.email = user.email;
 	webViewController.pwd = user.pwd;
-	
 	webViewController.url = note ? [NSURL URLWithString:[UserService getPostUrl:note.serverNoteId]]: [NSURL URLWithString:[UserService getMyBlogUrl]];
 	
 	UIBarButtonItem *newBackButton =
