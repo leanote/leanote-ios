@@ -19,28 +19,28 @@
 #import <WordPress-iOS-Shared/WPTableViewCell.h>
 #import <WordPress-iOS-Shared/UITableViewTextFieldCell.h>
 
-typedef enum {
-	PostSettingsSectionTaxonomy = 0,
-	PostSettingsSectionMeta,
-	PostSettingsSectionFormat,
-	PostSettingsSectionFeaturedImage,
-	PostSettingsSectionGeolocation
-} PostSettingsSection;
+typedef NS_ENUM(NSUInteger, PostSettingsSection) {
+	PostSettingsSectionTaxonomy      = 0,
+	PostSettingsSectionMeta          = 1,
+	PostSettingsSectionFormat        = 2,
+	PostSettingsSectionFeaturedImage = 3,
+	PostSettingsSectionGeolocation   = 4
+};
 
-typedef enum {
-	PostSettingsRowCategories = 0,
-	PostSettingsRowTags,
-	PostSettingsRowPublishDate,
-	PostSettingsRowStatus,
-	PostSettingsRowVisibility,
-	PostSettingsRowPassword,
-	PostSettingsRowFormat,
-	PostSettingsRowFeaturedImage,
-	PostSettingsRowFeaturedImageAdd,
-	PostSettingsRowFeaturedLoading,
-	PostSettingsRowGeolocationAdd,
-	PostSettingsRowGeolocationMap
-} PostSettingsRow;
+typedef NS_ENUM(NSUInteger, PostSettingsRow) {
+	PostSettingsRowCategories        = 0,
+	PostSettingsRowTags              = 1,
+	PostSettingsRowPublishDate       = 2,
+	PostSettingsRowStatus            = 3,
+	PostSettingsRowVisibility        = 4,
+	PostSettingsRowPassword          = 5,
+	PostSettingsRowFormat            = 6,
+	PostSettingsRowFeaturedImage     = 7,
+	PostSettingsRowFeaturedImageAdd  = 8,
+	PostSettingsRowFeaturedLoading   = 9,
+	PostSettingsRowGeolocationAdd    = 10,
+	PostSettingsRowGeolocationMap    = 11
+};
 
 
 @interface NoteSettingsTableViewController ()<UITextFieldDelegate>

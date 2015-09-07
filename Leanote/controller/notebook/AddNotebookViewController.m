@@ -18,15 +18,15 @@
 #import <WordPress-iOS-Shared/UITableViewTextFieldCell.h>
 #import <WordPress-iOS-Shared/WPTableViewSectionHeaderView.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, PostSettingsSection) {
 	PostSettingsSectionTaxonomy = 0,
-	PostSettingsSectionMeta,
-} PostSettingsSection;
+	PostSettingsSectionMeta     = 1,
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, PostSettingsRow) {
 	PostSettingsRowCategories = 0,
-	PostSettingsRowTags,
-} PostSettingsRow;
+	PostSettingsRowTags       = 1,
+};
 
 
 @interface AddNotebookViewController ()
