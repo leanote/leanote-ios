@@ -9,9 +9,7 @@
 #import "NoteService.h"
 #import "NotebookController.h"
 #import "Note.h"
-
 #import "Leas.h"
-
 #import "LeaButtonForNavigationBar.h"
 #import <WordPress-iOS-Shared/UIImage+Util.h>
 #import <WordPress-iOS-Shared/WPFontManager.h>
@@ -44,10 +42,10 @@ typedef enum {
 @property (nonatomic, strong) NSArray *visibilityList;
 @property (nonatomic, strong) NSArray *formatsList;
 
-@property UIBarButtonItem *doneButton;
-@property UIBarButtonItem *cancelButton;
+@property (nonatomic, strong) UIBarButtonItem *doneButton;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
 
-@property (assign) BOOL textFieldDidHaveFocusBeforeOrientationChange;
+@property (nonatomic, assign) BOOL textFieldDidHaveFocusBeforeOrientationChange;
 
 @end
 
@@ -63,14 +61,7 @@ typedef enum {
 	self.tableView.contentInset = UIEdgeInsetsMake(-1.0f, 0, 0, 0);
 	self.tableView.accessibilityIdentifier = @"AddNotebookTable";
 	
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	
-//	self.doneButton = [[UIBarButtonItem alloc] init];
 	self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-	// self.doneButton.title = @"Done";
 	self.navigationItem.rightBarButtonItem = self.doneButton;
 	
 	self.cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
@@ -80,7 +71,6 @@ typedef enum {
 		self.title = NSLocalizedString(@"Edit Notebook", nil);
 	}
 	
-	// table的样式
 	[self setTableStyle:self.tableView];
 }
 
@@ -89,13 +79,15 @@ typedef enum {
 	[self restoreBarStyle];
 }
 
-// 取消
+
+#pragma mark - Action
+
 - (IBAction)cancel:(id)sender
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// 完成
+
 - (IBAction)done:(id)sender
 {
 	NSString *name = self.titleTextField.text;
@@ -166,11 +158,11 @@ typedef enum {
 	self.sections = [NSMutableArray array];
 	
 	[self.sections addObject:[NSNumber numberWithInteger:PostSettingsSectionTaxonomy]];
-
-	// [self.sections addObject:[NSNumber numberWithInteger:PostSettingsSectionMeta]];
 }
 
-// 多少个section
+
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (!self.sections) {
 		[self configureSections];
@@ -178,26 +170,14 @@ typedef enum {
 	return [self.sections count];
 }
 
-// 每个section多少行
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//	NSInteger sec = [[self.sections objectAtIndex:section] integerValue];
 	return 1;
-//	
-//	if (sec == PostSettingsSectionTaxonomy) {
-//		return 2;
-//		
-//	} else if (sec == PostSettingsSectionMeta) {
-//		return 1;
-//		
-//	}
-	return 0;
 }
 
-// section title
 - (NSString *)titleForHeaderInSection:(NSInteger)section
 {
-	// 暂时不需要
 	return @"";
 	
 	NSInteger sec = [[self.sections objectAtIndex:section] integerValue];
@@ -210,16 +190,13 @@ typedef enum {
 	return @"Hello";
 }
 
-// 必须要这个, 不然viewForHeaderInSection不执行
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	return @"Hehe";
 }
 
-// 必须要, 不然不好看
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//	return 44.0;
 	return 20;
 }
 
@@ -232,7 +209,6 @@ typedef enum {
 }
 
 
-// 配置每一行
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -242,24 +218,7 @@ typedef enum {
 	
 	if (sec == PostSettingsSectionTaxonomy) {
 		
-		// Tags, 标签啊, 逗号分隔
 		WPTableViewCell *textCell = [self getTextFieldCell];
-		/*
-		textCell.textLabel.text = NSLocalizedString(@"Title", @"Label for the tags field. Should be the same as WP core.");
-		
-		textCell.textField.text = self.notebook.title;
-		
-		textCell.textField.secureTextEntry = NO;
-		textCell.textField.clearButtonMode = UITextFieldViewModeNever;
-		textCell.textField.accessibilityIdentifier = @"NotebookTitle";
-		cell = textCell;
-		cell.tag = PostSettingsRowTags;
-		
-		self.titleTextField = textCell.textField;
-		
-		// 获取焦点
-		[self.titleTextField becomeFirstResponder];
-		*/
 		return textCell;
 		
 		
@@ -275,7 +234,6 @@ typedef enum {
 	return cell;
 }
 
-// cell
 
 - (WPTableViewCell *)getWPTableViewCell
 {
@@ -290,7 +248,6 @@ typedef enum {
 	return cell;
 }
 
-// 含文本输入框的cell
 - (WPTableViewCell *)getTextFieldCell
 {
 	static NSString *textFieldCellIdentifier = @"textFieldCellIdentifier";
@@ -315,28 +272,15 @@ typedef enum {
 	
 	[self.titleTextField becomeFirstResponder];
 	
-/*
-	if (!cell) {
-		cell = [[UITableViewTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:textFieldCellIdentifier];
-		cell.textField.returnKeyType = UIReturnKeyDone;
-		cell.textField.delegate = self;
-		[WPStyleGuide configureTableViewTextCell:cell];
-		cell.textField.textAlignment = NSTextAlignmentRight;
-	}
-	cell.tag = 0;
- */
 	return cell;
 }
 
-// 选择某一行
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 	
-	// 配置每一行? 为什么?
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
-	// 然后, 触发动作
 	if (cell.tag == PostSettingsRowCategories) {
 		[self showNotebookSelection];
 	}
@@ -344,11 +288,6 @@ typedef enum {
 
 - (void)showNotebookSelection
 {
-	/*
-	NotebookController *controller = [[NotebookController alloc] initWithNote:self.note fromSetting:YES];
-	[self.navigationController pushViewController:controller animated:YES];
-	*/
-	
 	NSString *storyboardName = @"MainStoryboard_iPhone";
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
 	NotebookController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Notebook"];
@@ -362,31 +301,16 @@ typedef enum {
 	
 	vc.hidesBottomBarWhenPushed = YES;
 	
-	// 设置返回按钮
 	UIBarButtonItem *newBackButton =
 	[[UIBarButtonItem alloc] initWithTitle:@""
 									 style:UIBarButtonItemStyleBordered
 									target:nil
 									action:nil];
 	[[self navigationItem] setBackBarButtonItem:newBackButton];
-	
-	/*
-	// modal显示view
-	// 显示nav bar http://stackoverflow.com/a/9725740/4269908
-	UINavigationController *navigationController =
-	[[UINavigationController alloc] initWithRootViewController:vc];
-	navigationController.navigationItem.leftBarButtonItem = newBackButton;
-	
-	[self.navigationController presentViewController:navigationController animated:true completion:nil];
-	*/
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - TextField Delegate Methods 标签
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-}
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
@@ -397,12 +321,6 @@ typedef enum {
 	return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-	if (textField == self.titleTextField) {
-		// self.notebook.title = self.titleTextField.text;
-	}
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -414,56 +332,7 @@ typedef enum {
 	shouldChangeCharactersInRange:(NSRange)range
 	replacementString:(NSString *)string
 {
-	if (textField == self.titleTextField) {
-		//self.note.tags = [self.titleTextField.text stringByReplacingCharactersInRange:range withString:string];
-	}
 	return YES;
 }
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
