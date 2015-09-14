@@ -1,16 +1,14 @@
-# Leanote IOS
+# Leanote iOS
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leanote/leanote-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leanote/leanote-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
 
-<a href="https://itunes.apple.com/cn/app/leanote/id1022302858?mt=8" title="Download From App Store" class="ios-download">
-    <img style="width: 200px;" src="./preview/apple-store-logo.png" alt="Download From App Store">
-</a>
+![](./psd/Badge.png)
 
 ## 1. Building
 
 ### 1.1. Pod install third party libraries
 
-Leanote for iOS uses Cocoapods (http://cocoapods.org/) to manage third party libraries. 
+Leanote for iOS uses CocoaPods (http://cocoapods.org/) to manage third party libraries. 
 
 Run `pod install` from the command line to install dependencies for the project.
 
@@ -58,5 +56,5 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-Leanote IOS is licensed under the GPL v2.
+Leanote iOS is licensed under the GPL v2.
 ```
