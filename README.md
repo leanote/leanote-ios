@@ -2,11 +2,11 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leanote/leanote-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
 
-![](./psd/Badge.png)
+[![](./psd/Badge.png)](https://itunes.apple.com/cn/app/leanote/id1022302858)
 
-## 1. Building
+## Building
 
-### 1.1. Pod install third party libraries
+### Pod install third party libraries
 
 Leanote for iOS uses CocoaPods (http://cocoapods.org/) to manage third party libraries. 
 
@@ -14,22 +14,22 @@ Run `pod install` from the command line to install dependencies for the project.
 
 *The current version of CocoaPods is recommended.*
 
-### 1.2. Run On Xcode
+### Run On Xcode
 
 Launch the workspace by either double clicking on Leanote.xcworkspace file, or launch Xcode and choose File > Open and browse to Leanote.xcworkspace.
 
-## 2. Support & Join us
+## Support & Join us
 
 * Email: leanote@leanote.com
 * [Leanote BBS](http://bbs.leanote.com)
 * [Leanote Google Group](https://groups.google.com/forum/#!forum/leanote)
 * QQ Group: 256076853, 158716820
 
-## 3. Preview
+## Preview
 
 ![](./preview/leanote-preview-list.png)
 
-## 4. Acknowledgement
+## Acknowledgement
 
 * [WordPress-iOS](https://github.com/wordpress-mobile/WordPress-iOS)
 * [WPMediaPicker](https://github.com/wordpress-mobile/MediaPicker-iOS)
@@ -37,7 +37,7 @@ Launch the workspace by either double clicking on Leanote.xcworkspace file, or l
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell)
 * [ZSSRichTextEditor](https://github.com/nnhubbard/ZSSRichTextEditor)
 
-## 5. LICENSE
+## LICENSE
 
 [LICENSE](https://github.com/leanote/leanote-ios/blob/master/LICENSE)
 
