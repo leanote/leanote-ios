@@ -83,7 +83,7 @@ static NSDictionary *EnabledButtonBarStyle;
 
 @property (nonatomic, strong) UIActionSheet* actionSheet;
 
-@property (nonatomic) BOOL isMarkdown;
+
 
 @property (nonatomic) BOOL edited;
 
@@ -92,7 +92,7 @@ static NSDictionary *EnabledButtonBarStyle;
 @end;
 
 @implementation NoteViewController
-
+@dynamic isMarkdown;
 @synthesize textView = _textView;  // 为什么要有?
 @synthesize note = _note;
 
