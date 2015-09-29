@@ -40,9 +40,9 @@
 @property BOOL noResult;
 
 - (void)handleOrientationChangeNotification:(NSNotification *)notification;
-- (void)notepadTitle;
+//- (void)notepadTitle;
 - (NSUInteger)titleLength;
-- (void)configureCell:(UITableViewCell *)cell forNote:(Note *)note;
+//- (void)configureCell:(UITableViewCell *)cell forNote:(Note *)note;
 - (NSFetchedResultsController *)fetchedResultsControllerWithPredicate:(NSString *)predicate;
 
 @end
@@ -356,20 +356,20 @@
 	{
 		if(cr.location > [self titleLength])
 		{
-			NSUInteger len = MIN([notebook.title length], [self titleLength]);
-			NSRange range = NSMakeRange(0, len);
+			//NSUInteger len = MIN([notebook.title length], [self titleLength]);
+			//NSRange range = NSMakeRange(0, len);
 			cell.textLabel.text = notebook.title; // [NSString stringWithFormat:@"%@...",[notebook.title substringWithRange:range]];
 		}
 		else
 		{
-			NSRange range = NSMakeRange(0, cr.location);
+			//NSRange range = NSMakeRange(0, cr.location);
 			cell.textLabel.text = notebook.title; // [notebook.title substringWithRange:range];
 		}
 	}
 	else
 	{
-		NSUInteger len = MIN([notebook.title length], [self titleLength]);
-		NSRange range = NSMakeRange(0, len);
+		//NSUInteger len = MIN([notebook.title length], [self titleLength]);
+		//NSRange range = NSMakeRange(0, len);
 		cell.textLabel.text = notebook.title; // [NSString stringWithFormat:@"%@...",[notebook.title substringWithRange:range]];
 	}
 	

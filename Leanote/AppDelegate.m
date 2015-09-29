@@ -156,7 +156,7 @@
 // 全局样式设置
 - (void)customizeAppearance
 {
-	UIColor *defaultTintColor = self.window.tintColor;
+	//UIColor *defaultTintColor = self.window.tintColor;
 	self.window.backgroundColor = [WPStyleGuide itsEverywhereGrey];
 	self.window.tintColor = [WPStyleGuide wordPressBlue];
 	

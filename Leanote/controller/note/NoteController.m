@@ -37,7 +37,7 @@
 - (void)noteTitle;
 - (NSUInteger)titleLength;
 - (void)configureCell:(UITableViewCell *)cell forNote:(Note *)note;
-- (NSFetchedResultsController *)fetchedResultsControllerWithPredicate:(NSPredicate *)predicate;
+//- (NSFetchedResultsController *)fetchedResultsControllerWithPredicate:(NSPredicate *)predicate;
 @property (nonatomic, strong) SWTableViewCell *curCell;
 @end
 

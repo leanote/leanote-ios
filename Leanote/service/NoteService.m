@@ -20,6 +20,11 @@
 
 @implementation NoteService
 
+- (void)pushUpdateNote:(Note *)note content:(NSString *)content success:(void (^)())success fail:(void (^)(id))fail
+{
+#warning // TODO
+}
+
 // 把关于数据库操作的抽出来放到这里
 
 - (NSFetchedResultsController *) fetchedResultsControllerWithPredicate:(NSString *)predicateStr
@@ -131,9 +136,9 @@
 //	sharedSingleton.managedObjectContext = managedObjectContext;
 }
 
-+ (NoteService *) getInstance {
-//	return sharedSingleton;
-}
+//+ (NoteService *) getInstance {
+//    return sharedSingleton;
+//}
 
 #pragma 同步
 

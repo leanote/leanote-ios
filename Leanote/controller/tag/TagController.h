@@ -24,7 +24,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
+//- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
 - (void)initWithNote:(Note *)note fromSetting:(BOOL)fromSetting setSettingNotebook:(void (^)(Notebook *))setSettingNotebook;
 

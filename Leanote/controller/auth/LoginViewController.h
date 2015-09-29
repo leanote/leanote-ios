@@ -12,9 +12,9 @@
 //一个falg，用于判断显示哪个view
 @property (weak,nonatomic) NSString * whichViewToPresent;
 
-- (IBAction)login:(id)sender;
--(void)resignFirstResponder4textField:(id)sender;
--(void)resignFirstResponder4LoginView;
+//- (IBAction)login:(id)sender;
+//-(void)resignFirstResponder4textField:(id)sender;
+//-(void)resignFirstResponder4LoginView;
 -(void)fromAddAccount:(BOOL)ok loginOkCb:(void (^)())loginOkCb;
 @end
 

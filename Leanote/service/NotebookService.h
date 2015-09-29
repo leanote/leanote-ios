@@ -19,7 +19,7 @@
 //+ (void) setCurNotebook:(Notebook *)notebook;
 ////+ (void) clearCurNotebook;
 //+ (void) init: (NSManagedObjectContext *) managedObjectContext;
-
+//- (void)getNotebook;
 
 + (NSString *) getFirstNotebookId:(NSManagedObjectContext *)inContext;
 
@@ -62,7 +62,7 @@
 
 - (void)deleteNotebook;
 - (void)updateNotebook;
-- (void)getNotebook;
+
 
 
 

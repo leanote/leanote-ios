@@ -222,7 +222,7 @@
 }
 -(void)setIndexLabel
 {
-	_label.text = [NSString stringWithFormat:@"%u/%lu", self.curIndex + 1, (unsigned long)self.count];
+	_label.text = [NSString stringWithFormat:@"%lu/%lu", self.curIndex + 1, (unsigned long)self.count];
 }
 
 @end
