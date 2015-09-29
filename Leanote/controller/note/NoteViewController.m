@@ -61,7 +61,7 @@ static CGFloat const SpacingBetweeenNavbarButtons = 20.0f;
 //static CGFloat const RightSpacingOnExitNavbarButton = 5.0f;
 static NSDictionary *DisabledButtonBarStyle;
 static NSDictionary *EnabledButtonBarStyle;
-static NSInteger const MaximumNumberOfPictures = 10;
+//static NSInteger const MaximumNumberOfPictures = 10;
 
 
 @interface NoteViewController () <CTAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, WPMediaPickerViewControllerDelegate>
@@ -83,7 +83,7 @@ static NSInteger const MaximumNumberOfPictures = 10;
 
 @property (nonatomic, strong) UIActionSheet* actionSheet;
 
-@property (nonatomic) BOOL isMarkdown;
+
 
 @property (nonatomic) BOOL edited;
 
@@ -92,7 +92,7 @@ static NSInteger const MaximumNumberOfPictures = 10;
 @end;
 
 @implementation NoteViewController
-
+@dynamic isMarkdown;
 @synthesize textView = _textView;  // 为什么要有?
 @synthesize note = _note;
 
@@ -162,7 +162,7 @@ static NSInteger const MaximumNumberOfPictures = 10;
 		[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 		// kWPEditorViewControllerModeEdit
 	}
-	[super initWithMode:kWPEditorViewControllerModePreview isMarkdown:self.isMarkdown];
+	//[super initWithMode:kWPEditorViewControllerModePreview isMarkdown:self.isMarkdown];
 	
 	[super viewDidLoad];
 	
@@ -919,5 +919,10 @@ BOOL hiddenBar = NO;
 	}
 }
 
+#pragma mark - 
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)asset
+{
+    NSLog(@"1234");
+}
 
 @end

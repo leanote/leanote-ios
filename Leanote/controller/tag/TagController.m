@@ -37,7 +37,7 @@
 
 - (void)handleOrientationChangeNotification:(NSNotification *)notification;
 - (NSUInteger)titleLength;
-- (void)configureCell:(UITableViewCell *)cell forNote:(Note *)note;
+//- (void)configureCell:(UITableViewCell *)cell forNote:(Note *)note;
 - (NSFetchedResultsController *)fetchedResultsControllerWithPredicate:(NSString *)predicate;
 
 @end

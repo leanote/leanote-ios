@@ -42,6 +42,11 @@ NSInteger const SupportButtonIndex = 0;
     [self showNetworkingAlertWithError:error title:nil];
 }
 
++ (void)showNetworkingAlertWithError:(NSError *)error title:(NSString *)title
+{
+    // TODO
+}
+
 + (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
 {
     [self showAlertWithTitle:title message:message withSupportButton:NO okPressedBlock:nil];

@@ -47,6 +47,7 @@
 + (NSString *) trimAllNewLine:(NSString *) str
 {
 	str = [str stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return str;
 }
 
 //  /Users/life/Library/Developer/CoreSimulator/Devices/42036FAF-BEE1-4C4A-8916-FFD229FDA1CB/data/Containers/Data/Application/F4AA8D3C-3242-4E26-BE07-6053F3B62C43/Documents/

@@ -123,7 +123,7 @@
 		}
 		if (success) {
 			NSLog(@"---> %@", objs);
-			NSLog(@"getSyncNotebooks %lu", [notebooks count]);
+			NSLog(@"getSyncNotebooks %lu", (unsigned long)[notebooks count]);
 			success(notebooks);
 		}
 		
@@ -151,7 +151,7 @@
 			[notebooks addObject:eachObj];
 		}
 		if (success) {
-			NSLog(@"getSyncNotes %lu", [notebooks count]);
+			NSLog(@"getSyncNotes %lu", (unsigned long)[notebooks count]);
 			success(notebooks);
 		}
 		
@@ -180,7 +180,7 @@
 			[tags addObject:eachObj];
 		}
 		if (success) {
-			NSLog(@"getSyncTags %lu", [tags count]);
+			NSLog(@"getSyncTags %lu", (unsigned long)[tags count]);
 			success(tags);
 		}
 		

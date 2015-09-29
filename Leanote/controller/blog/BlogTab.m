@@ -24,7 +24,7 @@
 		
 		NoteController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"Note"];
 		view.isBlog = YES;
-		[self initWithRootViewController:view];
+        [self.navigationController initWithRootViewController:view];
 		
 		self.title = NSLocalizedString(@"Post", nil);
     }

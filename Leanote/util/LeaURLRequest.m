@@ -39,7 +39,7 @@
     request.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
     
     // Auth Headers
-    [request setValue:[NSString stringWithFormat:@"%lu", requestBody.length] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)requestBody.length] forHTTPHeaderField:@"Content-Length"];
     [request addValue:@"*/*" forHTTPHeaderField:@"Accept"];
     
     // Bearer Token

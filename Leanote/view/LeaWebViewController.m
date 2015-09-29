@@ -637,7 +637,7 @@
 //    DDLogMethod()
     [self setLoading:NO];
 
-    CGSize webviewSize = self.view.frame.size;
+    //CGSize webviewSize = self.view.frame.size;
 	/*
     NSString *js = [NSString stringWithFormat:@"var meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' ); meta.setAttribute( 'content', 'width = %d, initial-scale = 1.0, user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta)", webviewSize.width];
     [aWebView stringByEvaluatingJavaScriptFromString: js];

@@ -33,6 +33,8 @@ static CGFloat const MinimumZoomScale = 0.1;
     return [self initWithImage:nil andURL: url];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype)initWithImage:(UIImage *)image andURL:(NSURL *)url
 {
     self = [super init];
@@ -42,6 +44,7 @@ static CGFloat const MinimumZoomScale = 0.1;
     }
     return self;
 }
+#pragma clang diagnostic pop
 
 - (UIImage *) getImage {
 	return self.image;

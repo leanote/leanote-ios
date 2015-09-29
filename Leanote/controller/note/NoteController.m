@@ -37,7 +37,7 @@
 - (void)noteTitle;
 - (NSUInteger)titleLength;
 - (void)configureCell:(UITableViewCell *)cell forNote:(Note *)note;
-- (NSFetchedResultsController *)fetchedResultsControllerWithPredicate:(NSPredicate *)predicate;
+//- (NSFetchedResultsController *)fetchedResultsControllerWithPredicate:(NSPredicate *)predicate;
 @property (nonatomic, strong) SWTableViewCell *curCell;
 @end
 
@@ -761,7 +761,7 @@
 		case NSFetchedResultsChangeUpdate: // 改变
 		{
 			NSLog(@"note has changed NSFetchedResultsChangeUpdate");
-			NSLog(@"indexPath: %ld", indexPath.row);
+			NSLog(@"indexPath: %ld", (long)indexPath.row);
 			/*
 			id <NSFetchedResultsSectionInfo> sectionInfo = [[controller sections] objectAtIndex:0];
 			[sectionInfo numberOfObjects];

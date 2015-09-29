@@ -38,8 +38,8 @@ static CGFloat const GeneralWalkthroughAlphaHidden              = 0.0f;
 static CGFloat const GeneralWalkthroughAlphaDisabled            = 0.5f;
 static CGFloat const GeneralWalkthroughAlphaEnabled             = 1.0f;
 
-static CGPoint const LoginOnePasswordPadding                    = {9.0, 0.0f};
-static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
+//static CGPoint const LoginOnePasswordPadding                    = {9.0, 0.0f};
+//static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 
 
 @interface LoginViewController ()<UITextFieldDelegate>
@@ -535,16 +535,16 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 	//	return siteURL != nil;
 }
 
-- (BOOL)isUserNameReserved
-{
-	if (!self.userIsDotCom) {
-		return NO;
-	}
-	//	NSString *username = [[self.usernameText.text trim] lowercaseString];
-	//	NSArray *reservedUserNames = @[@"admin",@"administrator",@"root"];
-	
-	//	return [reservedUserNames containsObject:username];
-}
+//- (BOOL)isUserNameReserved
+//{
+//	if (!self.userIsDotCom) {
+//		return NO;
+//	}
+//	//	NSString *username = [[self.usernameText.text trim] lowercaseString];
+//	//	NSArray *reservedUserNames = @[@"admin",@"administrator",@"root"];
+//	
+//	//	return [reservedUserNames containsObject:username];
+//}
 
 
 #pragma mark - Interface Helpers: TextFields

@@ -13,7 +13,7 @@
 @interface UserService : BaseService
 
 + (BOOL) getOpenInited;
-+ (BOOL) setOpenInited:(BOOL)inited;
++ (void) setOpenInited:(BOOL)inited;
 
 + (User *) init;
 + (User *) getCurUser;
