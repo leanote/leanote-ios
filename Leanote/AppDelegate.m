@@ -23,6 +23,8 @@
 #import "RootTabBarController.h"
 #import "AFNetworkTool.h"
 
+#define IsPhone ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+
 @implementation AppDelegate
 
 /*
@@ -122,8 +124,14 @@
 	[UserService setOpenInited:NO];
 	
 	NSLog(@"%@ getDocPath:", [Common getDocPath]);
-	
-	UIStoryboard * mainsb = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+    
+    NSString *storyboardName;
+    if (IsPhone) {
+        storyboardName = @"MainStoryboard_iPhone";
+    } else {
+        storyboardName = @"MainStoryboard_iPad";
+    }
+	UIStoryboard * mainsb = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle mainBundle]];
 	RootTabBarController *tabVC = [mainsb instantiateInitialViewController];
 	self.window.rootViewController = tabVC;
 }

@@ -278,9 +278,13 @@
 		1D921DAB173CB5BD00168A77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D921DAA173CB5BD00168A77 /* main.m */; };
 		1D921DAF173CB5BD00168A77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D921DAE173CB5BD00168A77 /* AppDelegate.m */; };
 		1D921DB8173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D921DB6173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard */; };
-		1D921DBB173CB5BD00168A77 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D921DB9173CB5BD00168A77 /* MainStoryboard_iPad.storyboard */; };
 		1DB7F3BA184B07D30054A931 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB7F3B9184B07D30054A931 /* Images.xcassets */; };
 		A4F6D891876B0AC6B526CD9E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B9EA8EAC8533819FA332C5 /* libPods.a */; };
+		A81F46971BAD4327007A2425 /* LeanoteiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81F46961BAD4327007A2425 /* LeanoteiPadTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A81F469A1BAD48DF007A2425 /* LeanoteiPadMasterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81F46991BAD48DF007A2425 /* LeanoteiPadMasterCell.m */; settings = {ASSET_TAGS = (); }; };
+		A86F4AA81BAD59F00094B5D5 /* LeanoteiPadSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A86F4AA71BAD59F00094B5D5 /* LeanoteiPadSplitViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A86F4AAB1BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A86F4AAA1BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A8D95E491BAD3642006FDBD5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D95E471BAD3642006FDBD5 /* MainStoryboard_iPad.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -686,9 +690,17 @@
 		1D921DAD173CB5BD00168A77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D921DAE173CB5BD00168A77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D921DB7173CB5BD00168A77 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		1D921DBA173CB5BD00168A77 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		1DB7F3B9184B07D30054A931 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A14937AC8B9D110E5C40751D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A81F46951BAD4327007A2425 /* LeanoteiPadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeanoteiPadTableViewController.h; path = iPad/LeanoteiPadTableViewController.h; sourceTree = "<group>"; };
+		A81F46961BAD4327007A2425 /* LeanoteiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeanoteiPadTableViewController.m; path = iPad/LeanoteiPadTableViewController.m; sourceTree = "<group>"; };
+		A81F46981BAD48DF007A2425 /* LeanoteiPadMasterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeanoteiPadMasterCell.h; path = iPad/LeanoteiPadMasterCell.h; sourceTree = "<group>"; };
+		A81F46991BAD48DF007A2425 /* LeanoteiPadMasterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeanoteiPadMasterCell.m; path = iPad/LeanoteiPadMasterCell.m; sourceTree = "<group>"; };
+		A86F4AA61BAD59F00094B5D5 /* LeanoteiPadSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeanoteiPadSplitViewController.h; path = iPad/LeanoteiPadSplitViewController.h; sourceTree = "<group>"; };
+		A86F4AA71BAD59F00094B5D5 /* LeanoteiPadSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeanoteiPadSplitViewController.m; path = iPad/LeanoteiPadSplitViewController.m; sourceTree = "<group>"; };
+		A86F4AA91BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeanoteiPadDetailViewController.h; path = iPad/LeanoteiPadDetailViewController.h; sourceTree = "<group>"; };
+		A86F4AAA1BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeanoteiPadDetailViewController.m; path = iPad/LeanoteiPadDetailViewController.m; sourceTree = "<group>"; };
+		A8D95E481BAD3642006FDBD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		B9B9EA8EAC8533819FA332C5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1341,8 +1353,16 @@
 				1C8F22A01AF9B138001572C0 /* controller */,
 				1D921DAD173CB5BD00168A77 /* AppDelegate.h */,
 				1D921DAE173CB5BD00168A77 /* AppDelegate.m */,
+				A81F46951BAD4327007A2425 /* LeanoteiPadTableViewController.h */,
+				A81F46961BAD4327007A2425 /* LeanoteiPadTableViewController.m */,
+				A86F4AA61BAD59F00094B5D5 /* LeanoteiPadSplitViewController.h */,
+				A86F4AA71BAD59F00094B5D5 /* LeanoteiPadSplitViewController.m */,
+				A86F4AA91BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.h */,
+				A86F4AAA1BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.m */,
+				A81F46981BAD48DF007A2425 /* LeanoteiPadMasterCell.h */,
+				A81F46991BAD48DF007A2425 /* LeanoteiPadMasterCell.m */,
 				1D921DB6173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard */,
-				1D921DB9173CB5BD00168A77 /* MainStoryboard_iPad.storyboard */,
+				A8D95E471BAD3642006FDBD5 /* MainStoryboard_iPad.storyboard */,
 				1DB7F3B9184B07D30054A931 /* Images.xcassets */,
 				1CF4A4A11B1D844200FC0F50 /* AppImages.xcassets */,
 				1D921DA5173CB5BD00168A77 /* Supporting Files */,
@@ -1460,6 +1480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D95E491BAD3642006FDBD5 /* MainStoryboard_iPad.storyboard in Resources */,
 				1CA4CEE51B68D91200E500F4 /* icon_format_link.png in Resources */,
 				1CA4CEDA1B68D91200E500F4 /* icon_format_html_highlighted@3x.png in Resources */,
 				1CA4CEE71B68D91200E500F4 /* icon_format_link@3x.png in Resources */,
@@ -1526,7 +1547,6 @@
 				1CA4CEC51B68D91200E500F4 /* enter.png in Resources */,
 				1CA4CED91B68D91200E500F4 /* icon_format_html_highlighted@2x.png in Resources */,
 				1CA4CEFA1B68D91200E500F4 /* icon_format_ol_highlighted.png in Resources */,
-				1D921DBB173CB5BD00168A77 /* MainStoryboard_iPad.storyboard in Resources */,
 				1CA4CEEA1B68D91200E500F4 /* icon_format_link_highlighted@3x.png in Resources */,
 				1CA4CF2E1B68D91200E500F4 /* ZSScenterjustify@2x.png in Resources */,
 				1CEF0CA91B876B2200C2B2F3 /* Readme.txt in Resources */,
@@ -1682,6 +1702,7 @@
 			files = (
 				1CEC095D1B6A22D3008EA9FC /* Leas.m in Sources */,
 				1CE766711B2AA50000E1967A /* User.m in Sources */,
+				A81F469A1BAD48DF007A2425 /* LeanoteiPadMasterCell.m in Sources */,
 				1CE5194D1AFBAA0400F263C5 /* NotebookTab.m in Sources */,
 				1D921DAB173CB5BD00168A77 /* main.m in Sources */,
 				1CEDA54B1B19CC9A008650E2 /* TagTab.m in Sources */,
@@ -1695,6 +1716,7 @@
 				1CEF0CA71B876B2200C2B2F3 /* NSURLProtocolCustom.m in Sources */,
 				1D921DAF173CB5BD00168A77 /* AppDelegate.m in Sources */,
 				1CA4CF621B68D91200E500F4 /* UIWebView+GUIFixes.m in Sources */,
+				A86F4AA81BAD59F00094B5D5 /* LeanoteiPadSplitViewController.m in Sources */,
 				1CDB4FAF1B305C7C007CC245 /* MeTab.m in Sources */,
 				1CEF0DAA1B876B4800C2B2F3 /* LeaSearchDisplayController.m in Sources */,
 				1CBE20761B3FD4CA00133EA1 /* BaseViewController.m in Sources */,
@@ -1711,6 +1733,7 @@
 				1C53237F1B5CF494006B60EE /* BlogTab.m in Sources */,
 				1CEF0CAC1B876B2200C2B2F3 /* SVProgressHUD.m in Sources */,
 				1CEF0D981B876B4800C2B2F3 /* DRColorPicker.m in Sources */,
+				A86F4AAB1BAD6BA80094B5D5 /* LeanoteiPadDetailViewController.m in Sources */,
 				1CEF0DA41B876B4800C2B2F3 /* DRColorPickerStore.m in Sources */,
 				1CB6C1091B5B8691004F61DD /* CategoryTab.m in Sources */,
 				1CC8FFD21B1B26DD00269072 /* NoteViewController.m in Sources */,
@@ -1756,6 +1779,7 @@
 				1CA4CF6A1B68D91200E500F4 /* WPLegacyEditorViewController.m in Sources */,
 				1CF4A4A51B1DA38300FC0F50 /* NoteSettingsTableViewController.m in Sources */,
 				1CE519401AFBA7F100F263C5 /* RootTabBarController.m in Sources */,
+				A81F46971BAD4327007A2425 /* LeanoteiPadTableViewController.m in Sources */,
 				1CE69C7F1B27388D00DE8C96 /* WPNUXMainButton.m in Sources */,
 				1CEF0DCE1B876D8400C2B2F3 /* WeixinActivity.m in Sources */,
 				1CE519431AFBA8EF00F263C5 /* NoteTab.m in Sources */,
@@ -1831,10 +1855,10 @@
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		1D921DB9173CB5BD00168A77 /* MainStoryboard_iPad.storyboard */ = {
+		A8D95E471BAD3642006FDBD5 /* MainStoryboard_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1D921DBA173CB5BD00168A77 /* en */,
+				A8D95E481BAD3642006FDBD5 /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
@@ -1989,7 +2013,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2015,7 +2039,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
