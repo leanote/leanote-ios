@@ -31,7 +31,7 @@ static AFNetworkReachabilityStatus status;
     
     // 检测网络连接的单例,网络变化时的回调方法
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus statuss) {
-        NSLog(@"%ld", statuss);
+        NSLog(@"%ld", (long)statuss);
 		status = statuss;
 		reachable = status != AFNetworkReachabilityStatusNotReachable;
     }];

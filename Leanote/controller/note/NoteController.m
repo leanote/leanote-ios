@@ -761,7 +761,7 @@
 		case NSFetchedResultsChangeUpdate: // 改变
 		{
 			NSLog(@"note has changed NSFetchedResultsChangeUpdate");
-			NSLog(@"indexPath: %ld", indexPath.row);
+			NSLog(@"indexPath: %ld", (long)indexPath.row);
 			/*
 			id <NSFetchedResultsSectionInfo> sectionInfo = [[controller sections] objectAtIndex:0];
 			[sectionInfo numberOfObjects];
