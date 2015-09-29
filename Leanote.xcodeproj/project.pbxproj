@@ -728,16 +728,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C5323791B5CF494006B60EE /* blog */ = {
+		1C5323791B5CF494006B60EE /* Blog */ = {
 			isa = PBXGroup;
 			children = (
 				1C53237C1B5CF494006B60EE /* BlogTab.h */,
 				1C53237D1B5CF494006B60EE /* BlogTab.m */,
 			);
+			name = Blog;
 			path = blog;
 			sourceTree = "<group>";
 		};
-		1C7B281F1AF9B3C50086D4C5 /* model */ = {
+		1C7B281F1AF9B3C50086D4C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1CD7C2CA1B2DCB6500AB25FF /* File.h */,
@@ -752,10 +753,11 @@
 				1CF984F71B68D284003BDC3D /* Leanote.xcdatamodeld */,
 				1C7B28231AF9B3C50086D4C5 /* Notebook.m */,
 			);
+			name = Model;
 			path = model;
 			sourceTree = "<group>";
 		};
-		1C7B28281AF9B3C50086D4C5 /* service */ = {
+		1C7B28281AF9B3C50086D4C5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				1C7B282B1AF9B3C50086D4C5 /* NotebookService.h */,
@@ -777,30 +779,32 @@
 				1CD7C2CD1B2DCBA200AB25FF /* FileService.h */,
 				1CD7C2CE1B2DCBA200AB25FF /* FileService.m */,
 			);
+			name = Service;
 			path = service;
 			sourceTree = "<group>";
 		};
-		1C8F22A01AF9B138001572C0 /* controller */ = {
+		1C8F22A01AF9B138001572C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1CB6C1061B5B8691004F61DD /* category */,
-				1CDB4FA91B305C7C007CC245 /* me */,
-				1CDC15791B268BE200DFB242 /* auth */,
-				1C5323791B5CF494006B60EE /* blog */,
-				1CEDA5451B19CC9A008650E2 /* tag */,
-				1CE519471AFBAA0400F263C5 /* notebook */,
+				1CB6C1061B5B8691004F61DD /* Category */,
+				1CDB4FA91B305C7C007CC245 /* Me */,
+				1CDC15791B268BE200DFB242 /* Auth */,
+				1C5323791B5CF494006B60EE /* Blog */,
+				1CEDA5451B19CC9A008650E2 /* Tag */,
+				1CE519471AFBAA0400F263C5 /* Notebook */,
 				1CE519441AFBA95E00F263C5 /* BaseTab.h */,
 				1CE519451AFBA95E00F263C5 /* BaseTab.m */,
 				1CE5193E1AFBA7F100F263C5 /* RootTabBarController.h */,
 				1CE5193F1AFBA7F100F263C5 /* RootTabBarController.m */,
-				1C8F22A11AF9B138001572C0 /* note */,
+				1C8F22A11AF9B138001572C0 /* Note */,
 				1CBE20741B3FD4CA00133EA1 /* BaseViewController.h */,
 				1CBE20751B3FD4CA00133EA1 /* BaseViewController.m */,
 			);
+			name = Controller;
 			path = controller;
 			sourceTree = "<group>";
 		};
-		1C8F22A11AF9B138001572C0 /* note */ = {
+		1C8F22A11AF9B138001572C0 /* Note */ = {
 			isa = PBXGroup;
 			children = (
 				1CE519411AFBA8EF00F263C5 /* NoteTab.h */,
@@ -812,17 +816,18 @@
 				1CF4A4A31B1DA38300FC0F50 /* NoteSettingsTableViewController.h */,
 				1CF4A4A41B1DA38300FC0F50 /* NoteSettingsTableViewController.m */,
 			);
+			name = Note;
 			path = note;
 			sourceTree = "<group>";
 		};
-		1CA4CDF31B68D91100E500F4 /* editor */ = {
+		1CA4CDF31B68D91100E500F4 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
 				1CA4CF751B68DA7000E500F4 /* MarkdownAssets */,
 				1CA4CDF41B68D91100E500F4 /* EditorAssets */,
 				1CA4CE8A1B68D91100E500F4 /* EditorClasses */,
 			);
-			name = editor;
+			name = Editor;
 			path = Leanote/editor;
 			sourceTree = SOURCE_ROOT;
 		};
@@ -1023,7 +1028,7 @@
 			path = EditorClasses;
 			sourceTree = "<group>";
 		};
-		1CB6C1061B5B8691004F61DD /* category */ = {
+		1CB6C1061B5B8691004F61DD /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				1CB6C1071B5B8691004F61DD /* CategoryTab.h */,
@@ -1032,10 +1037,11 @@
 				1CB6C10B1B5B8A4C004F61DD /* CategoryViewController.m */,
 				1C5323761B5CC670006B60EE /* CategoryProtocol.h */,
 			);
+			name = Category;
 			path = category;
 			sourceTree = "<group>";
 		};
-		1CDB4FA91B305C7C007CC245 /* me */ = {
+		1CDB4FA91B305C7C007CC245 /* Me */ = {
 			isa = PBXGroup;
 			children = (
 				1CDB4FAA1B305C7C007CC245 /* MeController.h */,
@@ -1043,10 +1049,11 @@
 				1CDB4FAC1B305C7C007CC245 /* MeTab.h */,
 				1CDB4FAD1B305C7C007CC245 /* MeTab.m */,
 			);
+			name = Me;
 			path = me;
 			sourceTree = "<group>";
 		};
-		1CDC15791B268BE200DFB242 /* auth */ = {
+		1CDC15791B268BE200DFB242 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				1CE69C711B27388D00DE8C96 /* WPNUXHelpBadgeLabel.h */,
@@ -1070,15 +1077,17 @@
 				1CF3647D1B29C82200C9BCB9 /* LoginViewController.h */,
 				1CF3647E1B29C82200C9BCB9 /* LoginViewController.m */,
 			);
+			name = Auth;
 			path = auth;
 			sourceTree = "<group>";
 		};
-		1CDCB1441B50E66700838D17 /* ui */ = {
+		1CDCB1441B50E66700838D17 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				1CD878101B5F5E1D002E5F7B /* Launch Screen.xib */,
 				1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */,
 			);
+			name = UI;
 			path = ui;
 			sourceTree = "<group>";
 		};
@@ -1099,25 +1108,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1CE0E1D81B47A299008EDDA8 /* info */ = {
+		1CE0E1D81B47A299008EDDA8 /* Info */ = {
 			isa = PBXGroup;
 			children = (
 				1CE0E1D91B47A2CB008EDDA8 /* CellInfo.h */,
 				1CE0E1DA1B47A2CB008EDDA8 /* CellInfo.m */,
 			);
+			name = Info;
 			path = info;
 			sourceTree = "<group>";
 		};
-		1CE519311AFBA57A00F263C5 /* resources */ = {
+		1CE519311AFBA57A00F263C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1CDCB1441B50E66700838D17 /* ui */,
+				1CDCB1441B50E66700838D17 /* UI */,
 				1CE519371AFBA57A00F263C5 /* tabbed_icon.bundle */,
 			);
+			name = Resources;
 			path = resources;
 			sourceTree = "<group>";
 		};
-		1CE519471AFBAA0400F263C5 /* notebook */ = {
+		1CE519471AFBAA0400F263C5 /* Notebook */ = {
 			isa = PBXGroup;
 			children = (
 				1CE519481AFBAA0400F263C5 /* NotebookController.h */,
@@ -1127,10 +1138,11 @@
 				1CE5194A1AFBAA0400F263C5 /* NotebookTab.h */,
 				1CE5194B1AFBAA0400F263C5 /* NotebookTab.m */,
 			);
+			name = Notebook;
 			path = notebook;
 			sourceTree = "<group>";
 		};
-		1CEDA5451B19CC9A008650E2 /* tag */ = {
+		1CEDA5451B19CC9A008650E2 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
 				1CDD48701B30234300AC625F /* TagController.h */,
@@ -1138,10 +1150,11 @@
 				1CEDA5481B19CC9A008650E2 /* TagTab.h */,
 				1CEDA5491B19CC9A008650E2 /* TagTab.m */,
 			);
+			name = Tag;
 			path = tag;
 			sourceTree = "<group>";
 		};
-		1CEF0C861B876B2200C2B2F3 /* util */ = {
+		1CEF0C861B876B2200C2B2F3 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				1CEF0DD51B87707D00C2B2F3 /* LeaURLRequest.h */,
@@ -1152,7 +1165,7 @@
 				1CEF0C881B876B2200C2B2F3 /* AFNetworkTool.m */,
 				1CEF0C891B876B2200C2B2F3 /* ApiMsg.h */,
 				1CEF0C8A1B876B2200C2B2F3 /* ApiMsg.m */,
-				1CEF0C8B1B876B2200C2B2F3 /* categories */,
+				1CEF0C8B1B876B2200C2B2F3 /* Categories */,
 				1CEF0C8E1B876B2200C2B2F3 /* Common.h */,
 				1CEF0C8F1B876B2200C2B2F3 /* Common.m */,
 				1CEF0C901B876B2200C2B2F3 /* MongoID.h */,
@@ -1163,15 +1176,17 @@
 				1CEF0C951B876B2200C2B2F3 /* ReachabilityUtils.m */,
 				1CEF0C971B876B2200C2B2F3 /* SVProgressHUD */,
 			);
+			name = Util;
 			path = util;
 			sourceTree = "<group>";
 		};
-		1CEF0C8B1B876B2200C2B2F3 /* categories */ = {
+		1CEF0C8B1B876B2200C2B2F3 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				1CEF0C8C1B876B2200C2B2F3 /* NSString+Helpers.h */,
 				1CEF0C8D1B876B2200C2B2F3 /* NSString+Helpers.m */,
 			);
+			name = Categories;
 			path = categories;
 			sourceTree = "<group>";
 		};
@@ -1188,11 +1203,11 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
-		1CEF0D2F1B876B4800C2B2F3 /* view */ = {
+		1CEF0D2F1B876B4800C2B2F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1CEF0DAF1B876D8400C2B2F3 /* activity */,
-				1CEF0D4D1B876B4800C2B2F3 /* cells */,
+				1CEF0DAF1B876D8400C2B2F3 /* Activity */,
+				1CEF0D4D1B876B4800C2B2F3 /* Cells */,
 				1CEF0D521B876B4800C2B2F3 /* DRColorPicker */,
 				1CEF0D761B876B4800C2B2F3 /* LeaImagePagerViewController.h */,
 				1CEF0D771B876B4800C2B2F3 /* LeaImagePagerViewController.m */,
@@ -1209,10 +1224,11 @@
 				1CEF0DDB1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.h */,
 				1CEF0DDC1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.m */,
 			);
+			name = View;
 			path = view;
 			sourceTree = "<group>";
 		};
-		1CEF0D4D1B876B4800C2B2F3 /* cells */ = {
+		1CEF0D4D1B876B4800C2B2F3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				1CEF0D4E1B876B4800C2B2F3 /* NotebookTagCell.h */,
@@ -1220,6 +1236,7 @@
 				1CEF0D501B876B4800C2B2F3 /* NoteCell.h */,
 				1CEF0D511B876B4800C2B2F3 /* NoteCell.m */,
 			);
+			name = Cells;
 			path = cells;
 			sourceTree = "<group>";
 		};
@@ -1265,11 +1282,12 @@
 			path = DRColorPicker;
 			sourceTree = "<group>";
 		};
-		1CEF0DAF1B876D8400C2B2F3 /* activity */ = {
+		1CEF0DAF1B876D8400C2B2F3 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
 				1CEF0DB01B876D8400C2B2F3 /* WeixinActivity */,
 			);
+			name = Activity;
 			path = activity;
 			sourceTree = "<group>";
 		};
@@ -1343,14 +1361,14 @@
 		1D921DA4173CB5BD00168A77 /* Leanote */ = {
 			isa = PBXGroup;
 			children = (
-				1CEF0D2F1B876B4800C2B2F3 /* view */,
-				1CEF0C861B876B2200C2B2F3 /* util */,
-				1CA4CDF31B68D91100E500F4 /* editor */,
-				1CE519311AFBA57A00F263C5 /* resources */,
-				1C7B281F1AF9B3C50086D4C5 /* model */,
-				1CE0E1D81B47A299008EDDA8 /* info */,
-				1C7B28281AF9B3C50086D4C5 /* service */,
-				1C8F22A01AF9B138001572C0 /* controller */,
+				1CEF0D2F1B876B4800C2B2F3 /* View */,
+				1CEF0C861B876B2200C2B2F3 /* Util */,
+				1CA4CDF31B68D91100E500F4 /* Editor */,
+				1CE519311AFBA57A00F263C5 /* Resources */,
+				1C7B281F1AF9B3C50086D4C5 /* Model */,
+				1CE0E1D81B47A299008EDDA8 /* Info */,
+				1C7B28281AF9B3C50086D4C5 /* Service */,
+				1C8F22A01AF9B138001572C0 /* Controller */,
 				1D921DAD173CB5BD00168A77 /* AppDelegate.h */,
 				1D921DAE173CB5BD00168A77 /* AppDelegate.m */,
 				A81F46951BAD4327007A2425 /* LeanoteiPadTableViewController.h */,
