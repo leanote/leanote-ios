@@ -162,7 +162,7 @@ static NSDictionary *EnabledButtonBarStyle;
 		[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 		// kWPEditorViewControllerModeEdit
 	}
-	//[super initWithMode:kWPEditorViewControllerModePreview isMarkdown:self.isMarkdown];
+        [super initWithMode:kWPEditorViewControllerModePreview isMarkdown:self.isMarkdown];
 	
 	[super viewDidLoad];
 	
@@ -919,7 +919,7 @@ BOOL hiddenBar = NO;
 	}
 }
 
-#pragma mark - 
+#pragma mark -
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)asset
 {
     NSLog(@"1234");
