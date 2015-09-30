@@ -919,10 +919,5 @@ BOOL hiddenBar = NO;
 	}
 }
 
-#pragma mark -
-- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)asset
-{
-    NSLog(@"1234");
-}
 
 @end
