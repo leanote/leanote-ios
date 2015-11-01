@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3DA9901BE6667C00B4FFDA /* LeaWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		1C53237F1B5CF494006B60EE /* BlogTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C53237D1B5CF494006B60EE /* BlogTab.m */; };
 		1C7B282F1AF9B3C50086D4C5 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28211AF9B3C50086D4C5 /* Note.m */; };
 		1C7B28301AF9B3C50086D4C5 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28231AF9B3C50086D4C5 /* Notebook.m */; };
@@ -182,7 +183,6 @@
 		1CD878131B5F62DA002E5F7B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */; };
 		1CDB4FAE1B305C7C007CC245 /* MeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB4FAB1B305C7C007CC245 /* MeController.m */; };
 		1CDB4FAF1B305C7C007CC245 /* MeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB4FAD1B305C7C007CC245 /* MeTab.m */; };
-		1CDCB1461B50E66700838D17 /* WPWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CDCB1451B50E66700838D17 /* WPWebViewController.xib */; };
 		1CDCB1731B52B77E00838D17 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CDCB1751B52B77E00838D17 /* Localizable.strings */; };
 		1CDD486C1B30074500AC625F /* TagService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD486B1B30074500AC625F /* TagService.m */; };
 		1CDD486F1B30131B00AC625F /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD486E1B30131B00AC625F /* Tag.m */; };
@@ -296,6 +296,7 @@
 
 /* Begin PBXFileReference section */
 		06E5F83B44EEA1E3D95DF5DA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaWebViewController.xib; sourceTree = "<group>"; };
 		1C5323761B5CC670006B60EE /* CategoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryProtocol.h; sourceTree = "<group>"; };
 		1C53237C1B5CF494006B60EE /* BlogTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogTab.h; sourceTree = "<group>"; };
 		1C53237D1B5CF494006B60EE /* BlogTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogTab.m; sourceTree = "<group>"; };
@@ -512,7 +513,6 @@
 		1CDB4FAB1B305C7C007CC245 /* MeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeController.m; sourceTree = "<group>"; };
 		1CDB4FAC1B305C7C007CC245 /* MeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeTab.h; sourceTree = "<group>"; };
 		1CDB4FAD1B305C7C007CC245 /* MeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeTab.m; sourceTree = "<group>"; };
-		1CDCB1451B50E66700838D17 /* WPWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPWebViewController.xib; sourceTree = "<group>"; };
 		1CDCB16F1B52B4AA00838D17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1CDCB1741B52B77E00838D17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1CDCB1761B52B78E00838D17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1066,7 +1066,7 @@
 		1CDCB1441B50E66700838D17 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				1CDCB1451B50E66700838D17 /* WPWebViewController.xib */,
+				1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */,
 				1CD878101B5F5E1D002E5F7B /* Launch Screen.xib */,
 				1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */,
 			);
@@ -1489,6 +1489,7 @@
 				1CA4CECF1B68D91200E500F4 /* icon_format_bold.png in Resources */,
 				1CA4CEDD1B68D91200E500F4 /* icon_format_italic@3x.png in Resources */,
 				1CA4CF1A1B68D91200E500F4 /* icon_preview@2x.png in Resources */,
+				1C3DA9901BE6667C00B4FFDA /* LeaWebViewController.xib in Resources */,
 				1CA4CF3C1B68D91200E500F4 /* ZSSh5.png in Resources */,
 				1CEF0CAB1B876B2200C2B2F3 /* SVProgressHUD.bundle in Resources */,
 				1CF4A4A21B1D844200FC0F50 /* AppImages.xcassets in Resources */,
@@ -1504,7 +1505,6 @@
 				1CA4CEE11B68D91200E500F4 /* icon_format_keyboard.png in Resources */,
 				1CA4CEEF1B68D91200E500F4 /* icon_format_media_highlighted@2x.png in Resources */,
 				1CA4CEEC1B68D91200E500F4 /* icon_format_media@2x.png in Resources */,
-				1CDCB1461B50E66700838D17 /* WPWebViewController.xib in Resources */,
 				1CA4CF451B68D91200E500F4 /* ZSSleftjustify.png in Resources */,
 				1CA4CF381B68D91200E500F4 /* ZSSh3.png in Resources */,
 				1CA4CF121B68D91200E500F4 /* icon_format_underline_highlighted@2x.png in Resources */,

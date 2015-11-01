@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "76F1ECBB3DE2E0941B2F3931C11A936A1C4913B5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "186AAF3B264D7931F9986FEDCE1D51DD688E6ED6" : 0,
+    "76F1ECBB3DE2E0941B2F3931C11A936A1C4913B5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4B5BEB97-E45E-418F-B1C4-93555AF453BA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "186AAF3B264D7931F9986FEDCE1D51DD688E6ED6" : "",
+    "76F1ECBB3DE2E0941B2F3931C11A936A1C4913B5" : "leanote-ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Leanote",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Leanote.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:leanote\/markdown-to-html.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "186AAF3B264D7931F9986FEDCE1D51DD688E6ED6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:leanote\/leanote-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "76F1ECBB3DE2E0941B2F3931C11A936A1C4913B5"
+    }
+  ]
+}
