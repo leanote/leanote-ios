@@ -24,6 +24,11 @@
     font-style: italic;
 }
 
+html, body {
+    margin:0;
+    padding:0;
+}
+
 * {
 	outline: 0px solid transparent;
 	/*点击没有高亮focus*/
@@ -37,7 +42,14 @@ body {
 	font-size: 14px;
 	font-family:OpenSans, sans-serif;
 	overflow-x: hidden;
+    padding-left:5px;
+    padding-right:5px;
 }
+.ipad_body {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
 h1,
 h2,
 h3 {
@@ -90,10 +102,6 @@ h3 {
 	left: 0;
 	right: 0;
 	bottom: 0;
-}
-#left-column,
-#right-column
-{
 }
 
 #wmd-input,

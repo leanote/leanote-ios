@@ -133,6 +133,11 @@ var LEAMD = {
   // 绑定事件
   init: function() {
 
+    this.isiPad = (navigator.userAgent.match(/iPad/i) != null);
+    if (this.isiPad) {
+        $(document.body).addClass('ipad_body');
+    }
+    
     // tap事件
     tapLea('#preview-contents', 'img, a', function() {
       if($(this).is('img')) {
