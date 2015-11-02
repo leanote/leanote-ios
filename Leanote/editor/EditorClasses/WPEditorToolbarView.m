@@ -191,7 +191,7 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
 ////    [items insertObject:buttonSpacer atIndex:11];
 ////    [items insertObject:flexSpacer atIndex:0];
 //    [items insertObject:flexSpacer atIndex:items.count];
-    self.leftToolbar.items = items;
+	
 	
 	CGFloat toolbarWidth = 0.0f;
 	NSUInteger numberOfItems = items.count;
@@ -202,7 +202,17 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
 	}
 	
 //	toolbarWidth += 10;
-    self.leftToolbar.frame = CGRectMake(0, 0, toolbarWidth, WPEditorToolbarHeight);
+	
+	if (toolbarWidth < self.bounds.size.width) {
+		buttonSpacer.width = (self.bounds.size.width - toolbarWidth) / 2;
+		[items insertObject:buttonSpacer atIndex:0];
+		
+		toolbarWidth = self.bounds.size.width;
+	}
+	
+	self.leftToolbar.frame = CGRectMake(0, 0, toolbarWidth, WPEditorToolbarHeight);
+	
+	self.leftToolbar.items = items;
     self.toolbarScroll.contentSize = CGSizeMake(CGRectGetWidth(self.leftToolbar.frame),
                                                 WPEditorToolbarHeight);
 }
