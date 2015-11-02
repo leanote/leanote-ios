@@ -1,30 +1,5 @@
-
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans-Italic");
-    font-weight: normal;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans-Bold");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans-BoldItalic");
-    font-weight: bold;
-    font-style: italic;
-}
-
-* {outline: 0px solid transparent;
+* {
+    outline: 0px solid transparent;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-touch-callout: none;
 }
@@ -36,7 +11,7 @@ html {
 
 html, body {
     margin:0;
-    font-family:OpenSans, sans-serif;
+    /*font-family:OpenSans, sans-serif;*/
     font-size:1em;
     color:#2D2D2D;
 }
@@ -395,16 +370,16 @@ div.field[placeholderText][contenteditable=true]:empty:focus:before {
     cursor: none;
 }
 
-.ipad_body {
+.ipad-body {
     padding-left: 80px;
     padding-right: 80px;
 }
 
-.ipad_field_title {
+.ipad-body #zss_field_title {
     font-size: 1.3em;
 }
 
-.ipad_field_content {
+.ipad-body #ipad_field_content {
     font-size: 1.125em;
     line-height: 28px;
 }

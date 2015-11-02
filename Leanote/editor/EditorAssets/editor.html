@@ -66,6 +66,12 @@
 		//
 		$(document).ready(function() {
             ZSSEditor.init(callbacker, logger);
+
+            if (/ipad/.test(location)) {
+                ZSSEditor.getField('zss_field_title').setHTML("你好啊   hello world");
+                ZSSEditor.getField('zss_field_content').setHTML("你好 hello world");
+                $('body').addClass('ipad-body');
+            }
 		});
 	</script>
     <link rel="stylesheet" type="text/css" href="editor.css">

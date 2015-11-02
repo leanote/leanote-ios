@@ -1,64 +1,44 @@
-
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans-Italic");
-    font-weight: normal;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans-Bold");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: local("OpenSans-BoldItalic");
-    font-weight: bold;
-    font-style: italic;
-}
-
-html, body {
-    margin:0;
-    padding:0;
-}
-
 * {
-	outline: 0px solid transparent;
-	/*点击没有高亮focus*/
+    outline: 0px solid transparent;
+    /*点击没有高亮focus*/
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-touch-callout: none;
     word-wrap: break-word;
 }
 
+
+html, body {
+    margin:0;
+    padding:0;
+    font-size: 1em;
+}
+
 body {
 	font-weight: normal;
-	font-size: 14px;
-	font-family:OpenSans, sans-serif;
-	overflow-x: hidden;
+	/*font-family:OpenSans, sans-serif;*/
+	/*overflow-x: hidden;*/
     padding-left:5px;
     padding-right:5px;
 }
-.ipad_body {
+.ipad-body {
     padding-left: 80px;
     padding-right: 80px;
+}
+
+.ipad-body #title {
+    font-size: 1.3em;
+}
+
+.ipad-body #wmd-input,
+.ipad-body #wmd-preview {
+    font-size: 1.125em;
+    line-height: 28px;
 }
 
 h1,
 h2,
 h3 {
 	font-weight: 300;
-}
-
-#title {
-	font-family:'Merriweather', serif;
-	font-size: 16px;
 }
 
 #left-column, #wmd-input,
@@ -70,7 +50,8 @@ h3 {
 	/*font-family:'Merriweather', serif;*/
 }
 #title {
-	line-height: 1;
+    font-family:'Merriweather', serif;
+	/*line-height: 1;*/
 	width: 100%;
 	box-sizing: border-box;
 	padding: 15px 10px 5px 10px;
