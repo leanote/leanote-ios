@@ -115,6 +115,8 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
 	*/
 }
 
+// 加载tool bar items
+// 根据ipad, iphone不同来加载
 - (void)reloadItems
 {
     if (IS_IPAD) {
@@ -124,6 +126,7 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
     }
 }
 
+// iphone
 - (void)reloadiPhoneItems
 {
     NSMutableArray *items = [self.items mutableCopy];
@@ -150,7 +153,8 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
                                                                                        target:nil
                                                                                        action:nil];
     negativeSeparator.width = -toolbarItemsSeparation;
-    
+	
+	// 加间距
     // This code adds a negative separator between all the toolbar buttons
     for (NSInteger i = [items count]; i >= 0; i--) {
         [items insertObject:negativeSeparator atIndex:i];
@@ -169,10 +173,11 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
                                                 WPEditorToolbarHeight);
 }
 
+// ipad
 - (void)reloadiPadItems
 {
     NSMutableArray *items = [self.items mutableCopy];
-    CGFloat toolbarWidth = CGRectGetWidth(self.toolbarScroll.frame);
+//    CGFloat toolbarWidth = CGRectGetWidth(self.toolbarScroll.frame);
     UIBarButtonItem *flexSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                 target:nil
                                                                                 action:nil];
@@ -180,13 +185,23 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
                                                                                   target:nil
                                                                                   action:nil];
     buttonSpacer.width = WPEditorToolbarButtonWidth;
-    [items insertObject:buttonSpacer atIndex:1];
-    [items insertObject:buttonSpacer atIndex:5];
-    [items insertObject:buttonSpacer atIndex:7];
-    [items insertObject:buttonSpacer atIndex:11];
-    [items insertObject:flexSpacer atIndex:0];
-    [items insertObject:flexSpacer atIndex:items.count];
+//    [items insertObject:buttonSpacer atIndex:1];
+//    [items insertObject:buttonSpacer atIndex:6];
+//    [items insertObject:buttonSpacer atIndex:8];
+////    [items insertObject:buttonSpacer atIndex:11];
+////    [items insertObject:flexSpacer atIndex:0];
+//    [items insertObject:flexSpacer atIndex:items.count];
     self.leftToolbar.items = items;
+	
+	CGFloat toolbarWidth = 0.0f;
+	NSUInteger numberOfItems = items.count;
+	if (numberOfItems > 0) {
+//		CGFloat finalPaddingBetweenItems = kDefaultToolbarItemPadding - toolbarItemsSeparation;
+		toolbarWidth += (numberOfItems * WPEditorToolbarButtonWidth);
+		toolbarWidth += (numberOfItems * 12);
+	}
+	
+//	toolbarWidth += 10;
     self.leftToolbar.frame = CGRectMake(0, 0, toolbarWidth, WPEditorToolbarHeight);
     self.toolbarScroll.contentSize = CGSizeMake(CGRectGetWidth(self.leftToolbar.frame),
                                                 WPEditorToolbarHeight);
@@ -252,9 +267,9 @@ static const CGFloat WPEditorToolbarDividerLineWidth = 0.6f;
     
     UIScrollView* toolbarScroll = [[UIScrollView alloc] initWithFrame:toolbarScrollFrame];
     toolbarScroll.showsHorizontalScrollIndicator = NO;
-    if (IS_IPAD) {
-        toolbarScroll.scrollEnabled = NO;
-    }
+//    if (IS_IPAD) {
+//        toolbarScroll.scrollEnabled = NO;
+//    }
     toolbarScroll.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     [self.contentView addSubview:toolbarScroll];
