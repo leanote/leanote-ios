@@ -2006,7 +2006,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2045,7 +2045,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
