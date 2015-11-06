@@ -874,7 +874,7 @@
 	// [controller.searchResultsTableView reloadData]; // 不能有这个, 这个没用!! 有这个会导致选择笔记有问题
     [self.tableView reloadData];
 	
-	if (IS_IPAD) {
+	if (!IS_IPAD) {
 	
 		[self restoreBarStyle];
 		
