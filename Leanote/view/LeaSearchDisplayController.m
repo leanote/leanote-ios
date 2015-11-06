@@ -14,6 +14,8 @@
 {
 	[super setActive: visible animated: animated];
 	
+//	[self.searchContentsController.navigationController setNavigationBarHidden: NO animated: NO];
+
 	/*
 	[self.searchContentsController.navigationController setNavigationBarHidden: NO animated: NO];
 	

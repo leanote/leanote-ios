@@ -108,7 +108,7 @@ NSString const *key = @"isSelectOnSearchKey";
 
 -(void)setBarStyle
 {
-	if(self.isSelectOnSearch) {
+	if(self.isSelectOnSearch && !IS_IPAD) {
 		[self setBarStyleBlack];
 	}
 	else {
