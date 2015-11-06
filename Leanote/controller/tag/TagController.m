@@ -108,6 +108,7 @@
 
 	// table的样式
 	[self setTableStyle:self.tableView];
+	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
 	
 	// cate
 	if(self.delegate) {

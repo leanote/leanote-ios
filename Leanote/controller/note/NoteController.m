@@ -155,8 +155,9 @@
 	// 放这里
 	[self.tableView reloadData];
 	
-	// table的样式
+	// table的样式, 包括search table view
 	[self setTableStyle:self.tableView];
+	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
 	
 	// isBlog ?
 	if(self.isBlog) {
@@ -405,6 +406,7 @@
 	return count;
 }
 
+
 // 每行显示什么
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -417,6 +419,9 @@
 	
 	// configure the cell
 	Note *note = [fetched objectAtIndexPath:indexPath];
+	
+	[self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
+	[self.searchDisplayController.searchResultsTableView setLayoutMargins:UIEdgeInsetsZero];
 	
 	static NSString *cellIdentifier2 = @"NoteCell2";
 	NoteCell *cell2 = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
