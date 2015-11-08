@@ -1,6 +1,6 @@
 //
 //  Leas.m
-//  Leanote
+//  Leanote单例Service, AppDelegate.m实例化, BaseService.context 为其tmpContext
 //
 //  Created by life on 15/7/30.
 //  Copyright (c) 2015年 Leanote. All rights reserved.

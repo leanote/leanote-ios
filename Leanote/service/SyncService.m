@@ -2,6 +2,8 @@
 //  SyncService.m
 //  Leanote
 //
+//  每一次同步都会实例化Notebook, Note, Tag service, tmpContext传过去
+//
 //  Created by life on 15/6/7.
 //  Copyright (c) 2015 Leanote.com. All rights reserved.
 //
@@ -355,6 +357,7 @@ BOOL inSyncing = NO;
 	}
 }
 
+// 初始化各个service
 - (void) initService
 {
 	_notebookService = [[NotebookService alloc] init];
@@ -392,6 +395,8 @@ BOOL inSyncing = NO;
 + (SyncService *) newSync
 {
 	SyncService *syncService = [[SyncService alloc] init];
+	
+	// 新建tmpContext
 	syncService.tmpContext = [self getTmpContext];
 	
 	[syncService initService];
