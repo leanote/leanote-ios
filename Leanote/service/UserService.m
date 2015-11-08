@@ -15,7 +15,7 @@
 #import "TagService.h"
 
 static NSString* const UserT = @"User"; // 表名
-static NSString* const DefaultHost = @"http://leanote.com"; // @"http://localhost:9000"; // 默认host
+static NSString* const DefaultHost = @"https://leanote.com"; // @"http://localhost:9000"; // 默认host
 
 static User *curUser;
 
@@ -55,6 +55,12 @@ static BOOL openInited;
 
 + (NSString *) getHost {
 	if([Common isBlankString:curUser.host]) {
+		return DefaultHost;
+	}
+	
+	// 如果是http://leanote.com, 则改成https
+	NSString *host = curUser.host;
+	if ([host isEqualToString:@"http://leanote.com"]) {
 		return DefaultHost;
 	}
 	return curUser.host;
