@@ -112,7 +112,7 @@
 	
 	// table的样式
 	[self setTableStyle:self.tableView];
-	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
+//	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
 	
 	// cate
 	if(self.delegate) {
@@ -694,9 +694,6 @@
         case NSFetchedResultsChangeDelete:
             [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                      withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeMove:
-        case NSFetchedResultsChangeUpdate:
             break;
     }
     

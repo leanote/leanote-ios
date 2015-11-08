@@ -191,6 +191,7 @@ NSString const *key = @"isSelectOnSearchKey";
 }
 
 // 为了解决分隔线左侧少15px的情况, iphone, ipad都会存在
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {

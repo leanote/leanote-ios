@@ -17,7 +17,7 @@
 #import "Leas.h"
 #import "NoteController.h"
 
-@interface TagController ()<SWTableViewCellDelegate>
+@interface TagController ()
 
 // 从setting过来要用
 @property (nonatomic, strong) Note *note;
@@ -108,7 +108,7 @@
 
 	// table的样式
 	[self setTableStyle:self.tableView];
-	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
+//	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
 	
 	// cate
 	if(self.delegate) {
@@ -574,9 +574,6 @@
         case NSFetchedResultsChangeDelete:
             [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                      withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeMove:
-        case NSFetchedResultsChangeUpdate:
             break;
     }
     
