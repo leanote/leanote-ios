@@ -175,12 +175,11 @@
 		1CB6C10C1B5B8A4C004F61DD /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB6C10B1B5B8A4C004F61DD /* CategoryViewController.m */; };
 		1CBE20761B3FD4CA00133EA1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBE20751B3FD4CA00133EA1 /* BaseViewController.m */; };
 		1CC8FFD21B1B26DD00269072 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8FFD11B1B26DD00269072 /* NoteViewController.m */; };
+		1CD58CD51BEF2C59003B71BF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD58CD41BEF2C59003B71BF /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1CD6AF5B1B3288DE0098CE96 /* NoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6AF5A1B3288DE0098CE96 /* NoteController.m */; };
 		1CD7C2CC1B2DCB6500AB25FF /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD7C2CB1B2DCB6500AB25FF /* File.m */; };
 		1CD7C2CF1B2DCBA200AB25FF /* FileService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD7C2CE1B2DCBA200AB25FF /* FileService.m */; };
 		1CD7C2D41B2DD43B00AB25FF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1CD7C2D31B2DD43B00AB25FF /* README.md */; };
-		1CD878111B5F5E1D002E5F7B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CD878101B5F5E1D002E5F7B /* Launch Screen.xib */; };
-		1CD878131B5F62DA002E5F7B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */; };
 		1CDB4FAE1B305C7C007CC245 /* MeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB4FAB1B305C7C007CC245 /* MeController.m */; };
 		1CDB4FAF1B305C7C007CC245 /* MeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB4FAD1B305C7C007CC245 /* MeTab.m */; };
 		1CDCB1731B52B77E00838D17 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CDCB1751B52B77E00838D17 /* Localizable.strings */; };
@@ -500,6 +499,7 @@
 		1CBE20751B3FD4CA00133EA1 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1CC8FFD01B1B26DD00269072 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		1CC8FFD11B1B26DD00269072 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
+		1CD58CD41BEF2C59003B71BF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1CD6AF591B3288DE0098CE96 /* NoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteController.h; sourceTree = "<group>"; };
 		1CD6AF5A1B3288DE0098CE96 /* NoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteController.m; sourceTree = "<group>"; };
 		1CD7C2CA1B2DCB6500AB25FF /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
@@ -507,8 +507,6 @@
 		1CD7C2CD1B2DCBA200AB25FF /* FileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileService.h; sourceTree = "<group>"; };
 		1CD7C2CE1B2DCBA200AB25FF /* FileService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileService.m; sourceTree = "<group>"; };
 		1CD7C2D31B2DD43B00AB25FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1CD878101B5F5E1D002E5F7B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1CDB4FAA1B305C7C007CC245 /* MeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeController.h; sourceTree = "<group>"; };
 		1CDB4FAB1B305C7C007CC245 /* MeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeController.m; sourceTree = "<group>"; };
 		1CDB4FAC1B305C7C007CC245 /* MeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeTab.h; sourceTree = "<group>"; };
@@ -1066,9 +1064,8 @@
 		1CDCB1441B50E66700838D17 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				1CD58CD41BEF2C59003B71BF /* Launch Screen.storyboard */,
 				1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */,
-				1CD878101B5F5E1D002E5F7B /* Launch Screen.xib */,
-				1CD878121B5F62DA002E5F7B /* Launch Screen.storyboard */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1430,6 +1427,9 @@
 						CreatedOnToolsVersion = 6.3.1;
 						TestTargetID = 1D921D98173CB5BD00168A77;
 					};
+					1D921D98173CB5BD00168A77 = {
+						DevelopmentTeam = 926WD5ZF5V;
+					};
 				};
 			};
 			buildConfigurationList = 1D921D94173CB5BD00168A77 /* Build configuration list for PBXProject "Leanote" */;
@@ -1484,7 +1484,6 @@
 				1CA4CEEB1B68D91200E500F4 /* icon_format_media.png in Resources */,
 				1CA4CEC91B68D91200E500F4 /* icon-posts-editor-inspector.png in Resources */,
 				1CA4CF481B68D91200E500F4 /* ZSSoutdent@2x.png in Resources */,
-				1CD878111B5F5E1D002E5F7B /* Launch Screen.xib in Resources */,
 				1CA4CF341B68D91200E500F4 /* ZSSh1.png in Resources */,
 				1CA4CECF1B68D91200E500F4 /* icon_format_bold.png in Resources */,
 				1CA4CEDD1B68D91200E500F4 /* icon_format_italic@3x.png in Resources */,
@@ -1494,6 +1493,7 @@
 				1CEF0CAB1B876B2200C2B2F3 /* SVProgressHUD.bundle in Resources */,
 				1CF4A4A21B1D844200FC0F50 /* AppImages.xcassets in Resources */,
 				1D921DB8173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard in Resources */,
+				1CD58CD51BEF2C59003B71BF /* Launch Screen.storyboard in Resources */,
 				1CEF0DC51B876D8400C2B2F3 /* icon_session-8.png in Resources */,
 				1CA4CF091B68D91200E500F4 /* icon_format_ul.png in Resources */,
 				1CA4CF031B68D91200E500F4 /* icon_format_strikethrough.png in Resources */,
@@ -1511,7 +1511,6 @@
 				1CA4CEED1B68D91200E500F4 /* icon_format_media@3x.png in Resources */,
 				1CA4CEEE1B68D91200E500F4 /* icon_format_media_highlighted.png in Resources */,
 				1CA4CF2B1B68D91200E500F4 /* ZSSbgcolor.png in Resources */,
-				1CD878131B5F62DA002E5F7B /* Launch Screen.storyboard in Resources */,
 				1CA4CEF31B68D91200E500F4 /* icon_format_more@3x.png in Resources */,
 				1CA4CF3A1B68D91200E500F4 /* ZSSh4.png in Resources */,
 				1CA4CF131B68D91200E500F4 /* icon_format_unlink.png in Resources */,
@@ -1979,7 +1978,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tie Li (926WD5ZF5V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tie Li (926WD5ZF5V)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2018,7 +2017,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tie Li (926WD5ZF5V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tie Li (926WD5ZF5V)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

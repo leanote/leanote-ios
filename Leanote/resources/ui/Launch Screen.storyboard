@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="W9p-he-k9r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="W9p-he-k9r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -17,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="leanote-lauch-screen" translatesAutoresizingMaskIntoConstraints="NO" id="flk-nN-QC3">
-                                <rect key="frame" x="186" y="241" width="117" height="117"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="leanote-lauch-screen" translatesAutoresizingMaskIntoConstraints="NO" id="flk-nN-QC3">
+                                <rect key="frame" x="263" y="263" width="74" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="312" id="Jor-90-EtI">
                                         <variation key="heightClass=regular-widthClass=compact" constant="182"/>
@@ -33,17 +34,38 @@
                                         <exclude reference="MEa-f1-P0i"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="242" y="141" width="117" height="117"/>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="142" y="241" width="117" height="117"/>
+                                </variation>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="342" y="241" width="117" height="117"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="142" y="141" width="117" height="117"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="342" y="141" width="117" height="117"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="142" y="337" width="116" height="126"/>
                                     <mask key="constraints">
                                         <include reference="Jor-90-EtI"/>
                                         <include reference="MEa-f1-P0i"/>
                                     </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="342" y="341" width="117" height="117"/>
                                 </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="flk-nN-QC3" secondAttribute="centerY" multiplier="4:3" id="Vvw-Y8-c7d"/>
+                            <constraint firstItem="flk-nN-QC3" firstAttribute="centerX" secondItem="cez-yo-1vp" secondAttribute="centerX" id="hfI-z4-tC9"/>
+                            <constraint firstItem="flk-nN-QC3" firstAttribute="centerY" secondItem="cez-yo-1vp" secondAttribute="centerY" id="kO7-mP-1tR"/>
                             <constraint firstAttribute="centerX" secondItem="flk-nN-QC3" secondAttribute="centerX" id="rF1-hU-dyH"/>
                         </constraints>
                         <variation key="default">
@@ -62,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1g-bP-vF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.5" y="226.5"/>
+            <point key="canvasLocation" x="133" y="226"/>
         </scene>
     </scenes>
     <resources>
