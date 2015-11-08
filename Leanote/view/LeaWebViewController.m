@@ -53,9 +53,9 @@
 {
     [super viewDidLoad];
 
-    if (IS_IPHONE) {
+//    if (IS_IPHONE) {
         self.navigationItem.title = NSLocalizedString(@"Loading...", @"");
-    }
+//    }
 
     [self setLoading:NO];
     self.backButton.enabled = NO;
@@ -64,10 +64,12 @@
     self.forwardButton.accessibilityLabel = NSLocalizedString(@"Forward", @"Spoken accessibility label");
     self.refreshButton.accessibilityLabel = NSLocalizedString(@"Refresh", @"Spoken accessibility label");
 
-    if (IS_IPHONE) {
+//    if (IS_IPHONE) {
         if (!self.hidesLinkOptions) {
             [WPStyleGuide setRightBarButtonItemWithCorrectSpacing:self.optionsButton forNavigationItem:self.navigationItem];
         }
+	/*
+	// IPAD
     } else {
         // We want the refresh button to be borderless, but buttons in navbars want a border.
         // We need to compose the refresh button as a UIButton that is used as the UIBarButtonItem's custom view.
@@ -95,6 +97,7 @@
         }
         self.loadingLabel.text = NSLocalizedString(@"Loading...", @"");
     }
+	*/
 
 	// 底部工具栏
     self.toolbar.translucent = NO;
@@ -145,6 +148,9 @@
 		self.navigationItem.leftBarButtonItem = barButton;
 		*/
 	}
+	
+	// 每次打开都重新登录下
+	self.needsLogin = true;
 }
 
 - (void) back
@@ -235,15 +241,15 @@
     self.backButton.enabled = self.webView.canGoBack;
     self.forwardButton.enabled = self.webView.canGoForward;
     if (!_isLoading) {
-        if (IS_IPAD) {
-            if (self.navigationController.navigationBarHidden == NO) {
-                self.title = [self getDocumentTitle];
-            } else {
-                [self.iPadNavBar.topItem setTitle:[self getDocumentTitle]];
-            }
-        } else {
+//        if (IS_IPAD) {
+//            if (self.navigationController.navigationBarHidden == NO) {
+//                self.title = [self getDocumentTitle];
+//            } else {
+//                [self.iPadNavBar.topItem setTitle:[self getDocumentTitle]];
+//            }
+//        } else {
             self.title = [self getDocumentTitle];
-        }
+//        }
     }
 }
 
@@ -392,6 +398,7 @@
 
     self.optionsButton.enabled = !loading;
 
+	/*
     if (IS_IPAD) {
         CGRect frame = self.loadingView.frame;
         if (loading) {
@@ -405,11 +412,12 @@
         [UIView animateWithDuration:0.2
                          animations:^{self.loadingView.frame = frame;}];
     }
+	*/
 
     if (self.refreshButton) {
         self.refreshButton.enabled = !loading;
         // If on iPhone (or iPod Touch) swap between spinner and refresh button
-        if (IS_IPHONE) {
+//        if (IS_IPHONE) {
             // Build a spinner button if we don't have one
             if (self.spinnerButton == nil) {
                 UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
@@ -432,7 +440,7 @@
                 [newToolbarItems replaceObjectAtIndex:spinnerButtonIndex withObject:self.refreshButton];
             }
             self.toolbar.items = newToolbarItems;
-        }
+//        }
     }
     _isLoading = loading;
 }
@@ -483,15 +491,15 @@
             self.forwardButton.enabled = YES;
         }
         self.backButton.enabled = YES;
-        if (IS_IPAD) {
-            if (self.navigationController.navigationBarHidden == NO) {
-                self.title = [self getDocumentTitle];
-            } else {
-                [self.iPadNavBar.topItem setTitle:[self getDocumentTitle]];
-            }
-        } else {
+//        if (IS_IPAD) {
+//            if (self.navigationController.navigationBarHidden == NO) {
+//                self.title = [self getDocumentTitle];
+//            } else {
+//                [self.iPadNavBar.topItem setTitle:[self getDocumentTitle]];
+//            }
+//        } else {
             self.title = [self getDocumentTitle];
-        }
+//        }
     } else {
         if ([self.webView isLoading]) {
             [self.webView stopLoading];
@@ -632,6 +640,7 @@
     DDLogInfo(@"%@ %@%@", self, NSStringFromSelector(_cmd), aWebView.request.URL);
 }
 
+// 页面加载结束时调用
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
 //    DDLogMethod()
@@ -680,9 +689,12 @@
         [self.scrollView setContentOffset:bottomOffset animated:YES];
     }
 	
+	// 当加载完后才登录
+	
+	// 总是重新登录
 	// 需要登录
 	if(self.needsLogin) {
-		NSLog(@"needsLogin");
+//		NSLog(@"needsLogin");
 		self.needsLogin = NO;
 		[self loginLeanote:self.host email:self.email pwd:self.pwd];
 	}
