@@ -637,16 +637,26 @@
 	if([Common isBlankString:content]) {
 		return content;
 	}
+
+	// https链接的问题
+	NSString *host = [[UserService getHost] lowercaseString];
+	if ([host rangeOfString:@"https"].location == NSNotFound) {
+		host = [host stringByReplacingOccurrencesOfString:@"http" withString:@"https*"];
+	}
+	else {
+		host = [host stringByReplacingOccurrencesOfString:@"https" withString:@"https*"];
+	}
+	
 	// 非markdown
 	if(!isMarkdown) {
-		NSString *pattern = [NSString stringWithFormat:@"src=('|\")%@/(api/)*file/(outputImage|getImage)\\?fileId=([a-z0-9A-Z]{24})('|\")", [UserService getHost]];
+		NSString *pattern = [NSString stringWithFormat:@"src=('|\")%@/(api/)*file/(outputImage|getImage)\\?fileId=([a-z0-9A-Z]{24})('|\")", host];
 		NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
 		
 		content = [regularExpression stringByReplacingMatchesInString:content options:0 range:NSMakeRange(0, content.length) withTemplate:@"src=\"leanote://getImage?fileId=$4\""];
 	}
 	// markdown
 	else {
-		NSString *pattern = [NSString stringWithFormat: @"!\\[(.*?)\\]\\(%@/(api/)*file/(outputImage|getImage)\\?fileId=([a-z0-9A-Z]{24})\\)", [UserService getHost]];
+		NSString *pattern = [NSString stringWithFormat: @"!\\[(.*?)\\]\\(%@/(api/)*file/(outputImage|getImage)\\?fileId=([a-z0-9A-Z]{24})\\)", host];
 		NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
 		content = [regularExpression stringByReplacingMatchesInString:content options:0 range:NSMakeRange(0, content.length) withTemplate:@"![$1](leanote://getImage?fileId=$4)"];
 	}
