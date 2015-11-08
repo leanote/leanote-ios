@@ -884,7 +884,7 @@
 {
 //	NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 	
-	NSString *searchPredicate = [NSString stringWithFormat:@"title contains[cd] '%@' or content contains[cd] '%@'", searchString, searchString];
+	NSString *searchPredicate = [NSString stringWithFormat:@"(title contains[cd] '%@' or content contains[cd] '%@')", searchString, searchString];
 	
 	self.searchedResultsController = [Leas.note fetchedResultsControllerWithPredicate:searchPredicate
 																		 withController:self
