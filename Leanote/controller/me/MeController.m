@@ -69,6 +69,15 @@ NSArray *users;
 	[super didReceiveMemoryWarning];
 }
 
+- (void) addUserSync
+{
+	[Common showProgressWithStatus:NSLocalizedString(@"Add account successful and Synchronizing...", nil)];
+	// 同步
+	[SyncService incrSync:^(BOOL ok) {
+		[Common hideProgress];
+	} progress:nil];
+}
+
 - (void) notifyChangeUser:(BOOL) isAdd
 {
 	// 取得ios系统唯一的全局的广播站 通知中心
@@ -97,11 +106,9 @@ NSArray *users;
 	
 	// UITableViewRowAnimationBottom
 	if(isAdd) {
-		[Common showProgressWithStatus:NSLocalizedString(@"Add account successful and Synchronizing...", nil)];
-		// 同步
-		[SyncService incrSync:^(BOOL ok) {
-			[Common hideProgress];
-		} progress:nil];
+		[self addUserSync];
+		// 1s后同步
+//		[self performSelector:@selector(addUserSync) withObject:nil afterDelay:1.0f];
 	}
 	else {
 		[self showSuccessMsg:NSLocalizedString(@"Toggle account successful", nil)];

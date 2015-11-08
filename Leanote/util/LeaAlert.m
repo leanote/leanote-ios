@@ -31,7 +31,7 @@ NSInteger const SupportButtonIndex = 0;
 	else if([title isEqualToString:NSLocalizedString(@"OK", nil)])
 	{
 		if(self.okPressedBlock) {
-			self.okPressedBlock();
+			self.okPressedBlock(nil);
 			self.okPressedBlock = nil;
 		}
 	}
@@ -52,7 +52,7 @@ NSInteger const SupportButtonIndex = 0;
     [self showAlertWithTitle:title message:message withSupportButton:showSupport okPressedBlock:nil];
 }
 
-+ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message withSupportButton:(BOOL)showSupport okPressedBlock:(void (^)(UIAlertView *))okBlock
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message withSupportButton:(BOOL)showSupport okPressedBlock:(void (^)()) okBlock
 {
     if ([LeaAlert internalInstance].alertShowing) {
         return;

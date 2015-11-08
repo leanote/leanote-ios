@@ -108,7 +108,7 @@ NSString const *key = @"isSelectOnSearchKey";
 
 -(void)setBarStyle
 {
-	if(self.isSelectOnSearch) {
+	if(self.isSelectOnSearch && !IS_IPAD) {
 		[self setBarStyleBlack];
 	}
 	else {
@@ -152,6 +152,15 @@ NSString const *key = @"isSelectOnSearchKey";
 	[WPStyleGuide configureColorsForView:self.view andTableView:tableView];
 	// footer不要有分割线, 防止断片
 	tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 0.0, 44.0)]; // add some vertical padding
+	
+	// 为了解决左侧少15px 分隔线
+	if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+	
+	if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 -(UIView *) iniNoResultView:(UITableView *) tableView
@@ -179,6 +188,19 @@ NSString const *key = @"isSelectOnSearchKey";
 //	[tableView insertSubview:nomatchesView belowSubview:tableView];
 	[tableView addSubview:nomatchesView];
 	return nomatchesView;
+}
+
+// 为了解决分隔线左侧少15px的情况, iphone, ipad都会存在
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+		[cell setSeparatorInset:UIEdgeInsetsZero];
+	}
+
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 @end

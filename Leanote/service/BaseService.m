@@ -10,8 +10,8 @@
 
 @implementation BaseService
 
-static NSManagedObjectContext * context;
-static NSManagedObjectContext * writerContext;
+static NSManagedObjectContext * context; // 当前视图context
+static NSManagedObjectContext * writerContext; // 数据库context
 
 // http://stackoverflow.com/questions/695980/how-do-i-declare-class-level-properties-in-objective-c
 + (NSManagedObjectContext *) context {
@@ -63,7 +63,7 @@ static NSManagedObjectContext * writerContext;
 				 push:(BOOL)push
 				 write:(BOOL)write
 {
-	// 如果是privaate context, 则
+	// 如果是private context, 则
 	if(inContext != context) {
 		NSError * savingError = nil;
 		BOOL ok = [inContext save:&savingError];
@@ -108,7 +108,8 @@ static NSManagedObjectContext * writerContext;
 	return YES;
 }
 
-// 得到临时context
+// 新建一个
+// 得到临时context, parent为context
 + (NSManagedObjectContext *)getTmpContext
 {
 	NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];

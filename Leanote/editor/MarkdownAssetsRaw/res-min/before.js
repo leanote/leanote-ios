@@ -137,8 +137,12 @@ function log(o) {
 // Use ?debug to serve original JavaScript files instead of minified
 window.baseDir = 'res-min';
 var isDebug = false;
-if (/debug/.test(location.search)) {
+var isDebugIPad = false;
+if (/debug/.test(location)) {
   isDebug = true;
+}
+if (/ipad/.test(location)) {
+  isDebugIPad = true;
 }
 window.require = {
     baseUrl: window.baseDir,

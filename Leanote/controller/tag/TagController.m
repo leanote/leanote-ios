@@ -17,7 +17,7 @@
 #import "Leas.h"
 #import "NoteController.h"
 
-@interface TagController ()<SWTableViewCellDelegate>
+@interface TagController ()
 
 // 从setting过来要用
 @property (nonatomic, strong) Note *note;
@@ -108,6 +108,7 @@
 
 	// table的样式
 	[self setTableStyle:self.tableView];
+//	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
 	
 	// cate
 	if(self.delegate) {
@@ -127,7 +128,8 @@
 	[self beautifySearchBar];
 	[self setBarStyle];
 	
-	if(self.isSelectOnSearch) {
+	// 非IPAD下, 如果当前是isSelectOnSearch才要隐藏
+	if(self.isSelectOnSearch && !IS_IPAD) {
 		NSLog(@"self.isSelectOnSearch viewWillAppear");
 		[self.navigationController setNavigationBarHidden:YES animated:animated];
 	}
@@ -573,9 +575,6 @@
             [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                      withRowAnimation:UITableViewRowAnimationFade];
             break;
-        case NSFetchedResultsChangeMove:
-        case NSFetchedResultsChangeUpdate:
-            break;
     }
     
 }
@@ -671,6 +670,32 @@
     return titleLen;
 }
 
+// ipad下search bar上移, 但navigation却不隐藏
+// ipad下模拟没有navigationController, 但是SWTableViewCell selectCell 要用到
+// http://stackoverflow.com/a/5860412/4269908
+//- (UINavigationController *)navigationController {
+//	if (IS_IPAD) {
+//		return nil;
+//	} else {
+//		return self.navigationController;
+//	}
+//}
+- (UINavigationController *)navigationController {
+	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
+		// Example: 1   UIKit                               0x00540c89 -[UIApplication _callInitializationDelegatesForURL:payload:suspended:] + 1163
+		NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
+		NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
+		[array removeObject:@""];
+		
+		// Array[3] == class caller
+		if([array[3] isEqualToString:@"UISearchDisplayController"]) {
+			return nil;
+		}
+	}
+	return [super navigationController];
+}
+
 #pragma mark - UISearchDisplayDelegate Methods
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -687,56 +712,64 @@
 
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
-	[self setBarStyleBlack];
-	// cate
-	if(self.delegate) {
-		// 1. 这里控制动画
+	if (!IS_IPAD) {
 		
-		[UIView animateWithDuration:0.25f animations:^{
+		[self setBarStyleBlack];
+		// cate
+		if(self.delegate) {
+			// 1. 这里控制动画
+			
+			[UIView animateWithDuration:0.25f animations:^{
+				CGRect frame = self.view.frame;
+				frame.origin.y = [UIApplication sharedApplication].statusBarFrame.size.height;
+				self.view.frame = frame;
+			}];
+			
+			[self.navigationController setNavigationBarHidden:YES animated:YES];
+			
 			CGRect frame = self.view.frame;
-			frame.origin.y = [UIApplication sharedApplication].statusBarFrame.size.height;
+			frame.size.height = [self.delegate getSearchedViewHeight];
 			self.view.frame = frame;
-		}];
+		}
+		self.isSelectOnSearch = YES;
 		
-		[self.navigationController setNavigationBarHidden:YES animated:YES];
-		
-		CGRect frame = self.view.frame;
-		frame.size.height = [self.delegate getSearchedViewHeight];
-		self.view.frame = frame;
 	}
-	self.isSelectOnSearch = YES;
 }
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
-    NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+//    NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
     self.searchedResultsController.delegate = nil;
     self.searchedResultsController = nil;
 	
     [controller.searchResultsTableView reloadData];
     [self.tableView reloadData];
 	
-	[self restoreBarStyle];
-	
-	// cate
-	if(self.delegate) {
-		// 2. 还原
+	if (!IS_IPAD) {
 		
-		[UIView animateWithDuration:0.25f animations:^{
-			CGRect frame = self.view.frame;
-			frame.origin.y = 64;
-			self.view.frame = frame;
-		} completion:^(BOOL finished) {
-			if(finished) {
+		[self restoreBarStyle];
+		
+		// cate
+		if(self.delegate) {
+			// 2. 还原
+			
+			[UIView animateWithDuration:0.25f animations:^{
 				CGRect frame = self.view.frame;
-				frame.size.height = [self.delegate getCancelSearchViewHeight];
+				frame.origin.y = 64;
 				self.view.frame = frame;
-			}
-		}];
+			} completion:^(BOOL finished) {
+				if(finished) {
+					CGRect frame = self.view.frame;
+					frame.size.height = [self.delegate getCancelSearchViewHeight];
+					self.view.frame = frame;
+				}
+			}];
+			
+			[self.navigationController setNavigationBarHidden:NO animated:YES];
+		}
+		self.isSelectOnSearch = NO;
 		
-		[self.navigationController setNavigationBarHidden:NO animated:YES];
 	}
-	self.isSelectOnSearch = NO;
 }
 
 #pragma mark - UISearchBarDelegate Methods

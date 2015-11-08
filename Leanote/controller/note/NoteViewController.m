@@ -86,6 +86,7 @@ static NSInteger const MaximumNumberOfPictures = 10;
 @property (nonatomic) BOOL isMarkdown;
 
 @property (nonatomic) BOOL edited;
+@property (nonatomic) BOOL isClosed;
 
 @property BOOL isInited;
 
@@ -222,7 +223,7 @@ static NSInteger const MaximumNumberOfPictures = 10;
 	
 	// 一直在loading 内容
 	[self hideProgress];
-	
+	self.isClosed = YES;
 	[super viewWillDisappear:animated];
 }
 
@@ -405,13 +406,26 @@ BOOL hiddenBar = NO;
 		[self showProgress];
 		
 		[Leas.note getNoteContent:self.note success:^(NSString * content) {
+			// 如果已经不在本页了 不要设置
+			if(self.isClosed) {
+				return;
+			}
 			[self setBodyText:content];
 			[self enableRightButtons];
 			[self hideProgress];
 		} fail:^{
+			// 如果已经不在本页了, 不要alert
+			if(self.isClosed) {
+				return;
+			}
 			[self hideProgress];
-			[LeaAlert showAlertWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Cannot fetch note's content", nil) withSupportButton:NO okPressedBlock:^(UIAlertView *alertView) {
+
+			[LeaAlert showAlertWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Cannot fetch note's content", nil) withSupportButton:NO okPressedBlock:^() {
+				if(self.isClosed) {
+					return;
+				}
 				// 返回
+				// 这里, 可能已不是本页
 				[self.navigationController popViewControllerAnimated:YES];
 			}];
 		}];

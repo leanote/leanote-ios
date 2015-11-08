@@ -1,4 +1,3 @@
-
 var MDInited = false;
 
 function setEditorContent(content) {
@@ -133,6 +132,11 @@ var LEAMD = {
   // 绑定事件
   init: function() {
 
+    this.isiPad = (navigator.userAgent.match(/iPad/i) != null);
+    if (this.isiPad) {
+        $(document.body).addClass('ipad-body');
+    }
+    
     // tap事件
     tapLea('#preview-contents', 'img, a', function() {
       if($(this).is('img')) {
@@ -470,9 +474,14 @@ ZSSEditor.getSelectedText = function() {
 ZSSEditor.logMainElementSizes = function() {};
 
 // life test
-if(isDebug) {
+if(isDebug || isDebugIPad) {
   titleField.enableEditing();
   contentField.enableEditing();
   var content = $('#life').val();
   setEditorContent(content);
+
+  titleField.setHTML("你好啊 hello world");
+}
+if (isDebugIPad) {
+  $('body').addClass('ipad-body');
 }

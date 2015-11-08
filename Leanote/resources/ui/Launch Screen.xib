@@ -13,6 +13,9 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="leanote-lauch-screen" translatesAutoresizingMaskIntoConstraints="NO" id="6d3-TV-AFy">
                     <rect key="frame" x="133" y="145" width="137" height="149"/>
+                    <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                        <rect key="frame" x="132" y="145" width="137" height="149"/>
+                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

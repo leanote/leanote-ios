@@ -23,7 +23,7 @@
 
 #import <SGNavigationProgress/UINavigationController+SGProgress.h>
 
-@interface NoteController ()<SWTableViewCellDelegate>
+@interface NoteController()
 
 @property (strong, nonatomic) NSIndexPath *indexPathToBeDeleted;
 @property (strong, nonatomic) NSFetchedResultsController *searchedResultsController;
@@ -155,8 +155,9 @@
 	// 放这里
 	[self.tableView reloadData];
 	
-	// table的样式
+	// table的样式, 包括search table view
 	[self setTableStyle:self.tableView];
+//	[self setTableStyle:self.searchDisplayController.searchResultsTableView];
 	
 	// isBlog ?
 	if(self.isBlog) {
@@ -404,6 +405,7 @@
 //	self.nomatchesView.hidden = NO;
 	return count;
 }
+
 
 // 每行显示什么
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -725,9 +727,6 @@
 			[tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
 					 withRowAnimation:UITableViewRowAnimationFade];
             break;
-        case NSFetchedResultsChangeUpdate:
-        case NSFetchedResultsChangeMove:
-            break;
 	}
 	
 }
@@ -846,15 +845,40 @@
 	return titleLen;
 }
 
-// 搜索
+// ipad下search bar上移, 但navigation却不隐藏
+// ipad下模拟没有navigationController, 但是SWTableViewCell selectCell 要用到
+// http://stackoverflow.com/a/5860412/4269908
+//- (UINavigationController *)navigationController {
+//	if (IS_IPAD) {
+//		return nil;
+//	} else {
+//		return self.navigationController;
+//	}
+//}
+- (UINavigationController *)navigationController {
+	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
+		// Example: 1   UIKit                               0x00540c89 -[UIApplication _callInitializationDelegatesForURL:payload:suspended:] + 1163
+		NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
+		NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
+		[array removeObject:@""];
+		
+		// Array[3] == class caller
+		if([array[3] isEqualToString:@"UISearchDisplayController"]) {
+			return nil;
+		}
+	}
+	return [super navigationController];
+}
 
+// 搜索
 #pragma mark - UISearchDisplayDelegate Methods
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-	NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+//	NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 	
-	NSString *searchPredicate = [NSString stringWithFormat:@"title contains[cd] '%@' or content contains[cd] '%@'", searchString, searchString];
+	NSString *searchPredicate = [NSString stringWithFormat:@"(title contains[cd] '%@' or content contains[cd] '%@')", searchString, searchString];
 	
 	self.searchedResultsController = [Leas.note fetchedResultsControllerWithPredicate:searchPredicate
 																		 withController:self
@@ -868,8 +892,10 @@
 
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
-	[self setBarStyleBlack];
-	self.isSelectOnSearch = YES;
+	if (!IS_IPAD) {
+		[self setBarStyleBlack];
+		self.isSelectOnSearch = YES;
+	}
 }
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
@@ -881,9 +907,11 @@
 	
 	// 为什么要reload ?
 //	[self.tableView reloadData];
-	
-	[self restoreBarStyle];
-	self.isSelectOnSearch = NO;
+	if (!IS_IPAD) {
+		[self restoreBarStyle];
+		
+		self.isSelectOnSearch = NO;
+	}
 }
 
 #pragma mark - UISearchBarDelegate Methods
