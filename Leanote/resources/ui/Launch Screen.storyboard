@@ -50,7 +50,7 @@
                                     <rect key="frame" x="342" y="141" width="117" height="117"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="142" y="337" width="116" height="126"/>
+                                    <rect key="frame" x="142" y="266" width="116" height="126"/>
                                     <mask key="constraints">
                                         <include reference="Jor-90-EtI"/>
                                         <include reference="MEa-f1-P0i"/>
