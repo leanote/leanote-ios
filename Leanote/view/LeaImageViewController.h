@@ -3,6 +3,7 @@
 @interface LeaImageViewController : UIViewController
 
 @property (nonatomic, strong) NSURL *url;
+@property NSUInteger urlIndex;
 @property (nonatomic, strong) UIImage *image;
 
 @property (nonatomic, strong) void (^willAppear)(void);

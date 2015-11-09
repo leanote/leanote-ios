@@ -16,6 +16,7 @@ static CGFloat const MinimumZoomScale = 0.1;
 @property (nonatomic, assign) BOOL shouldHideStatusBar;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong) UIButton *saveBtn;
+@property (nonatomic, strong) UIImage *errorImage;
 
 @end
 
@@ -104,6 +105,8 @@ static CGFloat const MinimumZoomScale = 0.1;
 	self.saveBtn = myButton;
 	self.saveBtn.hidden = YES;
 	
+	self.errorImage = [UIImage imageNamed:@"warning"];
+	
     [self loadImage];
 }
 
@@ -113,12 +116,15 @@ static CGFloat const MinimumZoomScale = 0.1;
         return;
     }
 
+	// 本地图片
     if (self.image != nil) {
+		
         self.imageView.image = self.image;
         [self.imageView sizeToFit];
         self.scrollView.contentSize = self.imageView.image.size;
         [self centerImage];
 
+	// 下载图片
     } else if (self.url) {
         self.isLoadingImage = YES;
         [self.activityIndicatorView startAnimating];
@@ -131,18 +137,27 @@ static CGFloat const MinimumZoomScale = 0.1;
                                           return;
                                       }
                                       [strongSelf.activityIndicatorView stopAnimating];
+									  
 									  strongSelf.image = image;
 									  weakSelf.saveBtn.enabled = YES;
                                       strongSelf.imageView.image = image;
                                       [strongSelf.imageView sizeToFit];
                                       strongSelf.scrollView.contentSize = strongSelf.imageView.image.size;
                                       [strongSelf centerImage];
+									  
                                       strongSelf.isLoadingImage = NO;
                                   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                                      DDLogError(@"Error loading image: %@", error);
                                       __typeof__(self) strongSelf = weakSelf;
                                       [strongSelf.activityIndicatorView stopAnimating];
-                                      strongSelf.isLoadingImage = NO;
+									  strongSelf.isLoadingImage = NO;
+									  
+									  strongSelf.image = strongSelf.errorImage;
+									  weakSelf.saveBtn.enabled = YES;
+									  strongSelf.imageView.image = strongSelf.errorImage;
+									  [strongSelf.imageView sizeToFit];
+									  strongSelf.scrollView.contentSize = strongSelf.imageView.image.size;
+									  [strongSelf centerImage];
+									  
                                   }];
     }
 }
@@ -190,16 +205,6 @@ static CGFloat const MinimumZoomScale = 0.1;
     }
 }
 
-- (void)centerImage
-{
-    CGFloat scaleWidth = CGRectGetWidth(self.scrollView.frame) / self.imageView.image.size.width;
-    CGFloat scaleHeight = CGRectGetHeight(self.scrollView.frame) / self.imageView.image.size.height;
-
-    self.scrollView.minimumZoomScale = MIN(scaleWidth, scaleHeight);
-    self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
-
-    [self scrollViewDidZoom:self.scrollView];
-}
 
 -(void)saveAs:(id)sender
 {
@@ -227,13 +232,16 @@ static CGFloat const MinimumZoomScale = 0.1;
     CGPoint point = [tgr locationInView:self.imageView];
     CGSize size = self.scrollView.frame.size;
 
-    CGFloat w = size.width / self.scrollView.maximumZoomScale;
-    CGFloat h = size.height / self.scrollView.maximumZoomScale;
+	CGFloat w = size.width / self.scrollView.maximumZoomScale;
+	CGFloat h = size.height / self.scrollView.maximumZoomScale;
+	
     CGFloat x = point.x - (w / 2.0f);
     CGFloat y = point.y - (h / 2.0f);
-
+	
     CGRect rect = CGRectMake(x, y, w, h);
     [self.scrollView zoomToRect:rect animated:YES];
+	
+	[self scrollViewDidZoom:self.scrollView];
 }
 
 #pragma mark - UIScrollView Delegate
@@ -241,6 +249,18 @@ static CGFloat const MinimumZoomScale = 0.1;
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.imageView;
+}
+
+// 中心化image
+- (void)centerImage
+{
+	CGFloat scaleWidth = CGRectGetWidth(self.scrollView.frame) / self.imageView.image.size.width;
+	CGFloat scaleHeight = CGRectGetHeight(self.scrollView.frame) / self.imageView.image.size.height;
+	
+	self.scrollView.minimumZoomScale = MIN(scaleWidth, scaleHeight);
+	self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
+	
+	[self scrollViewDidZoom:self.scrollView];
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView

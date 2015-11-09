@@ -18,4 +18,6 @@
 @property (strong, nonatomic) NSString *curUrl;
 @property NSUInteger curIndex;
 
+-(void)setUrlArr:(NSArray *)urlArr;
+
 @end

@@ -2695,16 +2695,24 @@ ZSSField.prototype.sendImageTappedCallback = function( imageNode ) {
 
     // 得到所有的image urls
     var allImages = [];
+    var curIndex = 0;
+    var curElem = $(imageNode).get(0);
+    var i = 0;
     $('#zss_field_content img').each(function() {
       var url = $(this).attr('src')
       if (url) {
         allImages.push(encodeURIComponent(url));
+        if ($(this).get(0) == curElem) {
+          curIndex = i;
+        }
+        i++;
       }
     });
-    allImages.push(encodeURIComponent( imageNode.src ));
+    // allImages.push(encodeURIComponent( imageNode.src ));
+    allImages.push(curIndex);
 
     var arguments = ['id=' + (editable ? '1' : '0'),
-                     'url=' + allImages.join(','),
+                     'url=' + allImages.join('L$L'),
                      'meta=' + encodeURIComponent( meta )];
 
     var joinedArguments = arguments.join( defaultCallbackSeparator );

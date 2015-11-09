@@ -535,21 +535,25 @@ BOOL hiddenBar = NO;
 }
 */
 
-// TODO 有个action保存到本地图片中
+// image gallery
 - (void)showActionTapImage:(NSString *)url
 {
-	NSArray *urlArr = [url componentsSeparatedByString:@","]; // 以','分隔, 最后一个是当前url
-	NSString *curUrlStr = [urlArr lastObject];
+	NSArray *urlArr = [url componentsSeparatedByString:@"L$L"]; // 以'L$L'分隔, 最后一个是当前url
+	
+	// 最后一个是当前位置
+	int curUrlIndex = [[urlArr lastObject] intValue];
+	
 	NSMutableArray *realUrls = [[NSMutableArray alloc] init];
 	
 	// fix url, 整理出可以显示的图片
 	for(int i = 0; i < [urlArr count] - 1; ++i) {
 		NSString *each = urlArr[i];
 		
-		NSString *fileId = [Common getFileIdFromUrl:each];
-		if(fileId || [LeaImageViewController isUrlSupported:[NSURL URLWithString:each]]) {
+		// 只要是图片, 都行, 因为有些图片是没有.png后缀的
+//		NSString *fileId = [Common getFileIdFromUrl:each];
+//		if(fileId || [LeaImageViewController isUrlSupported:[NSURL URLWithString:each]]) {
 			[realUrls addObject:each];
-		}
+//		}
 	}
 	
 	// 得到当前的url
@@ -557,7 +561,13 @@ BOOL hiddenBar = NO;
 	if(count < 1) {
 		return;
 	}
+	if (curUrlIndex > count) {
+		curUrlIndex = 0;
+	}
+	
+	/*
 	int curIndex = 0;
+	// 如果有多张图片是一样的url呢?
 	NSString *curUrl = realUrls[0];
 	for(int i = 0; i < count; ++i) {
 		NSString *each = realUrls[i];
@@ -567,11 +577,12 @@ BOOL hiddenBar = NO;
 			break;
 		}
 	}
+	*/
 	
 	LeaImageSliderViewController *vc2 = [[LeaImageSliderViewController alloc] init];
-	vc2.curUrl = curUrl;
-	vc2.urlArr = realUrls;
-	vc2.curIndex = curIndex;
+	vc2.curUrl = realUrls[curUrlIndex];
+	[vc2 setUrlArr:realUrls];
+	vc2.curIndex = curUrlIndex;
 	vc2.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	vc2.modalPresentationStyle = UIModalPresentationFullScreen;
 	[self presentViewController:vc2 animated:YES completion:nil];

@@ -119,6 +119,10 @@
 	//	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// 设置urlArr
+-(void)setUrlArr:(NSArray *)urlArr {
+	_urlArr = urlArr;
+}
 
 // 初始化所有数据
 - (BOOL) createContentPages {
@@ -146,15 +150,19 @@
 	NSURL *u = [NSURL URLWithString:url];
 	NSString *fileId = [Common getFileIdFromUrl:url];
 	UIImage *img;
-	if(fileId) {
-		if(fileId) {
-			NSString *absPath = [FileService getFileAbsPathByFileIdOrServerFileId:fileId];
+	
+	if(![Common isNull:fileId]) {
+		NSString *absPath = [FileService getFileAbsPathByFileIdOrServerFileId:fileId];
+		if (![Common isNull:absPath]) {
 			img = [[UIImage alloc] initWithContentsOfFile:absPath];
 		}
 	}
 
 	vc = [[LeaImageViewController alloc]  initWithImage:img andURL:u];
+	vc.urlIndex = index; // urlIndex
+	
 	self.views[index] = vc;
+	
 //	[self.views setValue:vc forKey:index];
 	
 	vc.willAppear = ^(void) {
@@ -173,7 +181,9 @@
 
 // 返回上一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-	NSUInteger index = [self indexOfViewController:(LeaImageViewController *)viewController];
+	
+	NSUInteger index = ((LeaImageViewController *)viewController).urlIndex; // [self indexOfViewController:(LeaImageViewController *)viewController];
+	
 	if ((index == 0) || (index == NSNotFound)) {
 		return nil;
 	}
@@ -186,8 +196,9 @@
 
 // 返回下一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-
-	NSUInteger index = [self indexOfViewController:(LeaImageViewController *)viewController];
+	
+	NSUInteger index = ((LeaImageViewController *)viewController).urlIndex;
+//	NSUInteger index = [self indexOfViewController:(LeaImageViewController *)viewController];
 
 	if (index == NSNotFound) {
 		return nil;
@@ -206,7 +217,7 @@
 	   transitionCompleted:(BOOL)completed
 {
 	if(completed) {
-		NSUInteger index = [self indexOfViewController:(LeaImageViewController *)[pageViewController.viewControllers lastObject]];
+		NSUInteger index = ((LeaImageViewController *)[pageViewController.viewControllers lastObject]).urlIndex;
 		self.curIndex = index;
 		[self setIndexLabel];
 	}
