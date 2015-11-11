@@ -142,7 +142,7 @@
 		return nil;
 	}
 	LeaImageViewController *vc = self.views[index];
-	if(vc && ![Common isNull:vc]) {
+	if(vc && ![Common isNullOrNil:vc]) {
 		return self.views[index];
 	}
 
@@ -151,9 +151,9 @@
 	NSString *fileId = [Common getFileIdFromUrl:url];
 	UIImage *img;
 	
-	if(![Common isNull:fileId]) {
+	if(![Common isNullOrNil:fileId]) {
 		NSString *absPath = [FileService getFileAbsPathByFileIdOrServerFileId:fileId];
-		if (![Common isNull:absPath]) {
+		if (![Common isNullOrNil:absPath]) {
 			img = [[UIImage alloc] initWithContentsOfFile:absPath];
 		}
 	}

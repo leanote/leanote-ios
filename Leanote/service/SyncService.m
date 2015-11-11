@@ -162,12 +162,28 @@ BOOL inSyncing = NO;
 					// 本地修改了, 有冲突, 则复制一个
 					if ([note.isDirty boolValue]) {
 						NSLog(@"有冲突 服务器USN=%ld 本地note:%@", (long)[usn integerValue], note);
-						[_noteService copyNoteForConflict:eachObj localNote:note];
+						
+						// 这里, 得到内容再判断是否冲突, 如果内容一样, 则认为不是冲突的
+						[_noteService getNoteContent:note.serverNoteId isMarkdown:[note.isMarkdown boolValue] success:^(NSString * content) {
+							
+							// 内容一样, 则使用更新之
+							if ([note.content isEqualToString:content]) {
+								[_noteService updateNoteForce:eachObj content:content];
+							}
+							// 内容不一样, 则确实是冲突的
+							else {
+								[_noteService copyNoteForConflict:eachObj localNote:note];
+							}
+						} fail:^{
+							// 内容得不到, 就当作是冲突来处理
+							[_noteService copyNoteForConflict:eachObj localNote:note];
+						}];
+						
 					}
 					// 本地没修改, 则用服务器的数据
 					else {
 						NSLog(@" updateNoteForce %@", note);
-						[_noteService updateNoteForce:eachObj];
+						[_noteService updateNoteForce:eachObj content:nil];
 					}
 				}
 			}

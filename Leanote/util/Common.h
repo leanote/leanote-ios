@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Common : NSObject
-+ (BOOL) isNull:(id) i;
+//+ (BOOL) isNull:(id) i;
++ (BOOL) isNullOrNil:(id) i;
 + (BOOL) isBlankString:(NSString *)string;
 + (NSString *) getDocPath;
 + (NSString *) getAbsPath:(NSString *)relatedPath;

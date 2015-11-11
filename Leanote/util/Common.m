@@ -14,6 +14,7 @@
 
 @implementation Common
 
+/*
 + (BOOL) isNull:(id) i {
 	if(i) {
 		return (NSNull *)i == [NSNull null];
@@ -22,6 +23,11 @@
 		return NO;
 	}
 	// return !i || (NSNull *)i == [NSNull null];
+}
+*/
+
++ (BOOL) isNullOrNil:(id) i {
+	return !i || (NSNull *)i == [NSNull null];
 }
 
 + (BOOL) isBlankString:(NSString *)string {

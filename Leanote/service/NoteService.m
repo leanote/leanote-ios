@@ -219,7 +219,9 @@
 
 // 更新笔记本
 // 调用者save
-- (Note *)updateNoteForce:(id)obj {
+// 如果传了内容, 表示是有内容的, 这里的内容已经fixed
+- (Note *)updateNoteForce:(id)obj
+				  content:(NSString*) content {
 	NSString *serverNoteId = obj[@"NoteId"];
 	Note *note = [self getNoteByServerNoteId:serverNoteId];
 	
@@ -249,13 +251,21 @@
 	note.usn = usn;
 	note.isTrash = isTrash;
 	
-	note.isInitSync = M_YES; // 需要重新同步笔记
+	// 是否传了内容
+	if([Common isNullOrNil:content]) {
+		note.isInitSync = M_YES; // 需要重新同步笔记
+	}
+	else {
+		note.isInitSync = M_NO;
+		note.content = content;
+	}
+	
 	note.isDirty = M_NO;
 	note.localIsNew = M_NO;
 	note.updatedTime = [Common goDate:obj[@"UpdatedTime"]];
 	
 	NSString *tagsStr;
-	if(![Common isNull:tags]) {
+	if(![Common isNullOrNil:tags]) {
 		tagsStr = [tags componentsJoinedByString:@","];
 	}
 	else {
@@ -275,7 +285,7 @@
 		
 		// recountTag, 之前的tag, 现在的tag, 得到不一样的tag, 只分析不同的tag count
 		[TagService recountTagNoteCountByTitles:tags inContext:self.tmpContext];
-		if(![Common isNull:everTags]) {
+		if(![Common isNullOrNil:everTags]) {
 			[TagService recountTagNoteCountByTitles:[everTags componentsSeparatedByString:@","] inContext:self.tmpContext];
 		}
 		return note;
@@ -319,7 +329,7 @@
 	note.userId = [UserService getCurUserId];
 	
 	NSString *tagsStr;
-	if(![Common isNull:tags]) {
+	if(![Common isNullOrNil:tags]) {
 		tagsStr = [tags componentsJoinedByString:@","];
 	}
 	else {
@@ -750,6 +760,22 @@
 	}
 }
 
+- (void) getNoteContent:(NSString *) serverNoteId
+				isMarkdown:(BOOL) isMarkdown
+				success:(void (^)(NSString *))success
+				   fail:(void (^)())fail
+{
+
+	[ApiService getNoteContent:serverNoteId success:^(id obj) {
+		NSString *content = [self fixContent:obj[@"Content"] isMarkdown:isMarkdown];
+		success(content);
+	} fail:^{
+		if(fail) {
+			fail();
+		}
+	}];
+}
+
 #pragma 发送改变
 
 
@@ -877,7 +903,7 @@
 	}
 	// files
 	NSArray *files = ret[@"Files"];
-	if(![Common isNull:files] && [files count] > 0) {
+	if(![Common isNullOrNil:files] && [files count] > 0) {
 		for(NSDictionary *file in files) {
 			NSString *localFileId = file[@"LocalFileId"];
 			NSString *serverFileId = file[@"FileId"];
@@ -924,14 +950,43 @@
 			// 冲突, 复制之
 			if(msg && [msg isEqualToString:@"conflict"]) {
 				[ApiService getNote:note.serverNoteId success:^(id obj) {
-					[self copyNoteForConflict:obj localNote:note];
+					// [self copyNoteForConflict:obj localNote:note];
+					
+					// 和sync的处理逻辑一致
+					// 这里, 得到内容再判断是否冲突, 如果内容一样, 则认为不是冲突的
+					[self getNoteContent:note.serverNoteId isMarkdown:[note.isMarkdown boolValue] success:^(NSString * content) {
+
+						// 内容一样, 则使用更新之
+						if ([note.content isEqualToString:content]) {
+							[self updateNoteForce:obj content:content];
+							if(success) {
+								success();
+							}
+						}
+						// 内容不一样, 则确实是冲突的
+						else {
+							[self copyNoteForConflict:obj localNote:note];
+							if(fail) {
+								// 是否冲突
+								fail(ret);
+							}
+						}
+					} fail:^{
+						// 内容得不到, 就当作是冲突来处理
+						[self copyNoteForConflict:obj localNote:note];
+						if(fail) {
+							// 是否冲突
+							fail(ret);
+						}
+					}];
+					
 				} fail:^{
+					if(fail) {
+						// 是否冲突
+						fail(ret);
+					}
 				}];
 			}
-		}
-		if(fail) {
-			// 是否冲突
-			fail(ret);
 		}
 	}];
 }

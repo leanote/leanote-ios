@@ -247,7 +247,7 @@
 	}
 	
 	// 处理文件
-	if(![Common isNull:files]) {
+	if(![Common isNullOrNil:files]) {
 		int i = 0;
 		for(File *file in files) {
 			NSMutableDictionary *obj = [NSMutableDictionary dictionaryWithDictionary:@{
@@ -323,7 +323,7 @@
 	}
 	
 	// 处理文件
-	if(![Common isNull:files]) {
+	if(![Common isNullOrNil:files]) {
 		int i = 0;
 		for(File *file in files) {
 			NSMutableDictionary *obj = [NSMutableDictionary dictionaryWithDictionary:@{

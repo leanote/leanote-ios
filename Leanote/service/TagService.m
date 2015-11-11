@@ -139,7 +139,7 @@
 + (void)recountTagNoteCountByTitlesStr:(NSString *)titlesStr
 							inContext:(NSManagedObjectContext *)inContext
 {
-	if(![Common isNull:titlesStr]) {
+	if(![Common isNullOrNil:titlesStr]) {
 		NSArray *titles = [titlesStr componentsSeparatedByString:@","];
 		for(NSString *title in titles) {
 			[self.class recountTagNoteCount:title inContext:inContext];
@@ -153,7 +153,7 @@
 + (void)recountTagNoteCountByTitles:(NSArray *)titles
 						 inContext:(NSManagedObjectContext *)inContext
 {
-	if(![Common isNull:titles]) {
+	if(![Common isNullOrNil:titles]) {
 		for(NSString *title in titles) {
 			[self.class recountTagNoteCount:title inContext:inContext];
 		}

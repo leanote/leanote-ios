@@ -23,7 +23,8 @@
 #pragma 同步操作
 - (BOOL)deleteNoteForceByServerNoteId:(NSString *)serverNoteId;
 - (Note *)getNoteByServerNoteId:(NSString *)serverNoteId;
-- (Note *)updateNoteForce:(id)obj;
+- (Note *)updateNoteForce:(id)obj
+				  content:(NSString*) content;
 - (Note *)addNoteForce:(id)obj;
 - (void)copyNoteForConflict:(id)obj localNote:(Note *)localNote;
 
@@ -54,6 +55,10 @@
 + (void)deleteAllNotes:(NSString *)userId;
 
 - (void) getNoteContent:(Note *) note
+				success:(void (^)(NSString *))success
+				   fail:(void (^)())fail;
+- (void) getNoteContent:(NSString *) serverNoteId
+				isMarkdown:(BOOL) isMarkdown
 				success:(void (^)(NSString *))success
 				   fail:(void (^)())fail;
 
