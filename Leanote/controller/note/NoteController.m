@@ -845,16 +845,12 @@
 	return titleLen;
 }
 
+// 这种方式不靠谱, 因为内存的优化, 很可能得不到caller
+
 // ipad下search bar上移, 但navigation却不隐藏
 // ipad下模拟没有navigationController, 但是SWTableViewCell selectCell 要用到
 // http://stackoverflow.com/a/5860412/4269908
-//- (UINavigationController *)navigationController {
-//	if (IS_IPAD) {
-//		return nil;
-//	} else {
-//		return self.navigationController;
-//	}
-//}
+/*
 - (UINavigationController *)navigationController {
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 		NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
@@ -870,6 +866,7 @@
 	}
 	return [super navigationController];
 }
+*/
 
 // 搜索
 #pragma mark - UISearchDisplayDelegate Methods
