@@ -15,7 +15,7 @@
 - (IBAction)login:(id)sender;
 -(void)resignFirstResponder4textField:(id)sender;
 -(void)resignFirstResponder4LoginView;
--(void)fromAddAccount:(BOOL)ok loginOkCb:(void (^)())loginOkCb;
+-(void)fromAddAccount:(BOOL)ok noAnyUser:(BOOL)noAnyUser loginOkCb:(void (^)())loginOkCb;
 @end
 
 

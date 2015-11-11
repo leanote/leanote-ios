@@ -118,6 +118,10 @@ NSArray *users;
 // 跳转到登录界面
 - (void)addAccount
 {
+	[self _addAccount:NO];
+}
+- (void)_addAccount:(BOOL)noAnyUser
+{
 //	LoginViewController *vc = [[[LoginViewController class] alloc] initWithNote:self.note shouldHideStatusBar:YES];
 	
 	LoginViewController *loginViewController = [[LoginViewController alloc] init];
@@ -125,7 +129,7 @@ NSArray *users;
 	navigationController.navigationBar.translucent = NO;
 	navigationController.navigationBar.hidden = YES;
 	
-	[loginViewController fromAddAccount:YES loginOkCb:^{
+	[loginViewController fromAddAccount:YES noAnyUser:noAnyUser loginOkCb:^{
 		// 成功后, 如果不是之前的用户, 则刷新tableview, 启动incrSync
 		// 发广播, 其它table reload table
 		[self notifyChangeUser:YES];
@@ -148,6 +152,11 @@ NSArray *users;
 	if(indexPath.section == 0) {
 		User *user = users[indexPath.row];
 		if(![user.isActive boolValue]) {
+			return YES;
+		}
+		
+		// 如果只有一个用户, 则可以删除
+		if ([users count] == 1) {
 			return YES;
 		}
 	}
@@ -188,7 +197,16 @@ NSArray *users;
 	{
 		NSLog(@"Delete the cell");
 		
+		BOOL isActive = [self.curUser.isActive boolValue];
+		
 		[UserService deleteAllData:self.curUser];
+		
+		// 如果当前active, 证明是最后一个用户, 删除了要回到login界面
+		if (isActive) {
+			[self _addAccount:true];
+			return;
+		}
+		
 		[self setEditing:NO animated:YES];
 
 		users = [UserService getUsers];
@@ -199,8 +217,6 @@ NSArray *users;
 		
 		[self showSuccessMsg:NSLocalizedString(@"Remove account successful", @"")];
 	}
-	
-	
 }
 
 // 单击row

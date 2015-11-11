@@ -93,7 +93,7 @@
 	*/
 	
 	LoginViewController *loginViewController = [[LoginViewController alloc] init];
-	[loginViewController fromAddAccount:NO loginOkCb:^{
+	[loginViewController fromAddAccount:NO noAnyUser:YES loginOkCb:^{
 		[self showTabbarVC];
 	}];
 	

@@ -45,6 +45,7 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL isFromAddAccount;
+@property (nonatomic, assign) BOOL noAnyUser;
 
 // views
 @property (nonatomic, strong) UIView                    *mainView;
@@ -80,9 +81,10 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 @implementation LoginViewController
 
 // 从添加帐户按钮中跳到该界面
--(void)fromAddAccount:(BOOL)ok loginOkCb:(void (^)())loginOkCb
+-(void)fromAddAccount:(BOOL)ok noAnyUser:(BOOL)noAnyUser loginOkCb:(void (^)())loginOkCb
 {
 	self.isFromAddAccount = ok;
+	self.noAnyUser = noAnyUser;
 	self.loginOkCb = loginOkCb;
 }
 
@@ -377,8 +379,8 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 	//	self.multifactorText.enabled            = self.isMultifactorEnabled;
 	
 	// Buttons
-	self.cancelButton.hidden                = !self.isFromAddAccount;
-	NSLog(self.isFromAddAccount ? @"isFromAddAccount" : @"NO");
+	self.cancelButton.hidden                = !self.isFromAddAccount || self.noAnyUser;
+//	NSLog(self.isFromAddAccount ? @"isFromAddAccount" : @"NO");
 	self.forgotPassword.hidden              = self.isForgotPasswordHidden;
 	//	self.sendVerificationCodeButton.hidden  = self.isSendCodeHidden;
 	self.skipToCreateAccount.hidden         = self.isAccountCreationHidden;
@@ -941,7 +943,6 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 	 */
 }
 
-
 - (IBAction)skipToCreateAction:(id)sender
 {
 	[self register];
@@ -963,7 +964,6 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 {
 	[LeaAlert showAlertWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please fill out all the fields", nil) withSupportButton:NO];
 }
-
 
 - (void)showError:(NSString *)message
 {
