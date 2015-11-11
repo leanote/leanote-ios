@@ -116,10 +116,10 @@
 			self.edgesForExtendedLayout = UIRectEdgeNone;
 		}
 	}
-	
+
 	self.searchDisplayController.searchBar.placeholder = NSLocalizedString(@"Search Tag", nil);
 	self.title = NSLocalizedString(@"Tag", nil);
-	
+
 	self.nomatchesView = [self iniNoResultView:self.tableView];
 }
 

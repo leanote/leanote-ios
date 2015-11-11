@@ -139,7 +139,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEV-oq-XvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="x95-zY-lTv">
+                <searchDisplayController id="x95-zY-lTv" customClass="LeaSearchDisplayController">
                     <connections>
                         <outlet property="delegate" destination="atw-eR-RCj" id="O5Y-xe-F9x"/>
                         <outlet property="searchContentsController" destination="atw-eR-RCj" id="5oZ-jx-5kF"/>
@@ -147,7 +147,7 @@
                         <outlet property="searchResultsDelegate" destination="atw-eR-RCj" id="BEl-LU-Htb"/>
                     </connections>
                 </searchDisplayController>
-                <searchDisplayController id="T7N-Px-Tk5">
+                <searchDisplayController id="T7N-Px-Tk5" customClass="LeaSearchDisplayController">
                     <connections>
                         <outlet property="delegate" destination="atw-eR-RCj" id="Y0N-8l-kBz"/>
                         <outlet property="searchContentsController" destination="atw-eR-RCj" id="hQ1-5u-73d"/>
@@ -155,7 +155,7 @@
                         <outlet property="searchResultsDelegate" destination="atw-eR-RCj" id="gmr-4D-bGn"/>
                     </connections>
                 </searchDisplayController>
-                <searchDisplayController id="PA4-tX-fVD">
+                <searchDisplayController id="PA4-tX-fVD" customClass="LeaSearchDisplayController">
                     <connections>
                         <outlet property="delegate" destination="atw-eR-RCj" id="rcN-0O-vDX"/>
                         <outlet property="searchBar" destination="GFi-YQ-iA6" id="Oeg-Zj-AmX"/>
@@ -251,7 +251,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="hBu-YU-idw">
+                <searchDisplayController id="hBu-YU-idw" customClass="LeaSearchDisplayController">
                     <connections>
                         <outlet property="delegate" destination="12" id="70k-Gg-6KZ"/>
                         <outlet property="searchBar" destination="wUi-Dr-T3x" id="cQR-rl-07P"/>
@@ -377,7 +377,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D11-No-v1c" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="JV0-sa-bR2">
+                <searchDisplayController id="JV0-sa-bR2" customClass="LeaSearchDisplayController">
                     <connections>
                         <outlet property="delegate" destination="89w-eU-nDU" id="9Ai-0O-e0o"/>
                         <outlet property="searchContentsController" destination="89w-eU-nDU" id="Jzg-rO-vPr"/>
@@ -385,7 +385,7 @@
                         <outlet property="searchResultsDelegate" destination="89w-eU-nDU" id="uYT-r6-P9c"/>
                     </connections>
                 </searchDisplayController>
-                <searchDisplayController id="Whm-yP-Kbg">
+                <searchDisplayController id="Whm-yP-Kbg" customClass="LeaSearchDisplayController">
                     <connections>
                         <outlet property="delegate" destination="89w-eU-nDU" id="d3g-Ll-QMV"/>
                         <outlet property="searchBar" destination="QzY-ai-GNU" id="Na1-xo-qN7"/>

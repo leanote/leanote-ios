@@ -12,27 +12,22 @@
 
 - (void)setActive:(BOOL)visible animated:(BOOL)animated
 {
-	[super setActive: visible animated: animated];
-	
-//	[self.searchContentsController.navigationController setNavigationBarHidden: NO animated: NO];
-
-	/*
-	[self.searchContentsController.navigationController setNavigationBarHidden: NO animated: NO];
-	
-//	[super setActive: visible animated: animated];
-	
-//	[self.searchContentsController.navigationController setNavigationBarHidden:YES animated: YES];
-	
-	if(self.active == visible) return;
-	[self.searchContentsController.navigationController setNavigationBarHidden:YES animated:NO];
-	[super setActive:visible animated:animated];
-	[self.searchContentsController.navigationController setNavigationBarHidden:NO animated:NO];
-	if (visible) {
-		[self.searchBar becomeFirstResponder];
-	} else {
-		[self.searchBar resignFirstResponder];
+	// 以下只是为了在ipad下搜索框不上移
+	// http://stackoverflow.com/a/3257456/4269908
+	if (IS_IPAD) {
+		if(self.active == visible) return;
+		[self.searchContentsController.navigationController setNavigationBarHidden:YES animated:NO];
+		[super setActive:visible animated:animated];
+		[self.searchContentsController.navigationController setNavigationBarHidden:NO animated:NO];
+		if (visible) {
+			[self.searchBar becomeFirstResponder];
+		} else {
+			[self.searchBar resignFirstResponder];
+		}
 	}
-	*/
+	else {
+		[super setActive:visible animated:animated];
+	}
 }
 
 @end
