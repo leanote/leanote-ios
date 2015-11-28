@@ -223,4 +223,15 @@
 	return date;
 }
 
+// 返回2012-12-32 12:03:30
++ (NSString *)dateStr:(NSDate *)date
+{
+	if ([self isNullOrNil:date]) {
+		date =[NSDate date];
+	}
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	return [dateFormatter stringFromDate:date];
+}
+
 @end

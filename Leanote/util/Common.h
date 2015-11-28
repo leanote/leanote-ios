@@ -35,4 +35,5 @@
 + (BOOL)isiOSVersionEarlierThan8;
 
 + (NSDate *)goDate:(NSString *)dateStr;
++ (NSString *)dateStr:(NSDate *)date;
 @end

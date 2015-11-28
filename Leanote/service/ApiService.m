@@ -233,7 +233,8 @@
 																				  @"IsTrash": note.isTrash,
 																				  @"IsBlog": note.isBlog, // 是否是博客
 																				  // FileDatas: note.FileDatas,
-																				  @"Tags[0]": @""
+																				  @"Tags[0]": @"",
+																				  @"UpdatedTime": [Common dateStr:note.updatedTime]
 																				  }];
 	// 处理标签
 	NSArray *tags = [note.tags componentsSeparatedByString:@","];
@@ -245,7 +246,7 @@
 		[params setObject:eachTag forKey:[NSString stringWithFormat:@"Tags[%d]", i]];
 		i++;
 	}
-	
+
 	// 处理文件
 	if(![Common isNullOrNil:files]) {
 		int i = 0;
@@ -262,7 +263,6 @@
 			i++;
 		}
 	}
-	
 	
 	if([note.isContentDirty boolValue]) {
 		params[@"Content"] = content;
@@ -310,6 +310,8 @@
 																				  // FileDatas: note.FileDatas,
 																				  @"Tags[0]": @"",
 																				  @"Content": content,
+																				  @"CreatedTime": [Common dateStr:note.createdTime],
+																				  @"UpdatedTime": [Common dateStr:note.updatedTime]
 																				  }];
 	// 处理标签
 	NSArray *tags = [note.tags componentsSeparatedByString:@","];
