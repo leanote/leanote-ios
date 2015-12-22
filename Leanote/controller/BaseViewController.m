@@ -11,8 +11,7 @@
 #import "ApiMsg.h"
 
 #import "Common.h"
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
-
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
 #import <objc/runtime.h>
 
 NSString const *key = @"isSelectOnSearchKey";

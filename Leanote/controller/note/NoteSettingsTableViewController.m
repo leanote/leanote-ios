@@ -13,11 +13,11 @@
 #import "Leas.h"
 
 #import "LeaButtonForNavigationBar.h"
-#import <WordPress-iOS-Shared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WPTableViewCell.h>
-#import <WordPress-iOS-Shared/UITableViewTextFieldCell.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPTableViewCell.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPTextFieldTableViewCell.h>
 
 typedef enum {
 	PostSettingsSectionTaxonomy = 0,
@@ -191,7 +191,7 @@ typedef enum {
 		
 	} else if (indexPath.row == PostSettingsRowTags) {
 		// Tags, 标签啊, 逗号分隔
-		UITableViewTextFieldCell *textCell = [self getTextFieldCell];
+		WPTextFieldTableViewCell *textCell = [self getTextFieldCell];
 		textCell.textLabel.text = NSLocalizedString(@"Tags", nil);
 		textCell.textField.text = self.note.tags;
 		textCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:(NSLocalizedString(@"Comma separated", nil)) attributes:(@{NSForegroundColorAttributeName: [WPStyleGuide textFieldPlaceholderGrey]})];
@@ -258,12 +258,12 @@ typedef enum {
 }
 
 // 含文本输入框的cell
-- (UITableViewTextFieldCell *)getTextFieldCell
+- (WPTextFieldTableViewCell *)getTextFieldCell
 {
 	static NSString *textFieldCellIdentifier = @"textFieldCellIdentifier";
-	UITableViewTextFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:textFieldCellIdentifier];
+	WPTextFieldTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:textFieldCellIdentifier];
 	if (!cell) {
-		cell = [[UITableViewTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:textFieldCellIdentifier];
+		cell = [[WPTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:textFieldCellIdentifier];
 		cell.textField.returnKeyType = UIReturnKeyDone;
 		cell.textField.delegate = self;
 		[WPStyleGuide configureTableViewTextCell:cell];

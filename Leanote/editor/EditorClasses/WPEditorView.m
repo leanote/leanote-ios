@@ -5,9 +5,9 @@
 #import "WPEditorField.h"
 #import "WPImageMeta.h"
 #import "ZSSTextView.h"
-#import "WPDeviceIdentification.h"
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPDeviceIdentification.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
 
 // life
 #import "NSURLProtocolCustom.h"
