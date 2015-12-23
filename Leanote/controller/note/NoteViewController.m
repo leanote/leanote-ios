@@ -443,7 +443,7 @@ BOOL hiddenBar = NO;
 
 - (void)editorDidPressMedia:(WPEditorViewController *)editorController
 {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"添加照片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"从相册选择",@"拍照", nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Photo", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Photo Library", nil),NSLocalizedString(@"Take Photo", nil), nil];
     [alert show];
 }
 
@@ -626,7 +626,6 @@ BOOL hiddenBar = NO;
      actionSheet.tag = WPViewControllerActionSheetImageUploadRetry;
      self.actionSheet = actionSheet;
      */
-    
     NSURL *urlU = [NSURL URLWithString:url];
     UIViewController *controller = nil;
     BOOL isSupportedNatively = [LeaImageViewController isUrlSupported:urlU];
