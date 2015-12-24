@@ -7,8 +7,8 @@
 //
 
 #import "NoteCell.h"
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
 //#import "NotebookService.h"
 #import "Leas.h"
 

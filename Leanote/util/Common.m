@@ -10,7 +10,7 @@
 #import "MongoID.h"
 
 #import "SVProgressHUD.h"
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
 
 @implementation Common
 

@@ -13,12 +13,12 @@
 #import "Leas.h"
 
 #import "LeaButtonForNavigationBar.h"
-#import <WordPress-iOS-Shared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WPTableViewCell.h>
-#import <WordPress-iOS-Shared/UITableViewTextFieldCell.h>
-#import <WordPress-iOS-Shared/WPTableViewSectionHeaderView.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPTableViewCell.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPTextFieldTableViewCell.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPTableViewSectionHeaderFooterView.h>
 
 typedef enum {
 	PostSettingsSectionTaxonomy = 0,
@@ -225,7 +225,7 @@ typedef enum {
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	WPTableViewSectionHeaderView *header = [[WPTableViewSectionHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), 0.0f)];
+	WPTableViewSectionHeaderFooterView *header = [[WPTableViewSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), 0.0f)];
 	header.title = [self titleForHeaderInSection:section];
 	header.backgroundColor = self.tableView.backgroundColor;
 	return header;

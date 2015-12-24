@@ -13,4 +13,4 @@ pod 'SWTableViewCell', '~> 0.3.7'
 
 pod 'SGNavigationProgress'
 
-pod "WPMediaPicker"
+pod 'QBImagePickerController', '< 3.0.0'

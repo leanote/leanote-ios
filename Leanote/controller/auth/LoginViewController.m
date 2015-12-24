@@ -13,10 +13,10 @@
 #import "RegisterController.h"
 #import "WPWalkthroughOverlayView.h"
 
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/UIColor+Helpers.h>
-#import <WordPress-iOS-Shared/WPNUXUtility.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPNUXUtility.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
 
 #import "ReachabilityUtils.h"
 #import "LeaAlert.h"

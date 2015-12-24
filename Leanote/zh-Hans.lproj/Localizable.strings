@@ -41,6 +41,10 @@
 
 "No Data" = "无数据";
 
+"Photo Library" = "从相册选择";
+"Take Photo" = "拍照";
+"Add Photo" = "添加照片";
+
 /* notebook */
 
 "The notebook has notes, please delete all notebooks' notes before"  = "笔记本下有笔记, 不能删除";

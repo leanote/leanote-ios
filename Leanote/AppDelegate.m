@@ -3,10 +3,10 @@
 #import "NoteController.h"
 #import "Common.h"
 
-#import <WordPress-iOS-Shared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/UIColor+Helpers.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
 
 #import "SVProgressHUD.h"
 #import "WXApi.h"

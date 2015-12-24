@@ -3,11 +3,11 @@
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 #import <UIKit/UIKit.h>
 #import <WordPressCom-Analytics-iOS/WPAnalytics.h>
-#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WPTableViewCell.h>
-#import <WordPress-iOS-Shared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/UIColor+Helpers.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import <WordPress-iOS-Shared/WordPressShared/WPTableViewCell.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
+#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
 
 #import "WPEditorField.h"
 #import "WPEditorToolbarButton.h"
@@ -19,7 +19,7 @@
 #import "DRColorPicker.h"
 #import "DRColorPickerHomeViewController.h"
 
-#import "WPDeviceIdentification.h"
+#import <WordPress-iOS-Shared/WordPressShared/WPDeviceIdentification.h>
 
 CGFloat const EPVCStandardOffset = 10.0;
 NSInteger const WPImageAlertViewTag = 91;
