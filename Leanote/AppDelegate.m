@@ -197,16 +197,16 @@
 	
 	
 	// uisearchbar的cancel文字
-	[[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
-	 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																								  [WPStyleGuide wordPressBlue],
-																								  UITextAttributeTextColor,
-																								  [UIColor clearColor],
-																								  UITextAttributeTextShadowColor,
-																								  [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
-																								  UITextAttributeTextShadowOffset,
-																								  nil]
-																						forState:UIControlStateNormal];
+    
+    NSShadow *shadow = [NSShadow new];
+    [shadow setShadowColor:[UIColor clearColor]];
+    [shadow setShadowOffset:CGSizeMake(0.0f, -1.0f)];
+    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]];
+    [barButtonItem setTitleTextAttributes:@{
+                                            NSForegroundColorAttributeName: [WPStyleGuide wordPressBlue],
+                                            NSShadowAttributeName: shadow,
+                                            }
+                                 forState:UIControlStateNormal];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
