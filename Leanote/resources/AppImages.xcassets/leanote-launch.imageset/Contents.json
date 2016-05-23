@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "leanote-lauch-screen.png",
+      "filename" : "leanote-launch.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "leanote-launch-2x.png",
       "scale" : "2x"
     },
     {
