@@ -94,7 +94,8 @@
 "Markdown" = "Markdown";
 "Account" = "帐户";
 "Settings" = "设置";
-"Blog & Lea++" = "博客 & Lea++";
+"Blog & Lea++" = "博客 & Leanote探索";
+"Leanote Explore" = "Leanote探索";
 "Remove account successful" = "删除用户成功";
 "The account's data will be removed, are you sure?" = "该用户所有数据将被清除, 确定删除?";
 "Toggle account successful" = "切换用户成功";
