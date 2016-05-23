@@ -34,6 +34,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="leanote-launch" width="285" height="164"/>
+        <image name="leanote-launch" width="200" height="115"/>
     </resources>
 </document>
