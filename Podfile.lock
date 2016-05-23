@@ -63,4 +63,4 @@ SPEC CHECKSUMS:
   WordPress-iOS-Shared: af84c229bd1cb0206f6015fd8fec9e262a88c780
   WordPressCom-Analytics-iOS: 73de8c9a0f1a43bac03fd2fcd881389be73ee820
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.38.2

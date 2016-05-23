@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,70 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="leanote-lauch-screen" translatesAutoresizingMaskIntoConstraints="NO" id="flk-nN-QC3">
-                                <rect key="frame" x="265" y="260" width="71" height="79"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="312" id="Jor-90-EtI">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="182"/>
-                                    </constraint>
-                                    <constraint firstAttribute="width" constant="285" id="MEa-f1-P0i">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="167"/>
-                                    </constraint>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Jor-90-EtI"/>
-                                        <exclude reference="MEa-f1-P0i"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="242" y="141" width="117" height="117"/>
-                                </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="150" y="242" width="100" height="116"/>
-                                </variation>
-                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="342" y="241" width="117" height="117"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="142" y="141" width="117" height="117"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="342" y="141" width="117" height="117"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="122" y="230" width="157" height="183"/>
-                                    <mask key="constraints">
-                                        <include reference="Jor-90-EtI"/>
-                                        <include reference="MEa-f1-P0i"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="347" y="339" width="107" height="122"/>
-                                </variation>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="leanote-launch" translatesAutoresizingMaskIntoConstraints="NO" id="eaq-YU-fci">
+                                <rect key="frame" x="157.5" y="218" width="285" height="164"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="flk-nN-QC3" secondAttribute="centerY" multiplier="4:3" id="Vvw-Y8-c7d"/>
-                            <constraint firstItem="flk-nN-QC3" firstAttribute="centerX" secondItem="cez-yo-1vp" secondAttribute="centerX" id="hfI-z4-tC9"/>
-                            <constraint firstItem="flk-nN-QC3" firstAttribute="centerY" secondItem="cez-yo-1vp" secondAttribute="centerY" id="kO7-mP-1tR">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-80"/>
-                            </constraint>
-                            <constraint firstAttribute="centerX" secondItem="flk-nN-QC3" secondAttribute="centerX" id="rF1-hU-dyH"/>
+                            <constraint firstItem="eaq-YU-fci" firstAttribute="centerX" secondItem="cez-yo-1vp" secondAttribute="centerX" id="avC-4G-QjY"/>
+                            <constraint firstItem="eaq-YU-fci" firstAttribute="centerY" secondItem="cez-yo-1vp" secondAttribute="centerY" id="d3U-48-0UG"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Vvw-Y8-c7d"/>
-                                <exclude reference="rF1-hU-dyH"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="Vvw-Y8-c7d"/>
-                                <exclude reference="rF1-hU-dyH"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1g-bP-vF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -90,6 +34,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="leanote-lauch-screen" width="285" height="312"/>
+        <image name="leanote-launch" width="200" height="115"/>
     </resources>
 </document>

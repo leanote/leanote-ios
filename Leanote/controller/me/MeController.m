@@ -302,7 +302,7 @@ NSArray *users;
 			cell.imageView.image = [UIImage imageNamed:@"leanote-icon-blue"];
 //			cell.imageView.tintColor = [UIColor redColor];
 			
-			[cell.textLabel setText:@"Lea++"];
+			[cell.textLabel setText:NSLocalizedString(@"Leanote Explore", @"")];
 			[cell.detailTextLabel setText:@""];
 //		}
 	}

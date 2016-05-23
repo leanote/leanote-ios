@@ -2002,7 +2002,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.debug.Leanote;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.debug.a.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2041,7 +2041,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.debug.Leanote;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.debug.a.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
