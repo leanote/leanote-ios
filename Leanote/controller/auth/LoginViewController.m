@@ -145,14 +145,30 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 	
 }
 
+- (NSString*)getPreferredLanguage
+{
+	NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+	NSArray* languages = [defs objectForKey:@"AppleLanguages"];
+	NSString* preferredLang = [languages objectAtIndex:0];
+	NSLog(@"Preferred Language:%@", preferredLang);
+	return preferredLang;
+}
+
 // 都是用代码来实现的啊
 - (void)addControls
 {
 	NSAssert(self.view, @"The view should be loaded by now");
 	NSAssert(self.mainView, @"Please, initialize the mainView first");
 	
+	// 中英文出现不同的logo
+	NSString *lang = [self getPreferredLanguage];
+	NSString *leanoteLogo = @"leanote-icon-circle";
+	if ([lang isEqualToString:@"zh-Hans"]) {
+		leanoteLogo = @"leanote-icon-circle-zh";
+	}
+	
 	// Add Icon
-	UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leanote-icon-circle"]]; // icon-wp
+	UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:leanoteLogo]]; // icon-wp
 	icon.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
 	
 	// Add Info button
