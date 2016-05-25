@@ -195,18 +195,17 @@
 	[SVProgressHUD setErrorImage:[UIImage imageNamed:@"hud_error"]];
 	[SVProgressHUD setSuccessImage:[UIImage imageNamed:@"hud_success"]];
 	
-	
 	// uisearchbar的cancel文字
-    
-    NSShadow *shadow = [NSShadow new];
-    [shadow setShadowColor:[UIColor clearColor]];
-    [shadow setShadowOffset:CGSizeMake(0.0f, -1.0f)];
-    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]];
-    [barButtonItem setTitleTextAttributes:@{
-                                            NSForegroundColorAttributeName: [WPStyleGuide wordPressBlue],
-                                            NSShadowAttributeName: shadow,
-                                            }
-                                 forState:UIControlStateNormal];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+	 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+							 [WPStyleGuide wordPressBlue],
+							 UITextAttributeTextColor,
+							 [UIColor clearColor],
+							 UITextAttributeTextShadowColor,
+							 [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+							 UITextAttributeTextShadowOffset,
+							 nil]
+	 forState:UIControlStateNormal];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
