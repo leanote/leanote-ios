@@ -17,4 +17,6 @@ pod 'SGNavigationProgress'
 
 pod 'QBImagePickerController', '< 3.0.0'
 
+pod 'WPMediaPicker'
+
 end

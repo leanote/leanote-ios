@@ -38,6 +38,7 @@ PODS:
     - AFNetworking (~> 2.5)
     - CocoaLumberjack (~> 2.2.0)
   - WordPressCom-Analytics-iOS (0.0.41)
+  - WPMediaPicker (0.7.3)
 
 DEPENDENCIES:
   - AFNetworking
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - UIAlertView+Blocks (~> 0.8.1)
   - WordPress-iOS-Shared (~> 0.3)
   - WordPressCom-Analytics-iOS (~> 0.0.4)
+  - WPMediaPicker
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -62,5 +64,8 @@ SPEC CHECKSUMS:
   UIAlertView+Blocks: 45c3d3b7194906702d3e9a14c7ece5581505646d
   WordPress-iOS-Shared: af84c229bd1cb0206f6015fd8fec9e262a88c780
   WordPressCom-Analytics-iOS: 73de8c9a0f1a43bac03fd2fcd881389be73ee820
+  WPMediaPicker: 6bbce465f5a5c071267ae28bdf31d0fd6e109721
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: 3476076ec99f23159e883e9ade4bccb00542937e
+
+COCOAPODS: 1.1.1
