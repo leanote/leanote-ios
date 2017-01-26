@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C3DA9901BE6667C00B4FFDA /* LeaWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		1C3DA9901BE6667C00B4FFDA /* LeaWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */; };
 		1C53237F1B5CF494006B60EE /* BlogTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C53237D1B5CF494006B60EE /* BlogTab.m */; };
 		1C7B282F1AF9B3C50086D4C5 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28211AF9B3C50086D4C5 /* Note.m */; };
 		1C7B28301AF9B3C50086D4C5 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28231AF9B3C50086D4C5 /* Notebook.m */; };
@@ -175,7 +175,7 @@
 		1CB6C10C1B5B8A4C004F61DD /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB6C10B1B5B8A4C004F61DD /* CategoryViewController.m */; };
 		1CBE20761B3FD4CA00133EA1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBE20751B3FD4CA00133EA1 /* BaseViewController.m */; };
 		1CC8FFD21B1B26DD00269072 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8FFD11B1B26DD00269072 /* NoteViewController.m */; };
-		1CD58CD51BEF2C59003B71BF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD58CD41BEF2C59003B71BF /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		1CD58CD51BEF2C59003B71BF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD58CD41BEF2C59003B71BF /* Launch Screen.storyboard */; };
 		1CD6AF5B1B3288DE0098CE96 /* NoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6AF5A1B3288DE0098CE96 /* NoteController.m */; };
 		1CD7C2CC1B2DCB6500AB25FF /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD7C2CB1B2DCB6500AB25FF /* File.m */; };
 		1CD7C2CF1B2DCBA200AB25FF /* FileService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD7C2CE1B2DCBA200AB25FF /* FileService.m */; };
@@ -194,7 +194,6 @@
 		1CDEE5FD1B22AFB1002B5761 /* ApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEE5FC1B22AFB1002B5761 /* ApiService.m */; };
 		1CDEE6041B23067A002B5761 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEE6031B23067A002B5761 /* UserService.m */; };
 		1CDEE6101B240C87002B5761 /* SyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEE60F1B240C87002B5761 /* SyncService.m */; };
-		1CDEE6571B2466BA002B5761 /* LeanoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEE6561B2466B9002B5761 /* LeanoteTests.m */; };
 		1CE0E1DB1B47A2CB008EDDA8 /* CellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0E1DA1B47A2CB008EDDA8 /* CellInfo.m */; };
 		1CE5193D1AFBA57A00F263C5 /* tabbed_icon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1CE519371AFBA57A00F263C5 /* tabbed_icon.bundle */; };
 		1CE519401AFBA7F100F263C5 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE5193F1AFBA7F100F263C5 /* RootTabBarController.m */; };
@@ -280,21 +279,10 @@
 		1D921DB8173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D921DB6173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard */; };
 		1D921DBB173CB5BD00168A77 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D921DB9173CB5BD00168A77 /* MainStoryboard_iPad.storyboard */; };
 		1DB7F3BA184B07D30054A931 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB7F3B9184B07D30054A931 /* Images.xcassets */; };
-		A4F6D891876B0AC6B526CD9E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B9EA8EAC8533819FA332C5 /* libPods.a */; };
+		587F4701BF2B9D9E0F9DC26B /* libPods-Leanote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8A160E29FE873FF7E2E956 /* libPods-Leanote.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1CDEE6581B2466BA002B5761 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1D921D91173CB5BD00168A77 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1D921D98173CB5BD00168A77;
-			remoteInfo = Leanote;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		06E5F83B44EEA1E3D95DF5DA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaWebViewController.xib; sourceTree = "<group>"; };
 		1C5323761B5CC670006B60EE /* CategoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryProtocol.h; sourceTree = "<group>"; };
 		1C53237C1B5CF494006B60EE /* BlogTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogTab.h; sourceTree = "<group>"; };
@@ -536,7 +524,6 @@
 		1CDEE6031B23067A002B5761 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
 		1CDEE60E1B240C87002B5761 /* SyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncService.h; sourceTree = "<group>"; };
 		1CDEE60F1B240C87002B5761 /* SyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncService.m; sourceTree = "<group>"; };
-		1CDEE6521B2466B9002B5761 /* LeanoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeanoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CDEE6551B2466B9002B5761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CDEE6561B2466B9002B5761 /* LeanoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeanoteTests.m; sourceTree = "<group>"; };
 		1CE0E1D91B47A2CB008EDDA8 /* CellInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellInfo.h; sourceTree = "<group>"; };
@@ -688,18 +675,12 @@
 		1D921DB7173CB5BD00168A77 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		1D921DBA173CB5BD00168A77 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		1DB7F3B9184B07D30054A931 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A14937AC8B9D110E5C40751D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		B9B9EA8EAC8533819FA332C5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E5020528CB48918FCFF7778 /* Pods-Leanote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanote.release.xcconfig"; path = "Pods/Target Support Files/Pods-Leanote/Pods-Leanote.release.xcconfig"; sourceTree = "<group>"; };
+		4A8A160E29FE873FF7E2E956 /* libPods-Leanote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Leanote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACDA60E71A2A3C2BA381A3BD /* Pods-Leanote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Leanote/Pods-Leanote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1CDEE64F1B2466B9002B5761 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1D921D96173CB5BD00168A77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,7 +690,7 @@
 				1CEF0DCD1B876D8400C2B2F3 /* libWeChatSDK.a in Frameworks */,
 				1D921DA1173CB5BD00168A77 /* CoreGraphics.framework in Frameworks */,
 				1D921DA3173CB5BD00168A77 /* CoreData.framework in Frameworks */,
-				A4F6D891876B0AC6B526CD9E /* libPods.a in Frameworks */,
+				587F4701BF2B9D9E0F9DC26B /* libPods-Leanote.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,7 +1284,7 @@
 				1CDEE6531B2466B9002B5761 /* LeanoteTests */,
 				1D921D9B173CB5BD00168A77 /* Frameworks */,
 				1D921D9A173CB5BD00168A77 /* Products */,
-				80C8D386E9311FCD307B05E2 /* Pods */,
+				3228D3E900627FAE4D7E085D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1311,7 +1292,6 @@
 			isa = PBXGroup;
 			children = (
 				1D921D99173CB5BD00168A77 /* Leanote.app */,
-				1CDEE6521B2466B9002B5761 /* LeanoteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1323,7 +1303,7 @@
 				1D921D9E173CB5BD00168A77 /* Foundation.framework */,
 				1D921DA0173CB5BD00168A77 /* CoreGraphics.framework */,
 				1D921DA2173CB5BD00168A77 /* CoreData.framework */,
-				B9B9EA8EAC8533819FA332C5 /* libPods.a */,
+				4A8A160E29FE873FF7E2E956 /* libPods-Leanote.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1364,11 +1344,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		80C8D386E9311FCD307B05E2 /* Pods */ = {
+		3228D3E900627FAE4D7E085D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				06E5F83B44EEA1E3D95DF5DA /* Pods.debug.xcconfig */,
-				A14937AC8B9D110E5C40751D /* Pods.release.xcconfig */,
+				ACDA60E71A2A3C2BA381A3BD /* Pods-Leanote.debug.xcconfig */,
+				2E5020528CB48918FCFF7778 /* Pods-Leanote.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1376,34 +1356,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1CDEE6511B2466B9002B5761 /* LeanoteTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1CDEE65A1B2466BA002B5761 /* Build configuration list for PBXNativeTarget "LeanoteTests" */;
-			buildPhases = (
-				1CDEE64E1B2466B9002B5761 /* Sources */,
-				1CDEE64F1B2466B9002B5761 /* Frameworks */,
-				1CDEE6501B2466B9002B5761 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1CDEE6591B2466BA002B5761 /* PBXTargetDependency */,
-			);
-			name = LeanoteTests;
-			productName = LeanoteTests;
-			productReference = 1CDEE6521B2466B9002B5761 /* LeanoteTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		1D921D98173CB5BD00168A77 /* Leanote */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D921DC7173CB5BD00168A77 /* Build configuration list for PBXNativeTarget "Leanote" */;
 			buildPhases = (
-				CBB2FFAFBA3B49030BFC40B3 /* Check Pods Manifest.lock */,
+				E1DA5AE4AF4E5EC9A0028207 /* [CP] Check Pods Manifest.lock */,
 				1D921D95173CB5BD00168A77 /* Sources */,
 				1D921D96173CB5BD00168A77 /* Frameworks */,
 				1D6FA73917891F42005BE23E /* ShellScript */,
 				1D921D97173CB5BD00168A77 /* Resources */,
-				30EE61205C21A523A3F66B21 /* Copy Pods Resources */,
+				F937E55CAE2B5FCBB6F3FC59 /* [CP] Embed Pods Frameworks */,
+				204B8FF69D2C4C1339BF5BB8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1423,10 +1386,6 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Leanote;
 				TargetAttributes = {
-					1CDEE6511B2466B9002B5761 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 1D921D98173CB5BD00168A77;
-					};
 					1D921D98173CB5BD00168A77 = {
 						DevelopmentTeam = 926WD5ZF5V;
 					};
@@ -1446,19 +1405,11 @@
 			projectRoot = "";
 			targets = (
 				1D921D98173CB5BD00168A77 /* Leanote */,
-				1CDEE6511B2466B9002B5761 /* LeanoteTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1CDEE6501B2466B9002B5761 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1D921D97173CB5BD00168A77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1638,47 +1589,54 @@
 			shellPath = /bin/sh;
 			shellScript = "export pbuddy=\"/usr/libexec/PlistBuddy\"\nexport SETTINGROOT=\"$SRCROOT/Leanote/Settings.bundle/Root.plist\"\nbuildNumber=$($pbuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%X\" $buildNumber)\n$pbuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nproductVersion=$($pbuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nnewVersion=\"$productVersion ($buildNumber)\"\necho \"Product Version: $newVersion\"\nfor (( c=0; c<=20; c++ ))\ndo\nversion=`$pbuddy -c \"print PreferenceSpecifiers:$c:Title\" $SETTINGROOT`\nif [ \"$version\" = \"Version\" ]\nthen\necho \"Product Version: $newVersion\"\n$pbuddy -c \"set PreferenceSpecifiers:$c:DefaultValue $newVersion\" $SETTINGROOT\nbreak;\nfi\ndone";
 		};
-		30EE61205C21A523A3F66B21 /* Copy Pods Resources */ = {
+		204B8FF69D2C4C1339BF5BB8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Leanote/Pods-Leanote-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CBB2FFAFBA3B49030BFC40B3 /* Check Pods Manifest.lock */ = {
+		E1DA5AE4AF4E5EC9A0028207 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F937E55CAE2B5FCBB6F3FC59 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Leanote/Pods-Leanote-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1CDEE64E1B2466B9002B5761 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1CDEE6571B2466BA002B5761 /* LeanoteTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1D921D95173CB5BD00168A77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1799,14 +1757,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		1CDEE6591B2466BA002B5761 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1D921D98173CB5BD00168A77 /* Leanote */;
-			targetProxy = 1CDEE6581B2466BA002B5761 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		1CDCB1751B52B77E00838D17 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -1845,74 +1795,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1CDEE65B1B2466BA002B5761 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06E5F83B44EEA1E3D95DF5DA /* Pods.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = LeanoteTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Leanote.app/Leanote";
-			};
-			name = Debug;
-		};
-		1CDEE65C1B2466BA002B5761 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06E5F83B44EEA1E3D95DF5DA /* Pods.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = LeanoteTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Leanote.app/Leanote";
-			};
-			name = Release;
-		};
 		1D921DC5173CB5BD00168A77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1973,7 +1855,7 @@
 		};
 		1D921DC8173CB5BD00168A77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06E5F83B44EEA1E3D95DF5DA /* Pods.debug.xcconfig */;
+			baseConfigurationReference = ACDA60E71A2A3C2BA381A3BD /* Pods-Leanote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2002,17 +1884,19 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		1D921DC9173CB5BD00168A77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A14937AC8B9D110E5C40751D /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2E5020528CB48918FCFF7778 /* Pods-Leanote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2041,10 +1925,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2052,15 +1938,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1CDEE65A1B2466BA002B5761 /* Build configuration list for PBXNativeTarget "LeanoteTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1CDEE65B1B2466BA002B5761 /* Debug */,
-				1CDEE65C1B2466BA002B5761 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1D921D94173CB5BD00168A77 /* Build configuration list for PBXProject "Leanote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
