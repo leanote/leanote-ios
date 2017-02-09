@@ -14713,7 +14713,7 @@ define('extensions/markdownExtra',[
 			"def_list",
 			"attr_list",
 			"footnotes",
-			"smartypants",
+			// "smartypants",
 			"strikethrough",
 			"newlines"
 		],
@@ -26062,7 +26062,7 @@ define('extensions/htmlSanitizer',[
 		"samp,small,span,strike,strong,sub,sup,time,tt,u,var,input"));
 
 	// Special Elements (can contain anything)
-	var specialElements = makeMap("script,style");
+	var specialElements = makeMap("script");
 
 	// benweet: Add iframe
 	// blockElements.iframe = true;
@@ -26080,7 +26080,7 @@ define('extensions/htmlSanitizer',[
 			'color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,' +
 			'ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,' +
 			'scope,scrolling,shape,size,span,start,summary,target,title,type,' +
-			'valign,value,vspace,width,checked,disabled'));
+			'valign,value,vspace,width,checked,disabled,style'));
 
 	// benweet: Add id and allowfullscreen (YouTube iframe)
 	validAttrs.id = true;
