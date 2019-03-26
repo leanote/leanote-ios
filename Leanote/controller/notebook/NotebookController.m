@@ -995,7 +995,7 @@
 	
 }
 
-#pragma <#arguments#>
+ // #pragma arguments
 -(void) gotoAddNotebook:(Notebook *) notebook
 {
 	AddNotebookViewController *vc = [[AddNotebookViewController alloc] init];

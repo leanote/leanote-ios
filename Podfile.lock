@@ -30,10 +30,10 @@ PODS:
     - CocoaLumberjack/Default
   - CTAssetsPickerController (2.9.5)
   - NSObject-SafeExpectations (0.0.2)
-  - QBImagePickerController (2.6.0)
+  - QBImagePickerController (3.0.2)
   - SGNavigationProgress (1.2)
   - SWTableViewCell (0.3.7)
-  - UIAlertView+Blocks (0.8.1)
+  - "UIAlertView+Blocks (0.8.1)"
   - WordPress-iOS-Shared (0.5.2):
     - AFNetworking (~> 2.5)
     - CocoaLumberjack (~> 2.2.0)
@@ -45,27 +45,41 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 2.0)
   - CTAssetsPickerController (~> 2.9.0)
   - NSObject-SafeExpectations
-  - QBImagePickerController (< 3.0.0)
+  - QBImagePickerController (~> 3.0.0)
   - SGNavigationProgress
   - SWTableViewCell (~> 0.3.7)
-  - UIAlertView+Blocks (~> 0.8.1)
-  - WordPress-iOS-Shared (~> 0.3)
+  - "UIAlertView+Blocks (~> 0.8.1)"
+  - WordPress-iOS-Shared (= 0.5.2)
   - WordPressCom-Analytics-iOS (~> 0.0.4)
   - WPMediaPicker
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - CocoaLumberjack
+    - CTAssetsPickerController
+    - NSObject-SafeExpectations
+    - QBImagePickerController
+    - SGNavigationProgress
+    - SWTableViewCell
+    - "UIAlertView+Blocks"
+    - WordPress-iOS-Shared
+    - WordPressCom-Analytics-iOS
+    - WPMediaPicker
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CTAssetsPickerController: b413fece2194ae3dbf22fbc544cf6f2a6d516a4d
   NSObject-SafeExpectations: 7d7f48df90df4e11da7cfe86b64f45eff7a7f521
-  QBImagePickerController: 095c2b2973de4da267334d2cfcac989c2eb5cdc2
+  QBImagePickerController: 0623a20b290e9de27177bcee56beb543c1107ad0
   SGNavigationProgress: f04e3bd0058c53e1172ee020b5239f22aa9e4a0f
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  UIAlertView+Blocks: 45c3d3b7194906702d3e9a14c7ece5581505646d
-  WordPress-iOS-Shared: af84c229bd1cb0206f6015fd8fec9e262a88c780
-  WordPressCom-Analytics-iOS: 73de8c9a0f1a43bac03fd2fcd881389be73ee820
+  "UIAlertView+Blocks": 45c3d3b7194906702d3e9a14c7ece5581505646d
+  WordPress-iOS-Shared: 2039e3888f1e1faed331e9dea84bf16d49760d37
+  WordPressCom-Analytics-iOS: 3684495c87e7beec616be92df3dec59ba10dfd95
   WPMediaPicker: 6bbce465f5a5c071267ae28bdf31d0fd6e109721
 
-PODFILE CHECKSUM: 3476076ec99f23159e883e9ade4bccb00542937e
+PODFILE CHECKSUM: a0c7b39c9e76e3f168d832581dc99f6e9937b67b
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.6.0
