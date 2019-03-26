@@ -279,7 +279,7 @@
 		1D921DB8173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D921DB6173CB5BD00168A77 /* MainStoryboard_iPhone.storyboard */; };
 		1D921DBB173CB5BD00168A77 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D921DB9173CB5BD00168A77 /* MainStoryboard_iPad.storyboard */; };
 		1DB7F3BA184B07D30054A931 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB7F3B9184B07D30054A931 /* Images.xcassets */; };
-		587F4701BF2B9D9E0F9DC26B /* libPods-Leanote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8A160E29FE873FF7E2E956 /* libPods-Leanote.a */; };
+		D965784A3BA7A2976A2F13E8 /* libPods-Leanote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB5B290B28D79EA7B627F8F /* libPods-Leanote.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -676,8 +676,8 @@
 		1D921DBA173CB5BD00168A77 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		1DB7F3B9184B07D30054A931 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2E5020528CB48918FCFF7778 /* Pods-Leanote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanote.release.xcconfig"; path = "Pods/Target Support Files/Pods-Leanote/Pods-Leanote.release.xcconfig"; sourceTree = "<group>"; };
-		4A8A160E29FE873FF7E2E956 /* libPods-Leanote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Leanote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDA60E71A2A3C2BA381A3BD /* Pods-Leanote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Leanote/Pods-Leanote.debug.xcconfig"; sourceTree = "<group>"; };
+		DEB5B290B28D79EA7B627F8F /* libPods-Leanote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Leanote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -690,7 +690,7 @@
 				1CEF0DCD1B876D8400C2B2F3 /* libWeChatSDK.a in Frameworks */,
 				1D921DA1173CB5BD00168A77 /* CoreGraphics.framework in Frameworks */,
 				1D921DA3173CB5BD00168A77 /* CoreData.framework in Frameworks */,
-				587F4701BF2B9D9E0F9DC26B /* libPods-Leanote.a in Frameworks */,
+				D965784A3BA7A2976A2F13E8 /* libPods-Leanote.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,7 +1303,7 @@
 				1D921D9E173CB5BD00168A77 /* Foundation.framework */,
 				1D921DA0173CB5BD00168A77 /* CoreGraphics.framework */,
 				1D921DA2173CB5BD00168A77 /* CoreData.framework */,
-				4A8A160E29FE873FF7E2E956 /* libPods-Leanote.a */,
+				DEB5B290B28D79EA7B627F8F /* libPods-Leanote.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1365,7 +1365,7 @@
 				1D921D96173CB5BD00168A77 /* Frameworks */,
 				1D6FA73917891F42005BE23E /* ShellScript */,
 				1D921D97173CB5BD00168A77 /* Resources */,
-				204B8FF69D2C4C1339BF5BB8 /* [CP] Copy Pods Resources */,
+				F7B030FFB959104CFE8FB9C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1588,30 +1588,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export pbuddy=\"/usr/libexec/PlistBuddy\"\nexport SETTINGROOT=\"$SRCROOT/Leanote/Settings.bundle/Root.plist\"\nbuildNumber=$($pbuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%X\" $buildNumber)\n$pbuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nproductVersion=$($pbuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nnewVersion=\"$productVersion ($buildNumber)\"\necho \"Product Version: $newVersion\"\nfor (( c=0; c<=20; c++ ))\ndo\nversion=`$pbuddy -c \"print PreferenceSpecifiers:$c:Title\" $SETTINGROOT`\nif [ \"$version\" = \"Version\" ]\nthen\necho \"Product Version: $newVersion\"\n$pbuddy -c \"set PreferenceSpecifiers:$c:DefaultValue $newVersion\" $SETTINGROOT\nbreak;\nfi\ndone";
 		};
-		204B8FF69D2C4C1339BF5BB8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Leanote/Pods-Leanote-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/CTAssetsPickerController/CTAssetsPickerController.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/WPMediaPicker/WPMediaPicker.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/WordPress-iOS-Shared/WordPress-iOS-Shared.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTAssetsPickerController.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WPMediaPicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WordPress-iOS-Shared.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Leanote/Pods-Leanote-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E1DA5AE4AF4E5EC9A0028207 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1628,6 +1604,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7B030FFB959104CFE8FB9C7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Leanote/Pods-Leanote-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/CTAssetsPickerController/CTAssetsPickerController.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/WPMediaPicker/WPMediaPicker.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/WordPress-iOS-Shared/WordPress-iOS-Shared.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTAssetsPickerController.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WPMediaPicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WordPress-iOS-Shared.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Leanote/Pods-Leanote-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1853,6 +1857,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACDA60E71A2A3C2BA381A3BD /* Pods-Leanote.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1875,7 +1880,7 @@
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1884,6 +1889,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E5020528CB48918FCFF7778 /* Pods-Leanote.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1906,7 +1912,7 @@
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

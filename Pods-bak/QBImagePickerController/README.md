@@ -1,5 +1,7 @@
 # QBImagePicker
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 A clone of UIImagePickerController with multiple selection support.
 
 ![screenshot01.png](screenshot01.png)
@@ -10,6 +12,7 @@ A clone of UIImagePickerController with multiple selection support.
 ## Features
 
 - Allows multiple selection of photos and videos, even from the different albums
+- Fast and memory-efficient scrolling powered by **PhotoKit**
 - Provides similar user interface to the built-in image picker
 - Customizable (grid size, navigation message, etc.)
 - Supports both portrait mode and landscape mode
@@ -31,8 +34,7 @@ A clone of UIImagePickerController with multiple selection support.
 
 ## Requirements
 
-- Version `>= 3.0.0` : iOS 8 or later (Using PhotoKit)
-- Version `< 3.0.0` : iOS 6 or later (Using AssetsLibrary)
+- iOS 8.0 or later
 
 
 
@@ -62,36 +64,44 @@ A clone of UIImagePickerController with multiple selection support.
 3. Set `self` to the `delegate` property
 4. Show the picker by using `presentViewController:animated:completion:`
 
-```
-QBImagePickerController *imagePickerController = [QBImagePickerController new];
-imagePickerController.delegate = self;
+    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+    imagePickerController.delegate = self;
 
-[self presentViewController:imagePickerController animated:YES completion:NULL];
-```
+    [self presentViewController:imagePickerController animated:YES completion:NULL];
 
 
 ### Delegate Methods
 
-##### - qb_imagePickerController:didSelectAsset:
+#### Getting the selected assets
 
-This method will be called when the user finished picking asset in **single** selection mode.  
-The second argument is `ALAsset` object.
+Implement `qb_imagePickerController:didFinishPickingAssets:` to get the assets selected by the user.  
+This method will be called when the user finishes picking assets.
 
+    - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
+        for (PHAsset *asset in assets) {
+            // Do something with the asset
+        }
 
-##### - qb_imagePickerController:didSelectAssets:
-
-This method will be called when the user finished picking asset in **multple** selection mode.  
-The second argument is an array of `ALAsset` object.
-
-
-##### - qb_imagePickerControllerDidCancel:
-
-This method will be called when the user hits the "Cancel" button.
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
 
 
-##### - qb_imagePickerController:shouldSelectAsset:
+#### Getting notified when the user cancels
 
-By implementing this method you can decide the asset can be selected or not.
+Implement `qb_imagePickerControllerDidCancel:` to get notified when the user hits "Cancel" button.
+
+    - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+
+
+#### Getting notified when the selection is changed
+
+You can handle the change of user's selection by implementing these methods.
+
+    - (BOOL)qb_imagePickerController:(QBImagePickerController *)imagePickerController shouldSelectAsset:(PHAsset *)asset;
+    - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didSelectAsset:(PHAsset *)asset;
+    - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didDeselectAsset:(PHAsset *)asset;
 
 
 ### Customization
@@ -112,25 +122,27 @@ The default value is `0`, which means the number of selection is unlimited.
 
 #### Specify the albums to be shown
 
-Use `groupTypes` property to specify the albums to be shown.  
+Use `assetCollectionSubtypes` property to specify the albums to be shown.  
 The code below shows the default value.
 
-    imagePickerController.groupTypes = @[
-        @(ALAssetsGroupSavedPhotos), // Camera Roll
-        @(ALAssetsGroupPhotoStream), // My Photo Stream
-        @(ALAssetsGroupAlbum) // User Albums
+    imagePickerController.assetCollectionSubtypes = @[
+        @(PHAssetCollectionSubtypeSmartAlbumUserLibrary), // Camera Roll
+        @(PHAssetCollectionSubtypeAlbumMyPhotoStream), // My Photo Stream
+        @(PHAssetCollectionSubtypeSmartAlbumPanoramas), // Panoramas
+        @(PHAssetCollectionSubtypeSmartAlbumVideos), // Videos
+        @(PHAssetCollectionSubtypeSmartAlbumBursts) // Bursts
     ];
 
 The albums will be ordered as you specified.  
+User's albums are always shown after the smart albums.
 
 
 #### Specify the media type to be shown
 
-Use `filterType` to filter the assets to be shown.  
-The default value is `QBImagePickerControllerFilterTypeNone`.
+Use `mediaType` to filter the assets to be shown.  
+The default value is `QBImagePickerMediaTypeAny`.
 
-    // Show videos only
-    imagePickerController.filterType = QBImagePickerControllerFilterTypeVideos;
+    imagePickerController.mediaType = QBImagePickerMediaTypeVideo;
 
 
 #### Showing information

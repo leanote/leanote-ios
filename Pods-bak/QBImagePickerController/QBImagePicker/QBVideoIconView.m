@@ -2,7 +2,7 @@
 //  QBVideoIconView.m
 //  QBImagePicker
 //
-//  Created by Katsuma Tanaka on 2015/04/06.
+//  Created by Katsuma Tanaka on 2015/04/04.
 //  Copyright (c) 2015 Katsuma Tanaka. All rights reserved.
 //
 
