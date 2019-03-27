@@ -1870,7 +1870,7 @@
 				GCC_PREFIX_HEADER = "Leanote/Leanote-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Leanote/Leanote-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
@@ -1902,7 +1902,7 @@
 				GCC_PREFIX_HEADER = "Leanote/Leanote-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Leanote/Leanote-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
