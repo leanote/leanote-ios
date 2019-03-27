@@ -469,12 +469,19 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 		
         CGFloat vOffset = CGRectGetHeight(self.frame) - keyboardOrigin.y; // 除去keyboard的高度
 		
+		NSLog(@"vOffset %f %f %f", vOffset, CGRectGetHeight(self.frame), keyboardOrigin.y);
+		if (@available(iOS 11, *)) {
+			// iOS 11下自动上移, 不用bottom?
+			NSLog(@"iOS 11 no vOffset");
+			vOffset = 0;
+		}
+		
 		// padding padding-bottom
         UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, vOffset, 0.0f);
         
         self.webView.scrollView.contentInset = insets;
         self.webView.scrollView.scrollIndicatorInsets = insets;
-        self.sourceView.contentInset = insets;
+		self.sourceView.contentInset = insets;
         self.sourceView.scrollIndicatorInsets = insets;
 		
 		if(self.isMarkdown) {
@@ -1521,7 +1528,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     BOOL mustScroll = (caretYOffset < viewport.origin.y
                        || offsetBottom > viewport.origin.y + CGRectGetHeight(viewport));
-    
+	NSLog(@"mustScroll %f %f", caretYOffset, viewport.origin.y);
+	
     if (mustScroll) {
         // DRM: by reducing the necessary height we avoid an issue that moves the caret out
         // of view.
