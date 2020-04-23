@@ -15,6 +15,9 @@
  https://github.com/wordpress-mobile/WordPress-iOS/blob/8ff4b5b18c638f6b592018f277616db2734de2cb/WordPress/Classes/Utility/WPWebViewController.m
  block回调: https://www.jianshu.com/p/d911cd16c100
  Xcode11-闪退错误Could not instantiate class named WKWebView https://www.bilibili.com/read/cv3184836/
+ 
+ iOS-手动添加限制-constraints	https://blog.csdn.net/wang1514869032/article/details/52164199
+ contstrait https://blog.csdn.net/jason_chen13/article/details/52869540
 */
 
 #import "Common.h"
@@ -60,6 +63,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	// 创建网页配置对象
+	WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+	// 创建设置对象
+	WKPreferences *preference = [[WKPreferences alloc]init];
+	// 最小字体大小 当将javaScriptEnabled属性设置为NO时，可以看到明显的效果
+	preference.minimumFontSize = 0;
+	// 设置是否支持javaScript 默认是支持的
+	preference.javaScriptEnabled = YES;
+	// 在iOS上默认为NO，表示是否允许不经过用户交互由javaScript自动打开窗口
+	preference.javaScriptCanOpenWindowsAutomatically = YES;
+	config.preferences = preference;
+	// 是使用h5的视频播放器在线播放, 还是使用原生播放器全屏播放
+	config.allowsInlineMediaPlayback = YES;
+	// 设置视频是否需要用户手动播放  设置为NO则会允许自动播放
+	config.requiresUserActionForMediaPlayback = YES;
+	// 设置是否允许画中画技术 在特定设备上有效
+	config.allowsPictureInPictureMediaPlayback = YES;
+	
+	self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+	
+//	self.webView = [[WKWebView alloc] init];
+//	self.view.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addSubview:_webView];
+	
+	NSDictionary *dic = @{
+		@"webView":self.webView
+	};
+	
+	NSString *vfl = @"V:|-0-[webView]-44-|"; // 上0, 下44
+	NSString *vfl1 = @"H:|-0-[webView]-0-|"; // 左右为0
+	_webView.translatesAutoresizingMaskIntoConstraints = NO;
+	
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl options:0 metrics:nil views:dic]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:nil views:dic]];
 	
 	// 加了这一句 delegate才有用 didStartProvisionalNavigation !!!
 	self.webView.navigationDelegate = self;
