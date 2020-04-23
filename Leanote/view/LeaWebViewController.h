@@ -1,9 +1,11 @@
 #import <UIKit/UIKit.h>
+@import WebKit;
 
-@interface LeaWebViewController : UIViewController
+@interface LeaWebViewController : UIViewController<WKNavigationDelegate>
 
 // Interface
-@property (nonatomic,   weak) IBOutlet UIWebView *webView;
+@property (nonatomic,   weak) IBOutlet WKWebView *webView;
+//@property (nonatomic,   weak) IBOutlet WKWebView *wkView;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UIView *loadingView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;

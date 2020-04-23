@@ -10,6 +10,13 @@
 //#import "Constants.h"
 #import "LeaAlert.h"
 
+/*
+ WPWebViewController.m
+ https://github.com/wordpress-mobile/WordPress-iOS/blob/8ff4b5b18c638f6b592018f277616db2734de2cb/WordPress/Classes/Utility/WPWebViewController.m
+ block回调: https://www.jianshu.com/p/d911cd16c100
+ Xcode11-闪退错误Could not instantiate class named WKWebView https://www.bilibili.com/read/cv3184836/
+*/
+
 #import "Common.h"
 
 // https://github.com/iDay/WeixinActivity
@@ -21,7 +28,7 @@
 
 @class WPReaderDetailViewController;
 
-@interface LeaWebViewController () <UIWebViewDelegate, UIPopoverControllerDelegate>
+@interface LeaWebViewController () <UIPopoverControllerDelegate>
 
 @property (nonatomic, weak, readonly) UIScrollView *scrollView;
 @property (nonatomic, strong) UIPopoverController *popover;
@@ -37,7 +44,8 @@
 
 - (void)dealloc
 {
-    _webView.delegate = nil;
+	_webView.UIDelegate = nil;
+	_webView.navigationDelegate = nil;
     if (_webView.isLoading) {
         [_webView stopLoading];
     }
@@ -52,6 +60,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	// 加了这一句 delegate才有用 didStartProvisionalNavigation !!!
+	self.webView.navigationDelegate = self;
 
 //    if (IS_IPHONE) {
         self.navigationItem.title = NSLocalizedString(@"Loading...", @"");
@@ -107,7 +118,7 @@
 	// 右上角分享
     self.optionsButton.enabled = NO;
 	
-    self.webView.scalesPageToFit = YES;
+//    self.webView.scalesPageToFit = YES;
     self.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 
     if (self.url) {
@@ -238,6 +249,9 @@
 
 - (void)upgradeButtonsAndLabels:(NSTimer*)timer
 {
+	[self refreshInterface];
+	return;
+	
     self.backButton.enabled = self.webView.canGoBack;
     self.forwardButton.enabled = self.webView.canGoForward;
     if (!_isLoading) {
@@ -255,14 +269,16 @@
 
 - (NSString *)getDocumentPermalink
 {
-	// return @"hahagetDocumentPermalink";
-	NSString *permaLink = @"";
+	NSString *permaLink = self.webView.URL.absoluteString;
+	return permaLink;
+	/*
 	NSURLRequest *currentRequest = [self.webView request];
 	if ( currentRequest != nil) {
 		NSURL *currentURL = [currentRequest URL];
 		permaLink = currentURL.absoluteString;
 	}
 	return permaLink;
+	*/
 	
 	/*
     NSString *permaLink = [self.webView stringByEvaluatingJavaScriptFromString:@"Reader2.get_article_permalink();"];
@@ -284,58 +300,82 @@
 	*/
 }
 
-- (NSString *)getDocumentDesc
+- (NSString *)getDocumentDesc:(void(^)(NSString *))block
 {
-	NSString *desc = [self.webView stringByEvaluatingJavaScriptFromString:@"\
-					   (function() {try{\
-					   \
-					    if(location.href.indexOf('lea.leanote.com') != -1) {\
-						   var metas = document.getElementsByTagName('meta');\
-					       for (i = 0; i < metas.length; i++) {\
-							if (metas[i].getAttribute('name') == 'description') {\
-								return metas[i].getAttribute('content');\
-							}\
-						   }\
-					    }\
-					    var markdownElem = document.getElementById('markdownContent');\
-					    if(markdownElem) {\
-					      var textareaElem = markdownElem.getElementsByTagName('textarea');\
-					          if(textareaElem && textareaElem.length) return textareaElem[0].value;\
-					    }\
-					    var content = document.getElementById('content');\
-					    if(content) {return content.innerText;}\
-						var content = document.getElementsByClassName('content');\
-						if(content && content.length) {return content[0].innerText;}\
-					    var desc = document.getElementsByClassName('desc');\
-					    if(desc && desc.length) {return desc[0].innerText;}\
-					    return document.getElementsByTagName('body')[0].innerText;\
-					   \
-					   } catch(e){return ""}\
-					   \
-					   })();"];
-	// desc 多了, 不能调微信发送给朋友了
-	if ( desc != nil && [[desc trim] isEqualToString:@""] == NO) {
-		[desc stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-		if([desc length] > 50) {
-			desc = [desc substringToIndex:47];
+	// 返回之前就要截断不然可能会有内存出错
+	NSString *js = @"\
+	(function() {\
+		function aaaa () {\
+			try {\
+				if (location.href.indexOf('lea.leanote.com') != -1) {\
+					var metas = document.getElementsByTagName('meta');\
+					for (i = 0; i < metas.length; i++) {\
+						if (metas[i].getAttribute('name') == 'description') {\
+							return metas[i].getAttribute('content');\
+						}\
+					}\
+				}\
+				var markdownElem = document.getElementById('markdownContent');\
+				if (markdownElem) {\
+					var textareaElem = markdownElem.getElementsByTagName('textarea');\
+					if (textareaElem && textareaElem.length) return textareaElem[0].value;\
+				}\
+				var content = document.getElementById('content');\
+				if (content) { return content.innerText.trim().substr(0, 50); }\
+				var content = document.getElementsByClassName('content');\
+				if (content && content.length) { return content[0].innerText; }\
+				var desc = document.getElementsByClassName('desc');\
+				if (desc && desc.length) { return desc[0].innerText; }\
+				return document.getElementsByTagName('body')[0].innerText;\
+				\
+			} catch (e) { return ""; }\
+		}\
+		var content = aaaa();\
+		return (content || '').trim().substr(0, 50);\
+	})();\
+	";
+	//执行JS
+	[self.webView evaluateJavaScript:js completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+		NSLog(@"get desc ret %@ %@", error, result);
+		if (error == nil) {
+			if (result != nil) {
+				NSString *desc = [NSString stringWithFormat:@"%@", result];
+				NSLog(@"desc %@", desc);
+				// desc 多了, 不能调微信发送给朋友了
+				if ( desc != nil && [[desc trim] isEqualToString:@""] == NO) {
+					[desc stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+					if([desc length] > 50) {
+						desc = [desc substringToIndex:47];
+					}
+					desc = [NSString stringWithFormat:@"%@...", desc];
+					// return desc;
+					block(desc);
+				} else {
+					block(@"...");
+				}
+			} else {
+				block(@"...");
+			}
+		} else {
+			NSLog(@"evaluateJavaScript error : %@", error.localizedDescription);
+			block(@"...");
 		}
-		desc = [NSString stringWithFormat:@"%@...", desc];
-		return desc;
-	}
-	return @"";
+	}];
 }
 
 - (NSString *)getDocumentTitle
 {
-    // load the title from the document
-    NSString *title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-
-    if ( title != nil && [[title trim] isEqualToString:@""] == NO) {
-        return title;
-    }
-
-    NSString* permaLink = [self getDocumentPermalink];
-    return ( permaLink != nil) ? permaLink : @"";
+	if (self.webView == nil) {
+		NSLog(@"webview is nillllllllllll");
+		return @"";
+	}
+	NSString *title = self.webView.title;
+	
+	if (title != nil && [[title trim] isEqualToString:@""] == NO) {
+		return title;
+	}
+	
+	return [self getDocumentPermalink] ?: [NSString string];
 }
 
 - (void)loadURL:(NSURL *)webURL
@@ -453,8 +493,10 @@
 // 后退
 - (void)goBack
 {
+	[self.webView goBack];
+	/*
     if (self.detailContent != nil) {
-        NSString *prevItemAvailable = [self.webView stringByEvaluatingJavaScriptFromString:@"Reader2.show_prev_item();"];
+        NSString *prevItemAvailable = [self.webView evaluateJavaScript:@"Reader2.show_prev_item();"];
         if ( [prevItemAvailable rangeOfString:@"true"].location == NSNotFound ) {
             self.backButton.enabled = NO;
         } else {
@@ -478,13 +520,17 @@
         }
         [self.webView goBack];
     }
+	*/
 }
 
 // 前进
 - (void)goForward
 {
+	[self.webView goForward];
+	/*
     if (self.detailContent != nil) {
-        NSString *nextItemAvailable = [self.webView stringByEvaluatingJavaScriptFromString:@"Reader2.show_next_item();"];
+        NSString *nextItemAvailable = [self.webView evaluateJavaScript:@"Reader2.show_next_item();"  completionHandler:nil];
+		
         if ([nextItemAvailable rangeOfString:@"true"].location == NSNotFound) {
             self.forwardButton.enabled = NO;
         } else {
@@ -506,6 +552,7 @@
         }
         [self.webView goForward];
     }
+	 */
 }
 
 - (void)showLinkOptions
@@ -513,42 +560,46 @@
     NSString* permaLink = [self getDocumentPermalink];
 
     NSString *title = [self getDocumentTitle];
-	NSString *desc = [self getDocumentDesc];
-    NSMutableArray *activityItems = [NSMutableArray array];
-    if (title) {
-        [activityItems addObject:title];
-    }
-	if (desc) {
-		[activityItems addObject:desc];
-	}
-	
-	// weixin
-	NSArray *activities = @[[[WeixinSessionActivity alloc] init], [[WeixinTimelineActivity alloc] init]];
-
-    [activityItems addObject:[NSURL URLWithString:permaLink]];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:activities];
-//	activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePrint];
-    if (title) {
-        [activityViewController setValue:title forKey:@"subject"];
-    }
-    activityViewController.completionHandler = ^(NSString *activityType, BOOL completed) {
-        if (!completed) {
-            return;
-        }
-//        [WPActivityDefaults trackActivityType:activityType];
-    };
-	
-	if (IS_IPAD) {
-        if (self.popover) {
-            [self dismissPopover];
-            return;
-        }
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-        self.popover.delegate = self;
-        [self.popover presentPopoverFromBarButtonItem:self.optionsButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else {
-        [self presentViewController:activityViewController animated:YES completion:nil];
-    }
+	[self getDocumentDesc:^(NSString *desc){
+		
+		NSLog(@"showLinkOptions desc: %@", desc);
+		
+		NSMutableArray *activityItems = [NSMutableArray array];
+		if (title) {
+			[activityItems addObject:title];
+		}
+		if (desc) {
+			[activityItems addObject:desc];
+		}
+		
+		// weixin
+		NSArray *activities = @[[[WeixinSessionActivity alloc] init], [[WeixinTimelineActivity alloc] init]];
+		
+		[activityItems addObject:[NSURL URLWithString:permaLink]];
+		UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:activities];
+		//	activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePrint];
+		if (title) {
+			[activityViewController setValue:title forKey:@"subject"];
+		}
+		activityViewController.completionHandler = ^(NSString *activityType, BOOL completed) {
+			if (!completed) {
+				return;
+			}
+			//        [WPActivityDefaults trackActivityType:activityType];
+		};
+		
+		if (IS_IPAD) {
+			if (self.popover) {
+				[self dismissPopover];
+				return;
+			}
+			self.popover = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+			self.popover.delegate = self;
+			[self.popover presentPopoverFromBarButtonItem:self.optionsButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+		} else {
+			[self presentViewController:activityViewController animated:YES completion:nil];
+		}
+	}];
 }
 
 - (void)reload
@@ -590,6 +641,93 @@
     }
 }
 
+- (void)refreshInterface
+{
+	self.backButton.enabled = self.webView.canGoBack;
+	self.forwardButton.enabled = self.webView.canGoForward;
+	
+	if (IS_IPAD) {
+		if (self.navigationController.navigationBarHidden == NO) {
+			self.title = [self getDocumentTitle];
+		} else {
+			[self.iPadNavBar.topItem setTitle:[self getDocumentTitle]];
+		}
+	} else {
+		self.navigationItem.title = [self getDocumentTitle];
+	}
+	
+	if ([self.webView.URL.absoluteString isEqualToString:@""]) {
+		self.optionsButton.enabled = FALSE;
+	} else {
+		self.optionsButton.enabled = !self.webView.loading;
+	}
+}
+
+#pragma mark - WKNavigationDelegate
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+	NSLog(@"didStartProvisionalNavigation!!!!......................");
+	[self setLoading:YES];
+}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
+{
+	NSLog(@"didFinishNavigation!!!!!!!......................");
+	[self setLoading:NO];
+	[self refreshInterface];
+	[webView evaluateJavaScript:@"var a = document.getElementsByTagName('a');for(var i=0;i<a.length;i++){a[i].setAttribute('target','');}" completionHandler:nil];
+}
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
+{
+	NSLog(@"didFailNavigation!!!!......................");
+	[self setLoading:NO];
+	[self refreshInterface];
+}
+
+// _blank处理
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+	NSURLRequest *request = [navigationAction request];
+	
+	NSLog(@"%@ Should Start Loading [%@]", NSStringFromClass([self class]), request.URL.absoluteString);
+	
+	// To handle WhatsApp and Telegraph shares
+	// Even though the documentation says that canOpenURL will only return YES for
+	// URLs configured on the plist under LSApplicationQueriesSchemes if we don't filter
+	// out http requests it also returns YES for those
+	if (![request.URL.scheme hasPrefix:@"http"]
+		&& [[UIApplication sharedApplication] canOpenURL:request.URL]) {
+		[[UIApplication sharedApplication] openURL:request.URL
+										   options:nil
+								 completionHandler:nil];
+		
+		decisionHandler(WKNavigationActionPolicyCancel);
+		return;
+	}
+	
+	WKFrameInfo *frameInfo = navigationAction.targetFrame;
+	if (![frameInfo isMainFrame]) {
+		[webView loadRequest:navigationAction.request];
+	}
+
+//	if (self.navigationDelegate != nil) {
+//		WebNavigationPolicy *policy = [self.navigationDelegate shouldNavigateWithRequest:request];
+//
+//		if (policy.redirectRequest != NULL) {
+//			[self.webView loadRequest:policy.redirectRequest];
+//			decisionHandler(WKNavigationActionPolicyCancel);
+//			return;
+//		}
+//
+//		decisionHandler(policy.action);
+//		return;
+//	}
+	
+	[self refreshInterface];
+	
+	decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+
 #pragma mark - UIPopover Delegate
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
@@ -597,6 +735,7 @@
     self.popover = nil;
 }
 
+/*
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView
@@ -619,6 +758,8 @@
         [self.navigationController pushViewController:webViewController animated:YES];
         return NO;
     }
+	
+	NSLog(@"reloading......................");
 
     [self setLoading:YES];
     return YES;
@@ -647,13 +788,14 @@
     [self setLoading:NO];
 
     CGSize webviewSize = self.view.frame.size;
-	/*
-    NSString *js = [NSString stringWithFormat:@"var meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' ); meta.setAttribute( 'content', 'width = %d, initial-scale = 1.0, user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta)", webviewSize.width];
-    [aWebView stringByEvaluatingJavaScriptFromString: js];
-	*/
-    
-    if (!self.hasLoadedContent/* &&
-		([aWebView.request.URL.absoluteString rangeOfString:WPMobileReaderDetailURL].location == NSNotFound || self.detailContent)*/) {
+ 
+    // NSString *js = [NSString stringWithFormat:@"var meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' ); meta.setAttribute( 'content', 'width = %d, initial-scale = 1.0, user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta)", webviewSize.width];
+    // [aWebView stringByEvaluatingJavaScriptFromString: js];
+
+ 
+ // &&
+ ([aWebView.request.URL.absoluteString rangeOfString:WPMobileReaderDetailURL].location == NSNotFound || self.detailContent)
+    if (!self.hasLoadedContent) {
         [aWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"Reader2.set_loaded_items(%@);", self.readerAllItems]];
         [aWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"Reader2.show_article_details(%@);", self.detailContent]];
 
@@ -699,6 +841,8 @@
 		[self loginLeanote:self.host email:self.email pwd:self.pwd];
 	}
 }
+
+*/
 
 
 #pragma mark - Requests Helpers
@@ -757,7 +901,7 @@
 		f.submit(); \
 	})('%@', '%@', '%@');", host, email, pwd];
 //	NSLog(@"%@", loginJs);
-	[self.webView stringByEvaluatingJavaScriptFromString:loginJs];
+	[self.webView evaluateJavaScript:loginJs completionHandler:nil];
 }
 
 @end
