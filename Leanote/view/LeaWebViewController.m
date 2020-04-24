@@ -115,7 +115,8 @@
 
 //    if (IS_IPHONE) {
         if (!self.hidesLinkOptions) {
-            [WPStyleGuide setRightBarButtonItemWithCorrectSpacing:self.optionsButton forNavigationItem:self.navigationItem];
+//            [WPStyleGuide setRightBarButtonItemWithCorrectSpacing:self.optionsButton forNavigationItem:self.navigationItem];
+            self.navigationItem.rightBarButtonItems = @[self.optionsButton];
         }
 	/*
 	// IPAD
