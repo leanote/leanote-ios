@@ -14,11 +14,11 @@
 
 #import "RegisterController.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPNUXUtility.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/NSString+Util.h>
+#import "WPFontManager.h"
+#import "UIColor+Helpers.h"
+#import "WPNUXUtility.h"
+#import "WPStyleGuide.h"
+#import "NSString+Util.h"
 
 #import "UILabel+SuggestSize.h"
 

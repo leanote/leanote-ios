@@ -7,6 +7,7 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest*)theRequest
 {
+	NSLog(@"canInitWithRequest %@", theRequest.URL);
 	if ([theRequest.URL.scheme caseInsensitiveCompare:@"leanote"] == NSOrderedSame) {
 		return YES;
 	}
@@ -34,7 +35,8 @@
 //	NSLog(self.request.URL.absoluteString);
 	
 	NSString *fileId =[self.request.URL.absoluteString substringFromIndex:[@"leanote://getImage?fileId=" length]];
-//	NSLog(@"fileId: %@", fileId);
+	
+	NSLog(@"fileId: %@", fileId);
 	
 	[NoteService getImage:fileId success:^(NSString * relatedPath) {
 		// relatedPath相对于doc目录

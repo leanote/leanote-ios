@@ -2,12 +2,12 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 #import <UIKit/UIKit.h>
-#import <WordPressCom-Analytics-iOS/WPAnalytics.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPTableViewCell.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
+
+#import "WPFontManager.h"
+#import "WPStyleGuide.h"
+#import "WPTableViewCell.h"
+#import "UIImage+Util.h"
+#import "UIColor+Helpers.h"
 
 #import "WPEditorField.h"
 #import "WPEditorToolbarButton.h"
@@ -19,7 +19,7 @@
 #import "DRColorPicker.h"
 #import "DRColorPickerHomeViewController.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/WPDeviceIdentification.h>
+#import "WPDeviceIdentification.h"
 
 CGFloat const EPVCStandardOffset = 10.0;
 NSInteger const WPImageAlertViewTag = 91;
@@ -168,11 +168,11 @@ NSInteger const WPLinkAlertViewTag = 92;
 	self.view.backgroundColor = [UIColor whiteColor];
 	
 	// Calling the fonts we use here so they are availible to the UIWebView
-	[WPFontManager merriweatherBoldFontOfSize:30];
-	[WPFontManager openSansRegularFontOfSize:16];
-	[WPFontManager openSansItalicFontOfSize:16];
-	[WPFontManager openSansBoldFontOfSize:16];
-	[WPFontManager openSansBoldItalicFontOfSize:16];
+	[WPFontManager systemLightFontOfSize:30];
+	[WPFontManager systemSemiBoldFontOfSize:16];
+	[WPFontManager systemItalicFontOfSize:16];
+	[WPFontManager systemBoldFontOfSize:16];
+	[WPFontManager systemRegularFontOfSize:16];
 	
 	// start 之前这段代码是放在viewDidLoad中的, 但frame有问题, 包括了navigation的高度
 	
@@ -1132,7 +1132,7 @@ NSInteger const WPLinkAlertViewTag = 92;
                           }
          ];
     }
-    [WPAnalytics track:WPAnalyticsStatEditorTappedImage];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedImage];
 }
 
 #pragma mark - Editor and Misc Methods
@@ -1188,10 +1188,10 @@ NSInteger const WPLinkAlertViewTag = 92;
     if (self.isEditing) {
 		// IOS7 大BUG
 		// 不是markdown才这样, 因为在markdown下, io7有先focus会把selection去掉, 导致有问题!!!
-        if (!self.isMarkdown && [WPDeviceIdentification isiOSVersionEarlierThan8]){
-            [self.focusedField blur];
-            [self.focusedField focus];
-        }
+//        if (!self.isMarkdown && [WPDeviceIdentification isiOSVersionEarlierThan8]){
+//            [self.focusedField blur];
+//            [self.focusedField focus];
+//        }
         [self.editorView restoreSelection];
     }
 }
@@ -1202,9 +1202,10 @@ NSInteger const WPLinkAlertViewTag = 92;
 - (void)saveEditSelection
 {
     if (self.isEditing) {
-        if ([WPDeviceIdentification isiOSVersionEarlierThan8]){
-            self.focusedField = self.editorView.focusedField;
-        }
+		// ios7 已不支持
+//        if ([WPDeviceIdentification isiOSVersionEarlierThan8]){
+//            self.focusedField = self.editorView.focusedField;
+//        }
         [self.editorView saveSelection];
     }
 }
@@ -1289,21 +1290,21 @@ NSInteger const WPLinkAlertViewTag = 92;
 {
     [self.editorView setBold];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedBold];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedBold];
 }
 
 - (void)setBlockQuote
 {
     [self.editorView setBlockQuote];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedBlockquote];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedBlockquote];
 }
 
 - (void)setItalic
 {
     [self.editorView setItalic];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedItalic];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedItalic];
 }
 
 - (void)setSubscript
@@ -1315,7 +1316,7 @@ NSInteger const WPLinkAlertViewTag = 92;
 {
 	[self.editorView setUnderline];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedUnderline];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedUnderline];
 }
 
 - (void)setSuperscript
@@ -1327,21 +1328,21 @@ NSInteger const WPLinkAlertViewTag = 92;
 {
     [self.editorView setStrikethrough];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedStrikethrough];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedStrikethrough];
 }
 
 - (void)setUnorderedList
 {
     [self.editorView setUnorderedList];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedUnorderedList];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedUnorderedList];
 }
 
 - (void)setOrderedList
 {
     [self.editorView setOrderedList];
     [self clearToolbar];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedOrderedList];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedOrderedList];
 }
 
 - (void)setHR
@@ -1797,7 +1798,7 @@ NSInteger const WPLinkAlertViewTag = 92;
 - (void)removeLink
 {
     [self.editorView removeLink];
-    [WPAnalytics track:WPAnalyticsStatEditorTappedUnlink];
+//    [WPAnalytics track:WPAnalyticsStatEditorTappedUnlink];
 }
 
 - (void)quickLink

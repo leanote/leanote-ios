@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		1C3DA9901BE6667C00B4FFDA /* LeaWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C3DA98F1BE6667C00B4FFDA /* LeaWebViewController.xib */; };
 		1C53237F1B5CF494006B60EE /* BlogTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C53237D1B5CF494006B60EE /* BlogTab.m */; };
+		1C62131F2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62131E2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.m */; };
+		1C6213222452C6610037ACF1 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213212452C6600037ACF1 /* NSString+Util.m */; };
+		1C62132A2452D37F0037ACF1 /* WPStyleGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213242452D37F0037ACF1 /* WPStyleGuide.m */; };
+		1C62132B2452D37F0037ACF1 /* WPFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213252452D37F0037ACF1 /* WPFontManager.m */; };
+		1C62132C2452D37F0037ACF1 /* WPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213262452D37F0037ACF1 /* WPTableViewCell.m */; };
+		1C6213392452D3E50037ACF1 /* WPStyleGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62132D2452D3E30037ACF1 /* WPStyleGuide.m */; };
+		1C62133A2452D3E50037ACF1 /* WPTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213302452D3E40037ACF1 /* WPTextFieldTableViewCell.m */; };
+		1C62133B2452D3E50037ACF1 /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213312452D3E40037ACF1 /* UIColor+Helpers.m */; };
+		1C62133C2452D3E50037ACF1 /* WPFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213332452D3E40037ACF1 /* WPFontManager.m */; };
+		1C62133D2452D3E50037ACF1 /* WPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213362452D3E50037ACF1 /* WPTableViewCell.m */; };
+		1C62133E2452D3E50037ACF1 /* WPDeviceIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213382452D3E50037ACF1 /* WPDeviceIdentification.m */; };
+		1C6213412452D6FB0037ACF1 /* WPNUXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62133F2452D6FB0037ACF1 /* WPNUXUtility.m */; };
+		1C6213442452D7490037ACF1 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213422452D7490037ACF1 /* UIImage+Util.m */; };
+		1C6213472452E0CA0037ACF1 /* NSURLProtocol+WebKitSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6213462452E0C90037ACF1 /* NSURLProtocol+WebKitSupport.m */; };
 		1C7B282F1AF9B3C50086D4C5 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28211AF9B3C50086D4C5 /* Note.m */; };
 		1C7B28301AF9B3C50086D4C5 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28231AF9B3C50086D4C5 /* Notebook.m */; };
 		1C7B28341AF9B3C50086D4C5 /* NotebookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B282C1AF9B3C50086D4C5 /* NotebookService.m */; };
@@ -288,6 +302,34 @@
 		1C5323761B5CC670006B60EE /* CategoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryProtocol.h; sourceTree = "<group>"; };
 		1C53237C1B5CF494006B60EE /* BlogTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogTab.h; sourceTree = "<group>"; };
 		1C53237D1B5CF494006B60EE /* BlogTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogTab.m; sourceTree = "<group>"; };
+		1C62131D2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTableViewSectionHeaderFooterView.h; sourceTree = "<group>"; };
+		1C62131E2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPTableViewSectionHeaderFooterView.m; sourceTree = "<group>"; };
+		1C6213202452C6600037ACF1 /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		1C6213212452C6600037ACF1 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		1C6213242452D37F0037ACF1 /* WPStyleGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStyleGuide.m; sourceTree = "<group>"; };
+		1C6213252452D37F0037ACF1 /* WPFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFontManager.m; sourceTree = "<group>"; };
+		1C6213262452D37F0037ACF1 /* WPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPTableViewCell.m; sourceTree = "<group>"; };
+		1C6213272452D37F0037ACF1 /* WPStyleGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStyleGuide.h; sourceTree = "<group>"; };
+		1C6213282452D37F0037ACF1 /* WPFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFontManager.h; sourceTree = "<group>"; };
+		1C6213292452D37F0037ACF1 /* WPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTableViewCell.h; sourceTree = "<group>"; };
+		1C62132D2452D3E30037ACF1 /* WPStyleGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStyleGuide.m; sourceTree = "<group>"; };
+		1C62132E2452D3E40037ACF1 /* WPDeviceIdentification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDeviceIdentification.h; sourceTree = "<group>"; };
+		1C62132F2452D3E40037ACF1 /* WPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTableViewCell.h; sourceTree = "<group>"; };
+		1C6213302452D3E40037ACF1 /* WPTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		1C6213312452D3E40037ACF1 /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helpers.m"; sourceTree = "<group>"; };
+		1C6213322452D3E40037ACF1 /* WPFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFontManager.h; sourceTree = "<group>"; };
+		1C6213332452D3E40037ACF1 /* WPFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFontManager.m; sourceTree = "<group>"; };
+		1C6213342452D3E50037ACF1 /* WPStyleGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStyleGuide.h; sourceTree = "<group>"; };
+		1C6213352452D3E50037ACF1 /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
+		1C6213362452D3E50037ACF1 /* WPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPTableViewCell.m; sourceTree = "<group>"; };
+		1C6213372452D3E50037ACF1 /* WPTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		1C6213382452D3E50037ACF1 /* WPDeviceIdentification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDeviceIdentification.m; sourceTree = "<group>"; };
+		1C62133F2452D6FB0037ACF1 /* WPNUXUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNUXUtility.m; sourceTree = "<group>"; };
+		1C6213402452D6FB0037ACF1 /* WPNUXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNUXUtility.h; sourceTree = "<group>"; };
+		1C6213422452D7490037ACF1 /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
+		1C6213432452D7490037ACF1 /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
+		1C6213452452E0C90037ACF1 /* NSURLProtocol+WebKitSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WebKitSupport.h"; sourceTree = "<group>"; };
+		1C6213462452E0C90037ACF1 /* NSURLProtocol+WebKitSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WebKitSupport.m"; sourceTree = "<group>"; };
 		1C7B28201AF9B3C50086D4C5 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		1C7B28211AF9B3C50086D4C5 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		1C7B28221AF9B3C50086D4C5 /* Notebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notebook.h; sourceTree = "<group>"; };
@@ -707,6 +749,35 @@
 				1C53237D1B5CF494006B60EE /* BlogTab.m */,
 			);
 			path = blog;
+			sourceTree = "<group>";
+		};
+		1C6213232452D37F0037ACF1 /* WPShare */ = {
+			isa = PBXGroup;
+			children = (
+				1C6213352452D3E50037ACF1 /* UIColor+Helpers.h */,
+				1C6213402452D6FB0037ACF1 /* WPNUXUtility.h */,
+				1C62133F2452D6FB0037ACF1 /* WPNUXUtility.m */,
+				1C6213312452D3E40037ACF1 /* UIColor+Helpers.m */,
+				1C62132E2452D3E40037ACF1 /* WPDeviceIdentification.h */,
+				1C6213382452D3E50037ACF1 /* WPDeviceIdentification.m */,
+				1C6213322452D3E40037ACF1 /* WPFontManager.h */,
+				1C6213432452D7490037ACF1 /* UIImage+Util.h */,
+				1C6213422452D7490037ACF1 /* UIImage+Util.m */,
+				1C6213332452D3E40037ACF1 /* WPFontManager.m */,
+				1C6213342452D3E50037ACF1 /* WPStyleGuide.h */,
+				1C62132D2452D3E30037ACF1 /* WPStyleGuide.m */,
+				1C62132F2452D3E40037ACF1 /* WPTableViewCell.h */,
+				1C6213362452D3E50037ACF1 /* WPTableViewCell.m */,
+				1C6213372452D3E50037ACF1 /* WPTextFieldTableViewCell.h */,
+				1C6213302452D3E40037ACF1 /* WPTextFieldTableViewCell.m */,
+				1C6213242452D37F0037ACF1 /* WPStyleGuide.m */,
+				1C6213252452D37F0037ACF1 /* WPFontManager.m */,
+				1C6213262452D37F0037ACF1 /* WPTableViewCell.m */,
+				1C6213272452D37F0037ACF1 /* WPStyleGuide.h */,
+				1C6213282452D37F0037ACF1 /* WPFontManager.h */,
+				1C6213292452D37F0037ACF1 /* WPTableViewCell.h */,
+			);
+			path = WPShare;
 			sourceTree = "<group>";
 		};
 		1C7B281F1AF9B3C50086D4C5 /* model */ = {
@@ -1131,6 +1202,8 @@
 				1CEF0C911B876B2200C2B2F3 /* MongoID.m */,
 				1CEF0C921B876B2200C2B2F3 /* NSURLProtocolCustom.h */,
 				1CEF0C931B876B2200C2B2F3 /* NSURLProtocolCustom.m */,
+				1C6213452452E0C90037ACF1 /* NSURLProtocol+WebKitSupport.h */,
+				1C6213462452E0C90037ACF1 /* NSURLProtocol+WebKitSupport.m */,
 				1CEF0C941B876B2200C2B2F3 /* ReachabilityUtils.h */,
 				1CEF0C951B876B2200C2B2F3 /* ReachabilityUtils.m */,
 				1CEF0C971B876B2200C2B2F3 /* SVProgressHUD */,
@@ -1167,6 +1240,7 @@
 				1CEF0D4D1B876B4800C2B2F3 /* cells */,
 				1CEF0D521B876B4800C2B2F3 /* DRColorPicker */,
 				1CEF0D761B876B4800C2B2F3 /* LeaImagePagerViewController.h */,
+				1C6213232452D37F0037ACF1 /* WPShare */,
 				1CEF0D771B876B4800C2B2F3 /* LeaImagePagerViewController.m */,
 				1CEF0D781B876B4800C2B2F3 /* LeaImageSliderViewController.h */,
 				1CEF0D791B876B4800C2B2F3 /* LeaImageSliderViewController.m */,
@@ -1178,6 +1252,10 @@
 				1CEF0D7D1B876B4800C2B2F3 /* LeaUITabBar.m */,
 				1CEF0DDB1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.h */,
 				1CEF0DDE1B87738400C2B2F3 /* LeaImageViewController.h */,
+				1C6213202452C6600037ACF1 /* NSString+Util.h */,
+				1C6213212452C6600037ACF1 /* NSString+Util.m */,
+				1C62131D2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.h */,
+				1C62131E2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.m */,
 				1CEF0DDF1B87738400C2B2F3 /* LeaImageViewController.m */,
 				1CEF0DDC1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.m */,
 			);
@@ -1622,7 +1700,6 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/CTAssetsPickerController/CTAssetsPickerController.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/WPMediaPicker/WPMediaPicker.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/WordPress-iOS-Shared/WordPress-iOS-Shared.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -1631,7 +1708,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTAssetsPickerController.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WPMediaPicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WordPress-iOS-Shared.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1663,14 +1739,19 @@
 				1CEF0DAA1B876B4800C2B2F3 /* LeaSearchDisplayController.m in Sources */,
 				1CBE20761B3FD4CA00133EA1 /* BaseViewController.m in Sources */,
 				1CD7C2CF1B2DCBA200AB25FF /* FileService.m in Sources */,
+				1C62133E2452D3E50037ACF1 /* WPDeviceIdentification.m in Sources */,
 				1CDD8B861B3312EE000D3C11 /* WPNUXBackButton.m in Sources */,
+				1C62133C2452D3E50037ACF1 /* WPFontManager.m in Sources */,
+				1C62132B2452D37F0037ACF1 /* WPFontManager.m in Sources */,
 				1CEF0DCF1B876D8400C2B2F3 /* WeixinActivityBase.m in Sources */,
 				1CEF0D9E1B876B4800C2B2F3 /* DRColorPickerGridViewController.m in Sources */,
 				1CD6AF5B1B3288DE0098CE96 /* NoteController.m in Sources */,
 				1CEF0DAB1B876B4800C2B2F3 /* LeaUITabBar.m in Sources */,
+				1C6213392452D3E50037ACF1 /* WPStyleGuide.m in Sources */,
 				1CDD48721B30234300AC625F /* TagController.m in Sources */,
 				1CE519461AFBA95E00F263C5 /* BaseTab.m in Sources */,
 				1CDEE6041B23067A002B5761 /* UserService.m in Sources */,
+				1C62133A2452D3E50037ACF1 /* WPTextFieldTableViewCell.m in Sources */,
 				1C7B28341AF9B3C50086D4C5 /* NotebookService.m in Sources */,
 				1C53237F1B5CF494006B60EE /* BlogTab.m in Sources */,
 				1CEF0CAC1B876B2200C2B2F3 /* SVProgressHUD.m in Sources */,
@@ -1679,6 +1760,7 @@
 				1CB6C1091B5B8691004F61DD /* CategoryTab.m in Sources */,
 				1CC8FFD21B1B26DD00269072 /* NoteViewController.m in Sources */,
 				1CEF0DA71B876B4800C2B2F3 /* DRColorPickerWheelViewController.m in Sources */,
+				1C62133D2452D3E50037ACF1 /* WPTableViewCell.m in Sources */,
 				1CDDC0941B44DE6900CA8C71 /* AddNotebookViewController.m in Sources */,
 				1CEF0DD01B876D8400C2B2F3 /* WeixinSessionActivity.m in Sources */,
 				1CEF0DDD1B8772CA00C2B2F3 /* LeaButtonForNavigationBar.m in Sources */,
@@ -1695,6 +1777,7 @@
 				1CA4CF6B1B68D91200E500F4 /* WPLegacyKeyboardToolbarBase.m in Sources */,
 				1CA4CF591B68D91200E500F4 /* CYRTextStorage.m in Sources */,
 				1CA4CF691B68D91200E500F4 /* WPImageMeta.m in Sources */,
+				1C62133B2452D3E50037ACF1 /* UIColor+Helpers.m in Sources */,
 				1CEF0DD41B876EFC00C2B2F3 /* LeaAlert.m in Sources */,
 				1CEF0D9A1B876B4800C2B2F3 /* DRColorPickerColor.m in Sources */,
 				1CEF0D961B876B4800C2B2F3 /* DRColorPicker+UIColor.m in Sources */,
@@ -1705,6 +1788,7 @@
 				1CEF0DE01B87738400C2B2F3 /* LeaImageViewController.m in Sources */,
 				1CA4CF6C1B68D91200E500F4 /* WPLegacyKeyboardToolbarButtonItem.m in Sources */,
 				1CDEE5FD1B22AFB1002B5761 /* ApiService.m in Sources */,
+				1C6213472452E0CA0037ACF1 /* NSURLProtocol+WebKitSupport.m in Sources */,
 				1CA4CF5C1B68D91200E500F4 /* HRBrightnessCursor.m in Sources */,
 				1CA4CF5F1B68D91200E500F4 /* HRColorPickerView.m in Sources */,
 				1CEF0DD71B87707D00C2B2F3 /* LeaURLRequest.m in Sources */,
@@ -1714,6 +1798,7 @@
 				1CEF0D9C1B876B4800C2B2F3 /* DRColorPickerGridView.m in Sources */,
 				1CF3647F1B29C82200C9BCB9 /* LoginViewController.m in Sources */,
 				1CEF0DD11B876D8400C2B2F3 /* WeixinTimelineActivity.m in Sources */,
+				1C62132C2452D37F0037ACF1 /* WPTableViewCell.m in Sources */,
 				1CEF0D941B876B4800C2B2F3 /* NotebookTagCell.m in Sources */,
 				1CA4CF631B68D91200E500F4 /* WPEditorField.m in Sources */,
 				1CA4CF661B68D91200E500F4 /* WPEditorToolbarView.m in Sources */,
@@ -1732,6 +1817,7 @@
 				1CD7C2D41B2DD43B00AB25FF /* README.md in Sources */,
 				1CA4CF681B68D91200E500F4 /* WPEditorViewController.m in Sources */,
 				1CA4CF611B68D91200E500F4 /* HRColorUtil.m in Sources */,
+				1C6213222452C6610037ACF1 /* NSString+Util.m in Sources */,
 				1CEF0CA31B876B2200C2B2F3 /* ApiMsg.m in Sources */,
 				1CA4CF651B68D91200E500F4 /* WPEditorToolbarButton.m in Sources */,
 				1CEF0DDA1B87714400C2B2F3 /* LeaWebViewController.m in Sources */,
@@ -1742,18 +1828,22 @@
 				1C7B28301AF9B3C50086D4C5 /* Notebook.m in Sources */,
 				1CE69C801B27388D00DE8C96 /* WPNUXPrimaryButton.m in Sources */,
 				1CEF0DA11B876B4800C2B2F3 /* DRColorPickerHorizontalCollectionViewLayout.m in Sources */,
+				1C62131F2452C5A00037ACF1 /* WPTableViewSectionHeaderFooterView.m in Sources */,
 				1CB6C10C1B5B8A4C004F61DD /* CategoryViewController.m in Sources */,
 				1CEF0DA01B876B4800C2B2F3 /* DRColorPickerHomeViewController.m in Sources */,
 				1CA4CF5E1B68D91200E500F4 /* HRColorCursor.m in Sources */,
 				1CEF0DA51B876B4800C2B2F3 /* DRColorPickerViewController.m in Sources */,
+				1C6213412452D6FB0037ACF1 /* WPNUXUtility.m in Sources */,
 				1CEF0CA41B876B2200C2B2F3 /* NSString+Helpers.m in Sources */,
 				1CA4CF6E1B68D91200E500F4 /* ZSSBarButtonItem.m in Sources */,
 				1CEF0D9B1B876B4800C2B2F3 /* DRColorPickerColorView.m in Sources */,
+				1C6213442452D7490037ACF1 /* UIImage+Util.m in Sources */,
 				1CA4CF671B68D91200E500F4 /* WPEditorView.m in Sources */,
 				1CEF0CAA1B876B2200C2B2F3 /* SVIndefiniteAnimatedView.m in Sources */,
 				1CEF0DA81B876B4800C2B2F3 /* LeaImagePagerViewController.m in Sources */,
 				1CE5194C1AFBAA0400F263C5 /* NotebookController.m in Sources */,
 				1CE69C811B27388D00DE8C96 /* WPNUXSecondaryButton.m in Sources */,
+				1C62132A2452D37F0037ACF1 /* WPStyleGuide.m in Sources */,
 				1C7B28351AF9B3C50086D4C5 /* NoteService.m in Sources */,
 				1CDD486C1B30074500AC625F /* TagService.m in Sources */,
 			);
@@ -1875,7 +1965,7 @@
 				GCC_PREFIX_HEADER = "Leanote/Leanote-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Leanote/Leanote-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",
@@ -1909,7 +1999,7 @@
 				GCC_PREFIX_HEADER = "Leanote/Leanote-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Leanote/Leanote-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Leanote/view/activity/WeixinActivity/Resources",

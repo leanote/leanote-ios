@@ -2,14 +2,14 @@
 #import "WPNUXPrimaryButton.h"
 #import "WPNUXSecondaryButton.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
+#import "WPFontManager.h"
 
 
 
 #import "UILabel+SuggestSize.h"
 
 //#import <WordPress-iOS-Shared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPNUXUtility.h>
+#import "WPNUXUtility.h"
 
 @interface WPWalkthroughOverlayView() {
     UIImageView *_logo;
@@ -217,7 +217,7 @@ CGFloat const WPWalkthroughGrayOverlayMaxLabelWidth = 289.0;
     _title.textAlignment = NSTextAlignmentCenter;
     _title.numberOfLines = 0;
     _title.lineBreakMode = NSLineBreakByWordWrapping;
-    _title.font = [WPFontManager openSansLightFontOfSize:25.0];
+    _title.font = [WPFontManager systemLightFontOfSize:25.0];
     _title.text = self.overlayTitle;
     _title.shadowColor = [UIColor blackColor];
     _title.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -241,7 +241,7 @@ CGFloat const WPWalkthroughGrayOverlayMaxLabelWidth = 289.0;
     _bottomLabel.backgroundColor = [UIColor clearColor];
     _bottomLabel.textAlignment = NSTextAlignmentCenter;
     _bottomLabel.numberOfLines = 1;
-    _bottomLabel.font = [WPFontManager openSansRegularFontOfSize:10.0];
+    _bottomLabel.font = [WPFontManager systemLightFontOfSize:10.0];
     _bottomLabel.text = self.footerDescription;
     _bottomLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4];
     [self addSubview:_bottomLabel];

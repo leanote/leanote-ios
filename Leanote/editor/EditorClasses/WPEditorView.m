@@ -5,11 +5,13 @@
 #import "WPEditorField.h"
 #import "WPImageMeta.h"
 #import "ZSSTextView.h"
-#import <WordPress-iOS-Shared/WordPressShared/WPDeviceIdentification.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import "WPDeviceIdentification.h"
+#import "WPFontManager.h"
+#import "WPStyleGuide.h"
 
 #import <WebKit/WebKit.h>
+
+#import "NSURLProtocol+WebKitSupport.h"
 #import "NSURLProtocolCustom.h"
 
 typedef void(^WPEditorViewCallbackParameterProcessingBlock)(NSString* parameterName, NSString* parameterValue);
@@ -156,7 +158,7 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
     }
     
     _sourceViewTitleField.hidden = YES;
-    _sourceViewTitleField.font = [WPFontManager merriweatherBoldFontOfSize:18.0f];
+    _sourceViewTitleField.font = [WPFontManager systemSemiBoldFontOfSize:18.0f];
     _sourceViewTitleField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     _sourceViewTitleField.autocorrectionType = UITextAutocorrectionTypeYes;
     _sourceViewTitleField.autoresizingMask =  UIViewAutoresizingFlexibleWidth;
@@ -223,8 +225,11 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 // 加载editor.html
 - (void)setupHTMLEditor
 {
+	[NSURLProtocol wk_registerScheme:@"leanote"];
 	// 设置自定义协议
 	[NSURLProtocol registerClass:[NSURLProtocolCustom class]];
+	
+	NSLog(@"NSURLProtocol registerClass");
 	
 	// 普通编辑器
 	if(!self.isMarkdown) {
@@ -370,7 +375,7 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
-    BOOL isiOSVersionEarlierThan8 = [WPDeviceIdentification isiOSVersionEarlierThan8];
+	BOOL isiOSVersionEarlierThan8 = false; // [WPDeviceIdentification isiOSVersionEarlierThan8];
     
     if (isiOSVersionEarlierThan8) {
         // PROBLEM: under iOS 7, it seems that setting the proper insets in keyboardWillShow: is not
@@ -558,6 +563,15 @@ didFinishNavigation:(WKNavigation *)navigation
 	if ([self.delegate respondsToSelector:@selector(editorViewDidFinishLoading:)]) {
 		[self.delegate editorViewDidFinishLoading:self];
 	}
+	NSLog(@"load finised");
+}
+
+// 页面加载失败时调用
+- (void)webView:(WKWebView *)webView
+didFailProvisionalNavigation:(WKNavigation *)navigation
+	  withError:(NSError *)error
+{
+	NSLog(@"load error %@", error);
 }
 
 #pragma mark - Handling callbacks

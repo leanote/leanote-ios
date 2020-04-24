@@ -7,8 +7,8 @@
 //
 
 #import "NotebookTagCell.h"
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import "WPFontManager.h"
+#import "WPStyleGuide.h"
 #import "NotebookService.h"
 
 @interface NotebookTagCell()
@@ -213,13 +213,13 @@ CGFloat const WPContentCellDefaultOrigin2                    = 15.0f;
 
 + (UIFont *)titleFont
 {
-	return [WPFontManager openSansRegularFontOfSize:14.0];
+	return [WPFontManager systemRegularFontOfSize:14.0];
 }
 
 
 + (UIFont *)titleFontBold
 {
-	return [WPFontManager openSansBoldFontOfSize:14.0];
+	return [WPFontManager systemBoldFontOfSize:14.0];
 }
 
 + (NSDictionary *)titleAttributes

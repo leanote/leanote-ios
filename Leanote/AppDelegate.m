@@ -3,10 +3,10 @@
 #import "NoteController.h"
 #import "Common.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
+#import "UIImage+Util.h"
+#import "WPStyleGuide.h"
+#import "WPFontManager.h"
+#import "UIColor+Helpers.h"
 
 #import "SVProgressHUD.h"
 #import "WXApi.h"
@@ -161,7 +161,7 @@
 	[[UITabBar appearance] setShadowImage:[UIImage imageWithColor:[UIColor colorWithRed:210.0/255.0 green:222.0/255.0 blue:230.0/255.0 alpha:1.0]]];
 	[[UITabBar appearance] setTintColor:[WPStyleGuide newKidOnTheBlockBlue]];
 	
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [WPFontManager openSansBoldFontOfSize:16.0]} ];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [WPFontManager systemBoldFontOfSize:16.0]} ];
 	
 	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[WPStyleGuide wordPressBlue]] forBarMetrics:UIBarMetricsDefault];
 	[[UINavigationBar appearance] setShadowImage:[UIImage imageWithColor:[UIColor UIColorFromHex:0x007eb1]]];
@@ -174,7 +174,7 @@
 	[[UIToolbar appearance] setBarTintColor:[WPStyleGuide wordPressBlue]];
 	[[UISwitch appearance] setOnTintColor:[WPStyleGuide wordPressBlue]];
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-	[[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [WPFontManager openSansRegularFontOfSize:10.0], NSForegroundColorAttributeName: [WPStyleGuide allTAllShadeGrey]} forState:UIControlStateNormal];
+	[[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [WPFontManager systemRegularFontOfSize:10.0], NSForegroundColorAttributeName: [WPStyleGuide allTAllShadeGrey]} forState:UIControlStateNormal];
 	[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [WPStyleGuide wordPressBlue]} forState:UIControlStateSelected];
 	
 	[[UINavigationBar appearanceWhenContainedIn:[UIReferenceLibraryViewController class], nil] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
@@ -191,7 +191,7 @@
 	[SVProgressHUD setBackgroundColor2:[UIColor whiteColor]];
 	[SVProgressHUD setForegroundColor2:[UIColor blackColor]];
 	
-	[SVProgressHUD setFont:[WPFontManager openSansRegularFontOfSize:18.0]];
+	[SVProgressHUD setFont:[WPFontManager systemRegularFontOfSize:18.0]];
 	[SVProgressHUD setErrorImage:[UIImage imageNamed:@"hud_error"]];
 	[SVProgressHUD setSuccessImage:[UIImage imageNamed:@"hud_success"]];
 	

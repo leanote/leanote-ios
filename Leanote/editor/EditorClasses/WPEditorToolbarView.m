@@ -1,7 +1,7 @@
 #import "WPEditorToolbarView.h"
 #import "WPEditorToolbarButton.h"
 #import "ZSSBarButtonItem.h"
-#import <WordPress-iOS-Shared/WordPressShared/WPDeviceIdentification.h>
+#import "WPDeviceIdentification.h"
 
 // life 
 #ifdef __OBJC__

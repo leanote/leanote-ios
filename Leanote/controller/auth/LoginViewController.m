@@ -13,10 +13,10 @@
 #import "RegisterController.h"
 #import "WPWalkthroughOverlayView.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIColor+Helpers.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPNUXUtility.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import "WPFontManager.h"
+#import "UIColor+Helpers.h"
+#import "WPNUXUtility.h"
+#import "WPStyleGuide.h"
 
 #import "ReachabilityUtils.h"
 #import "LeaAlert.h"
@@ -191,7 +191,7 @@ static NSInteger const LoginVerificationCodeNumberOfLines       = 2;
 	helpBadge.textAlignment = NSTextAlignmentCenter;
 	helpBadge.backgroundColor = [UIColor UIColorFromHex:0xdd3d36];
 	helpBadge.textColor = [UIColor whiteColor];
-	helpBadge.font = [WPFontManager openSansRegularFontOfSize:8.0];
+	helpBadge.font = [WPFontManager systemRegularFontOfSize:8.0];
 	helpBadge.hidden = YES;
 	
 	// Add Username

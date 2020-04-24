@@ -1,24 +1,18 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - CocoaLumberjack (2.2.0):
     - CocoaLumberjack/Default (= 2.2.0)
@@ -34,24 +28,20 @@ PODS:
   - SGNavigationProgress (1.2)
   - SWTableViewCell (0.3.7)
   - "UIAlertView+Blocks (0.8.1)"
-  - WordPress-iOS-Shared (0.5.2):
-    - AFNetworking (~> 2.5)
-    - CocoaLumberjack (~> 2.2.0)
   - WordPressCom-Analytics-iOS (0.0.41)
   - WPMediaPicker (0.7.3)
 
 DEPENDENCIES:
-  - AFNetworking (= 2.6.3)
+  - AFNetworking (~> 4.0)
   - CocoaLumberjack (~> 2.0)
   - CTAssetsPickerController (~> 2.9.0)
   - NSObject-SafeExpectations (= 0.0.2)
-  - QBImagePickerController (~> 3.0.0)
-  - SGNavigationProgress
+  - QBImagePickerController (= 3.0.2)
+  - SGNavigationProgress (= 1.2)
   - SWTableViewCell (~> 0.3.7)
   - "UIAlertView+Blocks (~> 0.8.1)"
-  - WordPress-iOS-Shared (= 0.5.2)
   - WordPressCom-Analytics-iOS (~> 0.0.4)
-  - WPMediaPicker
+  - WPMediaPicker (= 0.7.3)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -63,12 +53,11 @@ SPEC REPOS:
     - SGNavigationProgress
     - SWTableViewCell
     - "UIAlertView+Blocks"
-    - WordPress-iOS-Shared
     - WordPressCom-Analytics-iOS
     - WPMediaPicker
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CTAssetsPickerController: b413fece2194ae3dbf22fbc544cf6f2a6d516a4d
   NSObject-SafeExpectations: 7d7f48df90df4e11da7cfe86b64f45eff7a7f521
@@ -76,10 +65,9 @@ SPEC CHECKSUMS:
   SGNavigationProgress: f04e3bd0058c53e1172ee020b5239f22aa9e4a0f
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   "UIAlertView+Blocks": 45c3d3b7194906702d3e9a14c7ece5581505646d
-  WordPress-iOS-Shared: 2039e3888f1e1faed331e9dea84bf16d49760d37
   WordPressCom-Analytics-iOS: 3684495c87e7beec616be92df3dec59ba10dfd95
   WPMediaPicker: 6bbce465f5a5c071267ae28bdf31d0fd6e109721
 
-PODFILE CHECKSUM: 9f851ef804d88548a585c877bf78e189a7597590
+PODFILE CHECKSUM: 564da0afc38d15854358c1dd67775ccedd8a10a9
 
 COCOAPODS: 1.6.1

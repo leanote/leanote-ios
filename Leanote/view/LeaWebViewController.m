@@ -25,8 +25,8 @@
 // https://github.com/iDay/WeixinActivity
 #import "WeixinActivity.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/NSString+Util.h>
+#import "WPStyleGuide.h"
+#import "NSString+Util.h"
 
 
 @class WPReaderDetailViewController;

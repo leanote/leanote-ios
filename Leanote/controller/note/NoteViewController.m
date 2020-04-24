@@ -21,9 +21,9 @@
 #import "LeaAlert.h"
 
 #import "LeaButtonForNavigationBar.h"
-#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
+#import "UIImage+Util.h"
+#import "WPFontManager.h"
+#import "WPStyleGuide.h"
 #import <WPMediaPicker/WPMediaPicker.h>
 #import <QBImagePickerController/QBImagePickerController.h>
 

@@ -1,10 +1,10 @@
 #import "WPLegacyEditorViewController.h"
 #import "WPLegacyKeyboardToolbarBase.h"
 #import "WPLegacyKeyboardToolbarDone.h"
-#import <WordPressCom-Analytics-iOS/WPAnalytics.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPTableViewCell.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
+
+#import "WPStyleGuide.h"
+#import "WPTableViewCell.h"
+#import "UIImage+Util.h"
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 
 CGFloat const WPLegacyEPVCTextfieldHeight = 44.0f;
@@ -210,7 +210,7 @@ CGFloat const WPLegacyEPVCTextViewTopPadding = 7.0f;
         frame = CGRectMake(WPLegacyEPVCStandardOffset, 0.0, textWidth, WPLegacyEPVCTextfieldHeight);
         self.titleTextField = [[UITextField alloc] initWithFrame:frame];
         self.titleTextField.delegate = self;
-        self.titleTextField.font = [WPStyleGuide postTitleFont];
+        self.titleTextField.font = [WPStyleGuide subtitleFont];
         self.titleTextField.textColor = [WPStyleGuide darkAsNightGrey];
         self.titleTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.titleTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:(NSLocalizedString(@"Enter title here", @"Label for the title of the post field. Should be the same as WP core.")) attributes:(@{NSForegroundColorAttributeName: [WPStyleGuide textFieldPlaceholderGrey]})];
@@ -516,19 +516,19 @@ CGFloat const WPLegacyEPVCTextViewTopPadding = 7.0f;
 - (void)keyboardToolbarButtonItemPressed:(WPLegacyKeyboardToolbarButtonItem *)buttonItem
 {
     if ([buttonItem.actionTag isEqualToString:@"strong"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedBold];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedBold];
     } else if ([buttonItem.actionTag isEqualToString:@"em"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedItalic];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedItalic];
     } else if ([buttonItem.actionTag isEqualToString:@"u"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedUnderline];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedUnderline];
     } else if ([buttonItem.actionTag isEqualToString:@"del"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedStrikethrough];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedStrikethrough];
     } else if ([buttonItem.actionTag isEqualToString:@"link"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedLink];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedLink];
     } else if ([buttonItem.actionTag isEqualToString:@"blockquote"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedBlockquote];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedBlockquote];
     } else if ([buttonItem.actionTag isEqualToString:@"more"]) {
-        [WPAnalytics track:WPAnalyticsStatEditorTappedMore];
+//        [WPAnalytics track:WPAnalyticsStatEditorTappedMore];
     }
          
     if ([buttonItem.actionTag isEqualToString:@"link"]) {

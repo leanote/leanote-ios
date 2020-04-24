@@ -8,13 +8,14 @@
 
 #import "MeController.h"
 
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/UIImage+Util.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPTableViewCell.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPTextFieldTableViewCell.h>
-#import <WordPress-iOS-Shared/WordPressShared/WPTableViewSectionHeaderFooterView.h>
+#import "WPStyleGuide.h"
+#import "UIImage+Util.h"
+#import "WPFontManager.h"
+#import "WPStyleGuide.h"
+#import "WPTableViewCell.h"
+#import "WPTextFieldTableViewCell.h"
+
+#import "WPTableViewSectionHeaderFooterView.h"
 
 #import "LoginViewController.h"
 #import "UserService.h"

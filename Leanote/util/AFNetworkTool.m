@@ -55,15 +55,17 @@ static AFNetworkReachabilityStatus status;
 #pragma mark - JSON方式获取数据
 + (void)JSONDataWithUrl:(NSString *)url success:(void (^)(id json))success fail:(void (^)())fail;
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSDictionary *dict = @{@"format": @"json"};
+	
     // 网络访问是异步的,回调是主线程的,因此程序员不用管在主线程更新UI的事情
-    [manager GET:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	[manager GET:url parameters:dict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+	} success:^(NSURLSessionDataTask *operation, id responseObject) {
         if (success) {
             success(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"%@", error);
         if (fail) {
             fail();
@@ -73,7 +75,7 @@ static AFNetworkReachabilityStatus status;
 
 + (void)get:(NSString *)url params: (NSMutableDictionary *)params success:(void (^)(id json))success fail:(void (^)(id json))fail;
 {
-	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	
 	// NSDictionary *dic3 = [NSDictionary dictionaryWithDictionary:params];
 	
@@ -87,7 +89,8 @@ static AFNetworkReachabilityStatus status;
 	
 	// NSDictionary *dict = @{@"format": @"json"};
 	// 网络访问是异步的,回调是主线程的,因此程序员不用管在主线程更新UI的事情
-	[manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id obj) {
+	[manager GET:url parameters:params headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+	} success:^(NSURLSessionDataTask *operation, id obj) {
 		if([self retIsOk:obj]) {
 			if (success) {
 				success(obj);
@@ -97,7 +100,7 @@ static AFNetworkReachabilityStatus status;
 			fail(obj);
 		}
 		
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+	} failure:^(NSURLSessionDataTask *operation, NSError *error) {
 		NSLog(@"%@", error);
 		if (fail) {
 			fail(nil);
@@ -107,6 +110,7 @@ static AFNetworkReachabilityStatus status;
 
 
 #pragma mark - xml方式获取数据
+/*
 + (void)XMLDataWithUrl:(NSString *)urlStr success:(void (^)(id xml))success fail:(void (^)())fail
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -129,12 +133,14 @@ static AFNetworkReachabilityStatus status;
         }
     }];
 }
-
+*/
 
 + (void)post:(NSString *)urlStr params:(NSMutableDictionary *)params success:(void (^)(id responseObject))success fail:(void (^)(id json))fail
 {
-	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-	[manager POST:urlStr parameters:params success:^(AFHTTPRequestOperation *operation, id obj) {
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+	[manager POST:urlStr parameters:params headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+	} success:^(NSURLSessionDataTask *operation, id obj) {
 		if([self retIsOk:obj]) {
 			if (success) {
 				success(obj);
@@ -144,7 +150,7 @@ static AFNetworkReachabilityStatus status;
 			fail(obj);
 		}
 //		NSLog(@"JSON: %@", responseObject);
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+	} failure:^(NSURLSessionDataTask *operation, NSError *error) {
 		NSLog(@"Error: %@", error);
 		if (fail) {
 			fail(nil);
@@ -158,10 +164,51 @@ static AFNetworkReachabilityStatus status;
 				fail:(void (^)(id json))fail
 {
 	NSString *docPath = [Common getDocPath];
+	NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString: urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+		if(files && [files count] > 0) {
+			for(File *eachFile in files) {
+				if(!eachFile.serverFileId || [eachFile.serverFileId length] == 0) {
+					NSString *path = [NSString stringWithFormat:@"%@/%@", docPath, eachFile.filePath];
+					NSURL *urlPath = [NSURL fileURLWithPath:path];
+					[formData appendPartWithFileURL:urlPath name:[NSString stringWithFormat:@"FileDatas[%@]", eachFile.fileId] error:nil];
+				}
+			}
+		}
+	} error:nil];
 	
-	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+	AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 	
-	[manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+	NSURLSessionUploadTask *uploadTask;
+	uploadTask = [manager
+				  uploadTaskWithStreamedRequest:request
+				  progress:^(NSProgress * _Nonnull uploadProgress) {
+					  
+				  }
+				  completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable obj, NSError * _Nullable error) {
+					  if (error) {
+						  NSLog(@"Error: %@", error);
+						  fail(nil);
+					  } else {
+						  NSLog(@"%@ %@", response, obj);
+						  if([self retIsOk:obj]) {
+							  if (success) {
+								  success(obj);
+							  }
+						  }
+						  else if(fail) {
+							  fail(obj);
+						  }
+					  }
+				  }];
+	
+	[uploadTask resume];
+	
+	/*
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+	
+	[manager POST:urlStr
+	   parameters:params
+		constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 		if(files && [files count] > 0) {
 			for(File *eachFile in files) {
 				if(!eachFile.serverFileId || [eachFile.serverFileId length] == 0) {
@@ -173,7 +220,8 @@ static AFNetworkReachabilityStatus status;
 		}
 		// [formData appendPartWithFileURL:filePath name:@"FileDatas[558e6d7105fcd12eef000000]" error:nil];
 		
-	} success:^(AFHTTPRequestOperation *operation, id obj) {
+	} progress:^(NSProgress * _Nonnull uploadProgress) {
+	} success:^(NSURLSessionDataTask *operation, id obj) {
 		if([self retIsOk:obj]) {
 			if (success) {
 				success(obj);
@@ -183,38 +231,37 @@ static AFNetworkReachabilityStatus status;
 			fail(obj);
 		}
 		//		NSLog(@"JSON: %@", responseObject);
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+	} failure:^(NSURLSessionDataTask *operation, NSError *error) {
 		//		NSLog(@"Error: %@", error);
 		if (fail) {
 			fail(nil);
 		}
 	}];
+	 */
 }
-
-
 
 #pragma mark - JSON方式post提交数据
 + (void)postJSONWithUrl:(NSString *)urlStr parameters:(id)parameters success:(void (^)(id responseObject))success fail:(void (^)())fail
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     // 设置请求格式
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     // 设置返回格式
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:urlStr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	
+	[manager POST:urlStr parameters:parameters headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+	}  success:^(NSURLSessionDataTask *operation, id responseObject) {
 //        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         if (success) {
             success(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"%@", error);
         if (fail) {
             fail();
         }
     }];
-    
 }
-
 
 #pragma mark - Session 下载下载文件
 + (void)sessionDownloadWithUrl:(NSString *)urlStr success:(void (^)(NSURL *fileURL))success fail:(void (^)())fail
@@ -254,7 +301,7 @@ static AFNetworkReachabilityStatus status;
     [task resume];
 }
 
-
+/*
 #pragma mark - 文件上传 自己定义文件名
 + (void)postUploadWithUrl:(NSString *)urlStr fileUrl:(NSURL *)fileURL fileName:(NSString *)fileName fileType:(NSString *)fileTye success:(void (^)(id responseObject))success fail:(void (^)())fail
 {
@@ -320,6 +367,7 @@ static AFNetworkReachabilityStatus status;
         }
     }];
 }
+*/
 
 + (void) download:(NSString*) url success:(void (^)(NSString *relativePath))success fail:(void (^)())fail
 {
