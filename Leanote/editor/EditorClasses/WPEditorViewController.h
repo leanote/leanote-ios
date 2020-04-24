@@ -26,6 +26,14 @@ WPEditorViewControllerMode;
 
 
 /**
+ *	@brief		Received when the format bar enabled status has changed.
+ *	@param		editorController    The editor view.
+ *	@param		enabled             BOOL describing the new state of the format bar
+ */
+- (void)editorFormatBarStatusChanged:(WPEditorViewController *)editorController
+                             enabled:(BOOL)isEnabled;
+
+/**
  *	@brief		Received when the field is created and can be used.
  *  @details    The editor fields will be nil before this method is called.  This is because editor
  *              fields are created as part of the process of loading the HTML.
@@ -121,10 +129,12 @@ WPEditorViewControllerMode;
 
 @interface WPEditorViewController : UIViewController
 
+typedef void(^WPEditorViewControllerTextRequestCompletionBlock)(NSString *text, NSError *error);
+
 @property (nonatomic, weak) id<WPEditorViewControllerDelegate> delegate;
-@property (nonatomic, copy) NSString *titleText;
+//@property (nonatomic, copy) NSString *titleText;
 @property (nonatomic, copy) NSString *titlePlaceholderText;
-@property (nonatomic, copy) NSString *bodyText;
+//@property (nonatomic, copy) NSString *bodyText;
 @property (nonatomic, copy) NSString *bodyPlaceholderText;
 
 @property (nonatomic) BOOL isMarkdown;
@@ -142,7 +152,15 @@ WPEditorViewControllerMode;
  *	@returns	The initialized object.
  */
 - (instancetype)initWithMode:(WPEditorViewControllerMode)mode;
+
 - (instancetype)initWithMode:(WPEditorViewControllerMode)mode isMarkdown:(BOOL) isMarkdown;
+
+#pragma mark - Getters & setters
+
+- (void)bodyText:(WPEditorViewControllerTextRequestCompletionBlock)completionBlock;
+- (void)setBodyText:(NSString*)bodyText;
+- (void)titleText:(WPEditorViewControllerTextRequestCompletionBlock)completionBlock;
+- (void)setTitleText:(NSString *)titleText;
 
 #pragma mark - Editing
 

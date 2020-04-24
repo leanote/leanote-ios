@@ -37,6 +37,9 @@ Launch the workspace by either double clicking on Leanote.xcworkspace file, or l
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell)
 * [ZSSRichTextEditor](https://github.com/nnhubbard/ZSSRichTextEditor)
 
+## TODO
+
+[ ] Update to WKWebView https://github.com/wordpress-mobile/WordPress-Editor-iOS/commits/feature/260-wkwebview
 ## 5. LICENSE
 
 [LICENSE](https://github.com/leanote/leanote-ios/blob/master/LICENSE)

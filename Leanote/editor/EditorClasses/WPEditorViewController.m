@@ -1059,9 +1059,13 @@ NSInteger const WPLinkAlertViewTag = 92;
 
 #pragma mark - Getters and Setters
 
-- (NSString*)titleText
-{    
-    return [self.editorView title];
+- (void)titleText:(WPEditorViewControllerTextRequestCompletionBlock)completionBlock
+{
+	NSParameterAssert(completionBlock != nil);
+	
+	[self.editorView title:^void(NSString* text, NSError *error) {
+		completionBlock(text, error);
+	}];
 }
 
 - (void)setTitleText:(NSString*)titleText
@@ -1081,14 +1085,22 @@ NSInteger const WPLinkAlertViewTag = 92;
     }
 }
 
-- (NSString*)bodyText
+- (void)bodyText:(WPEditorViewControllerTextRequestCompletionBlock)completionBlock
 {
-    return [self.editorView contents];
+	NSParameterAssert(completionBlock != nil);
+	
+	[self.editorView contents:^void(NSString* text, NSError *error) {
+		completionBlock(text, error);
+	}];
 }
 
 - (void)setBodyText:(NSString*)bodyText
 {
-    [self.editorView.contentField setHtml:bodyText];
+    [self.editorView.contentField setHtml:bodyText onComplete:^(NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)setBodyPlaceholderText:(NSString*)bodyPlaceholderText
@@ -1125,6 +1137,7 @@ NSInteger const WPLinkAlertViewTag = 92;
 
 #pragma mark - Editor and Misc Methods
 
+/*
 - (BOOL)isBodyTextEmpty
 {
     if(!self.bodyText
@@ -1136,6 +1149,7 @@ NSInteger const WPLinkAlertViewTag = 92;
     }
     return NO;
 }
+*/
 
 #pragma mark - Editing
 

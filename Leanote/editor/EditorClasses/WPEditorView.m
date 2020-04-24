@@ -1,6 +1,6 @@
 #import "WPEditorView.h"
 
-#import "UIWebView+GUIFixes.h"
+#import "WKWebView+GUIFixes.h"
 #import "HRColorUtil.h"
 #import "WPEditorField.h"
 #import "WPImageMeta.h"
@@ -9,7 +9,7 @@
 #import <WordPress-iOS-Shared/WordPressShared/WPFontManager.h>
 #import <WordPress-iOS-Shared/WordPressShared/WPStyleGuide.h>
 
-// life
+#import <WebKit/WebKit.h>
 #import "NSURLProtocolCustom.h"
 
 typedef void(^WPEditorViewCallbackParameterProcessingBlock)(NSString* parameterName, NSString* parameterValue);
@@ -30,7 +30,7 @@ static const CGFloat iPadHTMLViewLeftRightInset = 85.0f;
 
 static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 
-@interface WPEditorView () <UITextViewDelegate, UIWebViewDelegate, UITextFieldDelegate>
+@interface WPEditorView () <UITextViewDelegate, WKNavigationDelegate, UITextFieldDelegate>
 
 #pragma mark - Cached caret & line data
 @property (nonatomic, strong, readwrite) NSNumber *caretYOffset;
@@ -53,7 +53,7 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 @property (nonatomic, strong, readwrite) UITextField *sourceViewTitleField;
 @property (nonatomic, strong, readonly) UIView *sourceContentDividerView;
 @property (nonatomic, strong, readwrite) ZSSTextView *sourceView;
-@property (nonatomic, strong, readonly) UIWebView* webView;
+@property (nonatomic, strong, readonly) WKWebView* webView;
 
 #pragma mark - Editor loading support
 @property (nonatomic, copy, readwrite) NSString* preloadedHTML;
@@ -206,24 +206,19 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 {
 	NSAssert(!_webView, @"The web view must not exist when this method is called!");
 	
-	_webView = [[UIWebView alloc] initWithFrame:frame];
+	_webView = [[WKWebView alloc] initWithFrame:frame];
 	// 就算frame高度>实现的高度, 通过autoresizingMask也可以resize到真实的高度
 	_webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_webView.delegate = self;
-	_webView.scalesPageToFit = YES;
-	_webView.dataDetectorTypes = UIDataDetectorTypeNone;
+	_webView.navigationDelegate = self;
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
     _webView.scrollView.bounces = NO;
     _webView.usesGUIFixes = YES;
-    _webView.keyboardDisplayRequiresUserAction = NO;
     _webView.scrollView.bounces = YES;
-    _webView.allowsInlineMediaPlayback = YES;
     [self startObservingWebViewContentSizeChanges];
-	
+    
 	[self addSubview:_webView];
 }
-
 
 // 加载editor.html
 - (void)setupHTMLEditor
@@ -489,48 +484,76 @@ static NSString* const WPEditorViewWebViewContentSizeKey = @"contentSize";
 			
 			//		NSLog(@"webView height %f", self.webView.frame.size.height);
 			NSString *js = [NSString stringWithFormat:@"LEAMD.keyboardShow(%f, %f);", keyboardHeight, self.webView.frame.size.height];
-			[self.webView stringByEvaluatingJavaScriptFromString:js];
+			[self.webView evaluateJavaScript:js completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+			}];
 		}
     }
 }
 
 - (void)refreshVisibleViewportAndContentSize
 {
-    [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.refreshVisibleViewportSize();"];
+	[self.webView evaluateJavaScript:@"ZSSEditor.refreshVisibleViewportSize();" completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
     
 #ifdef DEBUG
-    [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.logMainElementSizes();"];
+	[self.webView evaluateJavaScript:@"ZSSEditor.logMainElementSizes();" completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 #endif
-    
-    NSString* newHeightString = [self.webView stringByEvaluatingJavaScriptFromString:@"$(document.body).height();"];
-    NSInteger newHeight = [newHeightString integerValue];
-    
-    self.lastEditorHeight = newHeight;
 	
-	// 我靠, 重新resize啊
-	// contentSize是scrollview可以滚动的区域, 所以, contentSize就是内容的高度
-    self.webView.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame), newHeight);
+	__weak typeof(self) weakSelf = self;
+	__block NSString* newHeightString;
+	
+	[self.webView evaluateJavaScript:@"$(document.body).height();" completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		} else {
+			newHeightString = (NSString*)result;
+			
+			NSInteger newHeight = [newHeightString integerValue];
+			
+			weakSelf.lastEditorHeight = newHeight;
+			weakSelf.webView.scrollView.contentSize = CGSizeMake(CGRectGetWidth(weakSelf.frame), newHeight);
+			/*
+			 self.lastEditorHeight = newHeight;
+			 
+			 // 我靠, 重新resize啊
+			 // contentSize是scrollview可以滚动的区域, 所以, contentSize就是内容的高度
+			 self.webView.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame), newHeight);
+			 */
+		}
+	}];
 }
 
-#pragma mark - UIWebViewDelegate
+#pragma mark - WKWebViewDelegate
 
--            (BOOL)webView:(UIWebView *)webView
-shouldStartLoadWithRequest:(NSURLRequest *)request
-			navigationType:(UIWebViewNavigationType)navigationType
+-                 (void)webView:(WKWebView *)webView
+decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+				decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	NSURL *url = [request URL];
+	NSURL *url = navigationAction.request.URL;
     
 	BOOL shouldLoad = NO;
 	
-	if (navigationType != UIWebViewNavigationTypeLinkClicked) {
+	if (navigationAction.navigationType != WKNavigationTypeLinkActivated) {
 		BOOL handled = [self handleWebViewCallbackURL:url];
 		shouldLoad = !handled;
 	}
     
-	return shouldLoad;
+	if (shouldLoad) {
+		decisionHandler(WKNavigationActionPolicyAllow);
+	} else {
+		decisionHandler(WKNavigationActionPolicyCancel);
+	}
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+-     (void)webView:(WKWebView *)webView
+didFinishNavigation:(WKNavigation *)navigation
 {
 	if ([self.delegate respondsToSelector:@selector(editorViewDidFinishLoading:)]) {
 		[self.delegate editorViewDidFinishLoading:self];
@@ -978,7 +1001,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
          andExecuteBlockForEachParameter:^(NSString *parameterName, NSString *parameterValue)
      {
          if ([parameterName isEqualToString:kMessageParameterName]) {
-             NSLog(@"WebEditor log: %@", [self stringByDecodingURLFormat:parameterValue]);
+             DDLogInfo(@"WebEditor log:%@", [self stringByDecodingURLFormat:parameterValue]);
          }
      } onComplete:nil];
 }
@@ -1082,6 +1105,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSParameterAssert([url isKindOfClass:[NSURL class]]);
     
     NSString* styles = [[url resourceSpecifier] stringByReplacingOccurrencesOfString:@"//" withString:@""];
+    
     [self processStyles:styles];
 }
 
@@ -1455,44 +1479,56 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 // undo, redo没用, 奇怪
 - (void)undo
 {
-    [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.undo();"];
+	NSString *javascript = @"ZSSEditor.undo();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 	
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)redo
 {
-    [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.redo();"];
+	NSString *javascript = @"ZSSEditor.redo();";
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 	
     [self callDelegateEditorTextDidChange];
 }
 
 #pragma mark - Text Access
 
-- (NSString*)contents
+- (void)contents:(WPEditorViewTextRequest)completionBlock
 {
-    NSString* contents = nil;
-    
+	NSParameterAssert(completionBlock != nil);
+	
     if ([self isInVisualMode]) {
-        contents = [self.contentField html];
-    } else {
-        contents =  self.sourceView.text;
+		[self.contentField html:^void(NSString *html, NSError *error) {
+			completionBlock(html, error);
+		}];
+	} else {
+		completionBlock(self.sourceView.text, nil);
     }
-    
-    return contents;
 }
 
-- (NSString*)title
+- (void)title:(WPEditorViewTextRequest)completionBlock
 {
-    NSString* title = nil;
+	NSParameterAssert(completionBlock != nil);
     
     if ([self isInVisualMode]) {
-        title = [self.titleField strippedHtml];
+		[self.titleField strippedHtml:^void(NSString *html, NSError *error) {
+			completionBlock(html, error);
+		}];
     } else {
-        title =  self.sourceViewTitleField.text;
+		completionBlock(self.sourceViewTitleField.text, nil);
     }
-    
-    return title;
 }
 
 #pragma mark - Scrolling support
@@ -1511,8 +1547,49 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 		self.lineHeight = 0;
 		if(self.keyboardIsShow) {
 			NSLog(@"scrollToCaretAnimated keyboardIsShow");
-			NSString *y = [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.getCaretYPosition();"];
-			self.caretYOffset = [NSNumber numberWithFloat:[y floatValue]];
+			[self.webView evaluateJavaScript:@"ZSSEditor.getCaretYPosition();" completionHandler:^(id result, NSError *error) {
+				if (error) {
+					DDLogError(@"Error: %@", error);
+					return;
+				}
+				if (result != nil) {
+					NSString *resultString = [NSString stringWithFormat:@"%@", result];
+					self.caretYOffset = [NSNumber numberWithFloat:[resultString floatValue]];
+					
+					// 代码冗余
+					CGRect viewport = [self viewport];
+					CGFloat caretYOffset = [self.caretYOffset floatValue];
+					CGFloat lineHeight = [self.lineHeight floatValue];
+					CGFloat offsetBottom = caretYOffset + lineHeight;
+					
+					BOOL mustScroll = (caretYOffset < viewport.origin.y
+									   || offsetBottom > viewport.origin.y + CGRectGetHeight(viewport));
+					NSLog(@"mustScroll %f %f", caretYOffset, viewport.origin.y);
+					
+					if (mustScroll) {
+						// DRM: by reducing the necessary height we avoid an issue that moves the caret out
+						// of view.
+						//
+						CGFloat necessaryHeight = viewport.size.height / 2;
+						
+						// DRM: just make sure we don't go out of bounds with the desired yOffset.
+						//
+						caretYOffset = MIN(caretYOffset,
+										   self.webView.scrollView.contentSize.height - necessaryHeight);
+						
+						CGRect targetRect = CGRectMake(0.0f,
+													   caretYOffset,
+													   CGRectGetWidth(viewport),
+													   necessaryHeight);
+						
+						[self.webView.scrollView scrollRectToVisible:targetRect animated:animated];
+					}
+					
+				}
+			}];
+			return;
+//			NSString *y = [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.getCaretYPosition();"];
+//			self.caretYOffset = [NSNumber numberWithFloat:[y floatValue]];
 		}
 		else {
 			// 如果keyboard is hide, 则用之前的y
@@ -1555,18 +1632,31 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)restoreSelection
 {
     if (self.isInVisualMode) {
-        [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.restoreRange();"];
+		NSString *javascript = @"ZSSEditor.restoreRange();";
+
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self.sourceView select:self];
         [self.sourceView setSelectedRange:self.selectionBackup];
         self.selectionBackup = NSMakeRange(0, 0);
     }
+    
 }
 
 - (void)saveSelection
 {
     if (self.isInVisualMode) {
-        [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.backupRange();"];
+		NSString *javascript = @"ZSSEditor.backupRange();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         self.selectionBackup = self.sourceView.selectedRange;
     }
@@ -1576,7 +1666,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 {
     NSString* selectedText;
     if (self.isInVisualMode) {
-        selectedText = [self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.getSelectedText();"];
+		NSString *javascript = @"ZSSEditor.getSelectedText();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         NSRange range = [self.sourceView selectedRange];
         selectedText = [self.sourceView.text substringWithRange:range];
@@ -1601,14 +1697,18 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 	CGFloat r, g, b, a;
 	[color getRed: &r green:&g blue:&b alpha:&a];
     NSString *hex = [NSString stringWithFormat:@"rgba(%d, %d, %d, %f)", (int)(r * 255), (int)(g * 255), (int)(b * 255), a];
-    NSString *trigger;
+    NSString *javascript;
     if (tag == 1) {
-        trigger = [NSString stringWithFormat:@"ZSSEditor.setTextColor(\"%@\");", hex];
+        javascript = [NSString stringWithFormat:@"ZSSEditor.setTextColor(\"%@\");", hex];
     } else if (tag == 2) {
-        trigger = [NSString stringWithFormat:@"ZSSEditor.setBackgroundColor(\"%@\");", hex];
+        javascript = [NSString stringWithFormat:@"ZSSEditor.setBackgroundColor(\"%@\");", hex];
     }
 	
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 	
     [self callDelegateEditorTextDidChange];
 }
@@ -1617,62 +1717,104 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)insertLocalImage:(NSString*)url uniqueId:(NSString*)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.insertLocalImage(\"%@\", \"%@\");", uniqueId, url];
-//	NSLog(trigger);
-//	NSString *trigger2 = @"ZSSEditor.insertImage(\"http://leanote.com/images/logo.png\", \"xx\");";
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
-//	[self.webView stringByEvaluatingJavaScriptFromString:trigger2];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.insertLocalImage(\"%@\", \"%@\");", uniqueId, url];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 // url = ['a','b']
 - (void)insertImage:(NSString *)url alt:(NSString *)alt
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.insertImage(%@, \"%@\");", url, alt];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.insertImage(\"%@\", \"%@\");", url, alt];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)replaceLocalImageWithRemoteImage:(NSString*)url uniqueId:(NSString*)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.replaceLocalImageWithRemoteImage(\"%@\", \"%@\");", uniqueId, url];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.replaceLocalImageWithRemoteImage(\"%@\", \"%@\");", uniqueId, url];
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)updateImage:(NSString *)url alt:(NSString *)alt
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.updateImage(\"%@\", \"%@\");", url, alt];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.updateImage(\"%@\", \"%@\");", url, alt];
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)updateCurrentImageMeta:(WPImageMeta *)imageMeta
 {
     NSString *jsonString = [imageMeta jsonStringRepresentation];
     jsonString = [self addSlashes:jsonString];
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.updateCurrentImageMeta(\"%@\");", jsonString];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.updateCurrentImageMeta(\"%@\");", jsonString];
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)setProgress:(double) progress onImage:(NSString*)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.setProgressOnImage(\"%@\", %f);", uniqueId, progress];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.setProgressOnImage(\"%@\", %f);", uniqueId, progress];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)markImage:(NSString *)uniqueId failedUploadWithMessage:(NSString*) message;
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.markImageUploadFailed(\"%@\", \"%@\");", uniqueId, message];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.markImageUploadFailed(\"%@\", \"%@\");", uniqueId, message];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)unmarkImageFailedUpload:(NSString *)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.unmarkImageUploadFailed(\"%@\");", uniqueId];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.unmarkImageUploadFailed(\"%@\");", uniqueId];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)removeImage:(NSString*)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.removeImage(\"%@\");", uniqueId];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.removeImage(\"%@\");", uniqueId];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
 }
 
@@ -1680,21 +1822,36 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)insertVideo:(NSString *)videoURL posterImage:(NSString *)posterImageURL alt:(NSString *)alt
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.insertVideo(\"%@\", \"%@\", \"%@\");", videoURL, posterImageURL, alt];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.insertVideo(\"%@\", \"%@\", \"%@\");", videoURL, posterImageURL, alt];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)insertInProgressVideoWithID:(NSString *)uniqueId
                    usingPosterImage:(NSString *)posterImageURL
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.insertInProgressVideoWithIDUsingPosterImage(\"%@\", \"%@\");", uniqueId, posterImageURL];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.insertInProgressVideoWithIDUsingPosterImage(\"%@\", \"%@\");", uniqueId, posterImageURL];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)setProgress:(double)progress onVideo:(NSString *)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.setProgressOnVideo(\"%@\", %f);", uniqueId, progress];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.setProgressOnVideo(\"%@\", %f);", uniqueId, progress];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)replaceLocalVideoWithID:(NSString *)uniqueID
@@ -1702,43 +1859,76 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                    remotePoster:(NSString *)posterURL
                      videoPress:(NSString *)videoPressID
 {
-    NSString * videoPressSafeID = videoPressID;
+    NSString *videoPressSafeID = videoPressID;
     if (!videoPressSafeID) {
         videoPressSafeID = @"";
     }
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.replaceLocalVideoWithRemoteVideo(\"%@\", \"%@\", \"%@\", \"%@\");", uniqueID, videoURL, posterURL, videoPressSafeID];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *posterURLSafe = posterURL;
+    if (!posterURLSafe) {
+        posterURLSafe = @"";
+    }
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.replaceLocalVideoWithRemoteVideo(\"%@\", \"%@\", \"%@\", \"%@\");", uniqueID, videoURL, posterURLSafe, videoPressSafeID];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)markVideo:(NSString *)uniqueId failedUploadWithMessage:(NSString*) message;
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.markVideoUploadFailed(\"%@\", \"%@\");", uniqueId, message];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.markVideoUploadFailed(\"%@\", \"%@\");", uniqueId, message];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)unmarkVideoFailedUpload:(NSString *)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.unmarkVideoUploadFailed(\"%@\");", uniqueId];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.unmarkVideoUploadFailed(\"%@\");", uniqueId];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)removeVideo:(NSString*)uniqueId
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.removeVideo(\"%@\");", uniqueId];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.removeVideo(\"%@\");", uniqueId];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)setVideoPress:(NSString *)videoPressID source:(NSString *)videoURL poster:(NSString *)posterURL
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.setVideoPressLinks(\"%@\", \"%@\", \"%@\");", videoPressID, videoURL, posterURL];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
-    
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.setVideoPressLinks(\"%@\", \"%@\", \"%@\");", videoPressID, videoURL, posterURL];
+
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)pauseAllVideos
 {
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.pauseAllVideos();"];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.pauseAllVideos();"];
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 #pragma mark - URL normalization
@@ -1769,8 +1959,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     url = [self normalizeURL:url];
     
     if (self.isInVisualMode) {
-        NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.insertLink(\"%@\",\"%@\");", url, title];
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.insertLink(\"%@\",\"%@\");", url, title];
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         NSString *aTagText = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", url, title];
         [self.sourceView insertText:aTagText];
@@ -1795,8 +1990,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     url = [self normalizeURL:url];
     
     if (self.isInVisualMode) {
-        NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.updateLink(\"%@\",\"%@\");", url, title];
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.updateLink(\"%@\",\"%@\");", url, title];
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     }
     
     [self callDelegateEditorTextDidChange];
@@ -1804,12 +2004,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)removeLink
 {
-	[self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.unlink();"];
+	NSString *javascript = @"ZSSEditor.unlink();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 - (void)quickLink
 {
-	[self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.quickLink();"];
+	NSString* javascript = @"ZSSEditor.quickLink();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 #pragma mark - Editor: HTML interaction
@@ -1818,8 +2030,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)insertHTML:(NSString *)html
 {
     NSString *cleanedHTML = [self addSlashes:html];
-    NSString *trigger = [NSString stringWithFormat:@"ZSSEditor.insertHTML(\"%@\");", cleanedHTML];
-    [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = [NSString stringWithFormat:@"ZSSEditor.insertHTML(\"%@\");", cleanedHTML];
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 }
 
 #pragma mark - Editing
@@ -1866,41 +2083,51 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 	
 	// 如果是markdown, 则显示预览
 	if(self.isMarkdown) {
-		[self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.togglePreview();"];
+		[self.webView evaluateJavaScript:@"ZSSEditor.togglePreview();" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+		}];
 	}
 	else {
-		self.sourceView.text = [self.contentField html];
-		self.sourceView.hidden = NO;
-		self.sourceViewTitleField.text = [self.titleField strippedHtml];
-		self.sourceViewTitleField.hidden = NO;
-		self.sourceContentDividerView.hidden = NO;
-		self.webView.hidden = YES;
-		
-		[self.sourceView becomeFirstResponder];
-		UITextPosition* position = [self.sourceView positionFromPosition:[self.sourceView beginningOfDocument]
-																  offset:0];
-		
-		[self.sourceView setSelectedTextRange:[self.sourceView textRangeFromPosition:position toPosition:position]];
+		[self.contentField html:^void(NSString *html, NSError *error) {
+			self.sourceView.text = html;
+			self.sourceView.hidden = NO;
+			
+			[self.contentField strippedHtml:^void(NSString *strippedHtml, NSError *error) {
+				self.sourceViewTitleField.text = strippedHtml;
+				self.sourceViewTitleField.hidden = NO;
+				self.sourceContentDividerView.hidden = NO;
+				self.webView.hidden = YES;
+				
+				[self.sourceView becomeFirstResponder];
+				UITextPosition* position = [self.sourceView positionFromPosition:[self.sourceView beginningOfDocument]
+																		  offset:0];
+				
+				[self.sourceView setSelectedTextRange:[self.sourceView textRangeFromPosition:position toPosition:position]];
+			}];
+		}];
 	}
 }
 
 // ? 这里有问题 self.sourceViewTitleField.text ? 导致内容消失!
 - (void)showVisualEditor
 {
+	__weak typeof(self) weakSelf = self;
 	self.isEditorMode = YES;
 	
 	if(self.isMarkdown) {
 //		[self.webView stringByEvaluatingJavaScriptFromString:@"ZSSEditor.toggleWrite();"];
 	}
 	else {
-		[self.contentField setHtml:self.sourceView.text];
-		self.sourceView.hidden = YES;
-		[self.titleField setHtml:self.sourceViewTitleField.text];
-		self.sourceViewTitleField.hidden = YES;
-		self.sourceContentDividerView.hidden = YES;
-		self.webView.hidden = NO;
-		
-		[self.contentField focus];
+		// [self.contentField setHtml:self.sourceView.text];
+		[self.contentField setHtml:self.sourceView.text onComplete:^(NSError *error) {
+			weakSelf.sourceView.hidden = YES;
+			[weakSelf.titleField setHtml:weakSelf.sourceViewTitleField.text onComplete:^(NSError *error) {
+				weakSelf.sourceViewTitleField.hidden = YES;
+				weakSelf.sourceContentDividerView.hidden = YES;
+				weakSelf.webView.hidden = NO;
+				
+				[weakSelf.contentField focus];
+			}];
+		}];
 	}
 }
 
@@ -1934,32 +2161,52 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)alignLeft
 {
-    NSString *trigger = @"ZSSEditor.setJustifyLeft();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setJustifyLeft();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
     
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)alignCenter
 {
-    NSString *trigger = @"ZSSEditor.setJustifyCenter();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setJustifyCenter();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)alignRight
 {
-    NSString *trigger = @"ZSSEditor.setJustifyRight();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setJustifyRight();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)alignFull
 {
-    NSString *trigger = @"ZSSEditor.setJustifyFull();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setJustifyFull();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
@@ -1967,8 +2214,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setBold
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setBold();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setBold();";
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"b"];
     }
@@ -1979,8 +2230,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setBlockQuote
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setBlockquote();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setBlockquote();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"blockquote"];
     }
@@ -1991,8 +2247,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setItalic
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setItalic();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setItalic();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"i"];
     }
@@ -2002,8 +2263,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)setSubscript
 {
-    NSString *trigger = @"ZSSEditor.setSubscript();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setSubscript();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
@@ -2011,8 +2277,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setUnderline
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setUnderline();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setUnderline();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"u"];
     }
@@ -2022,8 +2293,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)setSuperscript
 {
-    NSString *trigger = @"ZSSEditor.setSuperscript();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setSuperscript();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
@@ -2031,8 +2307,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setStrikethrough
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setStrikeThrough();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setStrikeThrough();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"del"];
     }
@@ -2043,8 +2324,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setUnorderedList
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setUnorderedList();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setUnorderedList();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"ul"];
     }
@@ -2055,8 +2341,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)setOrderedList
 {
     if (self.isInVisualMode) {
-        NSString *trigger = @"ZSSEditor.setOrderedList();";
-        [self.webView stringByEvaluatingJavaScriptFromString:trigger];
+        NSString *javascript = @"ZSSEditor.setOrderedList();";
+		
+		[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+			if (error) {
+				DDLogError(@"Error: %@", error);
+			}
+		}];
     } else {
         [self wrapSourceViewSelectionWithTag:@"ol"];
     }
@@ -2066,111 +2357,176 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)setHR
 {
-	if (self.isInVisualMode) {
-		NSString *trigger = @"ZSSEditor.setHorizontalRule();";
-		[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-	} else {
-		[self wrapSourceViewSelectionWithTag:@"hr"];
-	}
+    NSString *javascript = @"ZSSEditor.setHorizontalRule();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)setIndent
 {
-    NSString *trigger = @"ZSSEditor.setIndent();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setIndent();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)setOutdent
 {
-    NSString *trigger = @"ZSSEditor.setOutdent();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+    NSString *javascript = @"ZSSEditor.setOutdent();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)heading1
 {
-	if (self.isInVisualMode) {
-		NSString *trigger = @"ZSSEditor.setHeading('h1');";
-		[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-	}
-	else {
+	if (!self.isInVisualMode) {
 		[self wrapSourceViewSelectionWithTag:@"h1"];
+		[self callDelegateEditorTextDidChange];
+		return;
 	}
+    NSString *javascript = @"ZSSEditor.setHeading('h1');";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)heading2
 {
-	if (self.isInVisualMode) {
-		NSString *trigger = @"ZSSEditor.setHeading('h2');";
-		[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-	}
-	else {
+	if (!self.isInVisualMode) {
 		[self wrapSourceViewSelectionWithTag:@"h2"];
+		[self callDelegateEditorTextDidChange];
+		return;
 	}
+    NSString *javascript = @"ZSSEditor.setHeading('h2');";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)heading3
 {
-	if (self.isInVisualMode) {
-		NSString *trigger = @"ZSSEditor.setHeading('h3');";
-		[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-	}
-	else {
+	if (!self.isInVisualMode) {
 		[self wrapSourceViewSelectionWithTag:@"h3"];
+		[self callDelegateEditorTextDidChange];
+		return;
 	}
+    NSString *javascript = @"ZSSEditor.setHeading('h3');";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+
     [self callDelegateEditorTextDidChange];
 }
 
 - (void)heading4
 {
-	if (self.isInVisualMode) {
-		NSString *trigger = @"ZSSEditor.setHeading('h4');";
-		[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-	}
-	else {
+	if (!self.isInVisualMode) {
 		[self wrapSourceViewSelectionWithTag:@"h4"];
+		[self callDelegateEditorTextDidChange];
+		return;
 	}
-    [self callDelegateEditorTextDidChange];
-}
-
-- (void)heading5
-{
-    NSString *trigger = @"ZSSEditor.setHeading('h5');";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-
-    [self callDelegateEditorTextDidChange];
-}
-
-- (void)heading6
-{
-    NSString *trigger = @"ZSSEditor.setHeading('h6');";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
-
-    [self callDelegateEditorTextDidChange];
-}
-
-- (void)newline
-{
-	NSString *trigger = @"ZSSEditor.newline()";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+	NSString *javascript = @"ZSSEditor.setHeading('h4');";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
 	
 	[self callDelegateEditorTextDidChange];
 }
 
+- (void)heading5
+{
+	if (!self.isInVisualMode) {
+		[self wrapSourceViewSelectionWithTag:@"h5"];
+		[self callDelegateEditorTextDidChange];
+		return;
+	}
+	NSString *javascript = @"ZSSEditor.setHeading('h5');";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+	
+	[self callDelegateEditorTextDidChange];
+}
+
+- (void)heading6
+{
+	if (!self.isInVisualMode) {
+		[self wrapSourceViewSelectionWithTag:@"h6"];
+		[self callDelegateEditorTextDidChange];
+		return;
+	}
+	
+	NSString *javascript = @"ZSSEditor.setHeading('h6');";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+	
+	[self callDelegateEditorTextDidChange];
+}
 
 - (void)removeFormat
 {
-    NSString *trigger = @"ZSSEditor.removeFormating();";
-	[self.webView stringByEvaluatingJavaScriptFromString:trigger];
+	NSString *javascript = @"ZSSEditor.removeFormating();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+	
+	[self callDelegateEditorTextDidChange];
+}
 
-    [self callDelegateEditorTextDidChange];
+- (void)newline
+{
+	NSString *javascript = @"ZSSEditor.newline();";
+	
+	[self.webView evaluateJavaScript:javascript completionHandler:^(id result, NSError *error) {
+		if (error) {
+			DDLogError(@"Error: %@", error);
+		}
+	}];
+	
+	[self callDelegateEditorTextDidChange];
 }
 
 #pragma mark - UITextViewDelegate

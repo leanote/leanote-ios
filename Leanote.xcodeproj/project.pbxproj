@@ -13,6 +13,8 @@
 		1C7B28301AF9B3C50086D4C5 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B28231AF9B3C50086D4C5 /* Notebook.m */; };
 		1C7B28341AF9B3C50086D4C5 /* NotebookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B282C1AF9B3C50086D4C5 /* NotebookService.m */; };
 		1C7B28351AF9B3C50086D4C5 /* NoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B282E1AF9B3C50086D4C5 /* NoteService.m */; };
+		1C7C8C4D24528EBA007E4DC7 /* WKWebView+GUIFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7C8C4C24528EB9007E4DC7 /* WKWebView+GUIFixes.m */; };
+		1C981330245149E600AC275E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C98132F245149E500AC275E /* WebKit.framework */; };
 		1CA4CEC31B68D91200E500F4 /* editor.css in Resources */ = {isa = PBXBuildFile; fileRef = 1CA4CDF51B68D91100E500F4 /* editor.css */; };
 		1CA4CEC51B68D91200E500F4 /* enter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CA4CDF71B68D91100E500F4 /* enter.png */; };
 		1CA4CEC61B68D91200E500F4 /* enter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CA4CDF81B68D91100E500F4 /* enter@2x.png */; };
@@ -154,7 +156,6 @@
 		1CA4CF5F1B68D91200E500F4 /* HRColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CE9B1B68D91100E500F4 /* HRColorPickerView.m */; };
 		1CA4CF601B68D91200E500F4 /* HRColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CE9D1B68D91100E500F4 /* HRColorPickerViewController.m */; };
 		1CA4CF611B68D91200E500F4 /* HRColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CE9F1B68D91100E500F4 /* HRColorUtil.m */; };
-		1CA4CF621B68D91200E500F4 /* UIWebView+GUIFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CEA11B68D91100E500F4 /* UIWebView+GUIFixes.m */; };
 		1CA4CF631B68D91200E500F4 /* WPEditorField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CEA41B68D91100E500F4 /* WPEditorField.m */; };
 		1CA4CF641B68D91200E500F4 /* WPEditorLoggingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CEA61B68D91100E500F4 /* WPEditorLoggingConfiguration.m */; };
 		1CA4CF651B68D91200E500F4 /* WPEditorToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4CEA81B68D91100E500F4 /* WPEditorToolbarButton.m */; };
@@ -295,6 +296,9 @@
 		1C7B282C1AF9B3C50086D4C5 /* NotebookService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebookService.m; sourceTree = "<group>"; };
 		1C7B282D1AF9B3C50086D4C5 /* NoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteService.h; sourceTree = "<group>"; };
 		1C7B282E1AF9B3C50086D4C5 /* NoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteService.m; sourceTree = "<group>"; };
+		1C7C8C4B24528EB6007E4DC7 /* WKWebView+GUIFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+GUIFixes.h"; sourceTree = "<group>"; };
+		1C7C8C4C24528EB9007E4DC7 /* WKWebView+GUIFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+GUIFixes.m"; sourceTree = "<group>"; };
+		1C98132F245149E500AC275E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		1CA4CDF51B68D91100E500F4 /* editor.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = editor.css; sourceTree = "<group>"; };
 		1CA4CDF71B68D91100E500F4 /* enter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enter.png; sourceTree = "<group>"; };
 		1CA4CDF81B68D91100E500F4 /* enter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter@2x.png"; sourceTree = "<group>"; };
@@ -447,8 +451,6 @@
 		1CA4CE9D1B68D91100E500F4 /* HRColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRColorPickerViewController.m; sourceTree = "<group>"; };
 		1CA4CE9E1B68D91100E500F4 /* HRColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRColorUtil.h; sourceTree = "<group>"; };
 		1CA4CE9F1B68D91100E500F4 /* HRColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRColorUtil.m; sourceTree = "<group>"; };
-		1CA4CEA01B68D91100E500F4 /* UIWebView+GUIFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+GUIFixes.h"; sourceTree = "<group>"; };
-		1CA4CEA11B68D91100E500F4 /* UIWebView+GUIFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+GUIFixes.m"; sourceTree = "<group>"; };
 		1CA4CEA21B68D91100E500F4 /* WordPress-iOS-Editor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WordPress-iOS-Editor-Prefix.pch"; sourceTree = "<group>"; };
 		1CA4CEA31B68D91100E500F4 /* WPEditorField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPEditorField.h; sourceTree = "<group>"; };
 		1CA4CEA41B68D91100E500F4 /* WPEditorField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPEditorField.m; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C981330245149E600AC275E /* WebKit.framework in Frameworks */,
 				1D921D9D173CB5BD00168A77 /* UIKit.framework in Frameworks */,
 				1D921D9F173CB5BD00168A77 /* Foundation.framework in Frameworks */,
 				1CEF0DCD1B876D8400C2B2F3 /* libWeChatSDK.a in Frameworks */,
@@ -959,8 +962,6 @@
 				1CA4CE9D1B68D91100E500F4 /* HRColorPickerViewController.m */,
 				1CA4CE9E1B68D91100E500F4 /* HRColorUtil.h */,
 				1CA4CE9F1B68D91100E500F4 /* HRColorUtil.m */,
-				1CA4CEA01B68D91100E500F4 /* UIWebView+GUIFixes.h */,
-				1CA4CEA11B68D91100E500F4 /* UIWebView+GUIFixes.m */,
 				1CA4CEA21B68D91100E500F4 /* WordPress-iOS-Editor-Prefix.pch */,
 				1CA4CEA31B68D91100E500F4 /* WPEditorField.h */,
 				1CA4CEA41B68D91100E500F4 /* WPEditorField.m */,
@@ -975,6 +976,8 @@
 				1CA4CEAD1B68D91100E500F4 /* WPEditorViewController.h */,
 				1CA4CEAE1B68D91100E500F4 /* WPEditorViewController.m */,
 				1CA4CEAF1B68D91100E500F4 /* WPImageMeta.h */,
+				1C7C8C4B24528EB6007E4DC7 /* WKWebView+GUIFixes.h */,
+				1C7C8C4C24528EB9007E4DC7 /* WKWebView+GUIFixes.m */,
 				1CA4CEB01B68D91100E500F4 /* WPImageMeta.m */,
 				1CA4CEB11B68D91100E500F4 /* WPLegacyEditorViewController.h */,
 				1CA4CEB21B68D91100E500F4 /* WPLegacyEditorViewController.m */,
@@ -1299,6 +1302,7 @@
 		1D921D9B173CB5BD00168A77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C98132F245149E500AC275E /* WebKit.framework */,
 				1D921D9C173CB5BD00168A77 /* UIKit.framework */,
 				1D921D9E173CB5BD00168A77 /* Foundation.framework */,
 				1D921DA0173CB5BD00168A77 /* CoreGraphics.framework */,
@@ -1655,7 +1659,6 @@
 				1CA4CF6F1B68D91200E500F4 /* ZSSTextView.m in Sources */,
 				1CEF0CA71B876B2200C2B2F3 /* NSURLProtocolCustom.m in Sources */,
 				1D921DAF173CB5BD00168A77 /* AppDelegate.m in Sources */,
-				1CA4CF621B68D91200E500F4 /* UIWebView+GUIFixes.m in Sources */,
 				1CDB4FAF1B305C7C007CC245 /* MeTab.m in Sources */,
 				1CEF0DAA1B876B4800C2B2F3 /* LeaSearchDisplayController.m in Sources */,
 				1CBE20761B3FD4CA00133EA1 /* BaseViewController.m in Sources */,
@@ -1705,6 +1708,7 @@
 				1CA4CF5C1B68D91200E500F4 /* HRBrightnessCursor.m in Sources */,
 				1CA4CF5F1B68D91200E500F4 /* HRColorPickerView.m in Sources */,
 				1CEF0DD71B87707D00C2B2F3 /* LeaURLRequest.m in Sources */,
+				1C7C8C4D24528EBA007E4DC7 /* WKWebView+GUIFixes.m in Sources */,
 				1CDD486F1B30131B00AC625F /* Tag.m in Sources */,
 				1CEF0D991B876B4800C2B2F3 /* DRColorPickerBaseViewController.m in Sources */,
 				1CEF0D9C1B876B4800C2B2F3 /* DRColorPickerGridView.m in Sources */,
@@ -1864,7 +1868,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Tie Li (926WD5ZF5V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tie Li (926WD5ZF5V)";
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = 926WD5ZF5V;
+				ENABLE_BITCODE = NO;
 				ENABLE_ONLY_ACTIVE_RESOURCES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Leanote/Leanote-Prefix.pch";
@@ -1879,6 +1884,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
+				PROVISIONING_PROFILE_SPECIFIER = "leanote-ios-new";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386";
 				WRAPPER_EXTENSION = app;
@@ -1896,7 +1902,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Tie Li (926WD5ZF5V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tie Li (926WD5ZF5V)";
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = 926WD5ZF5V;
+				ENABLE_BITCODE = NO;
 				ENABLE_ONLY_ACTIVE_RESOURCES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Leanote/Leanote-Prefix.pch";
@@ -1911,6 +1918,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanote.app.ios.Leanote;
 				PRODUCT_NAME = Leanote;
 				PROVISIONING_PROFILE = "17a6e366-009c-45d2-99cd-8ed2f4d16766";
+				PROVISIONING_PROFILE_SPECIFIER = "leanote-ios-new";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386";
 				WRAPPER_EXTENSION = app;

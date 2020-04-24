@@ -106,37 +106,40 @@ static NSInteger const MaximumNumberOfPictures = 10;
 // force, 强制保存, 不管title, content有没有变化
 - (BOOL)saveNote:(BOOL)force
 {
-	NSString *title = [Common trimNewLine:[self titleText]];
-	NSString *content = [self bodyText];
-	
-	// 更新笔记
-	if(self.note != nil) {
-		if(self.edited) {
-			BOOL contentIsDirty = ![self.note.content isEqualToString:content];
-			BOOL titleIsDirty = ![self.note.title isEqualToString:title];
-			if(contentIsDirty || titleIsDirty)
-			{
-				[Leas.note updateNote:self.note title:title content:content];
+	[self titleText:^(NSString *text, NSError *error) {
+		NSString *title = [Common trimNewLine:text];
+		[self bodyText:^(NSString *text, NSError *error) {
+			NSString *content = text;
+			// 更新笔记
+			if(self.note != nil) {
+				if(self.edited) {
+					BOOL contentIsDirty = ![self.note.content isEqualToString:content];
+					BOOL titleIsDirty = ![self.note.title isEqualToString:title];
+					if(contentIsDirty || titleIsDirty)
+					{
+						[Leas.note updateNote:self.note title:title content:content];
+					}
+					else {
+						NSLog(@" not need UPDATE");
+						return;
+					}
+				}
+				else {
+					NSLog(@" not need UPDATE readonly");
+					return;
+				}
+				
+				// 新建一个笔记
+			} else {
+				if(force || (![Common isBlankString:title] || ![Common isBlankString:content])) {
+					NSLog(@"add note");
+					
+					self.note = [Leas.note addNote:title content:content
+										  notebook:self.notebook tag:self.tag];
+				}
 			}
-			else {
-				NSLog(@" not need UPDATE");
-				return NO;
-			}
-		}
-		else {
-			NSLog(@" not need UPDATE readonly");
-			return NO;
-		}
-		
-		// 新建一个笔记
-	} else {
-		if(force || (![Common isBlankString:title] || ![Common isBlankString:content])) {
-			NSLog(@"add note");
-			
-			self.note = [Leas.note addNote:title content:content
-								  notebook:self.notebook tag:self.tag];
-		}
-	}
+		}];
+	}];
 	
 	return YES;
 }
