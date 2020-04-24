@@ -41,10 +41,10 @@ PODS:
   - WPMediaPicker (0.7.3)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (= 2.6.3)
   - CocoaLumberjack (~> 2.0)
   - CTAssetsPickerController (~> 2.9.0)
-  - NSObject-SafeExpectations
+  - NSObject-SafeExpectations (= 0.0.2)
   - QBImagePickerController (~> 3.0.0)
   - SGNavigationProgress
   - SWTableViewCell (~> 0.3.7)
@@ -80,6 +80,6 @@ SPEC CHECKSUMS:
   WordPressCom-Analytics-iOS: 3684495c87e7beec616be92df3dec59ba10dfd95
   WPMediaPicker: 6bbce465f5a5c071267ae28bdf31d0fd6e109721
 
-PODFILE CHECKSUM: a0c7b39c9e76e3f168d832581dc99f6e9937b67b
+PODFILE CHECKSUM: 9f851ef804d88548a585c877bf78e189a7597590
 
 COCOAPODS: 1.6.1

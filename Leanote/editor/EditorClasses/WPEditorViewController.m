@@ -2058,16 +2058,16 @@ NSInteger const WPLinkAlertViewTag = 92;
 	[self.toolbarView selectToolbarItemsForStyles:styles];
 }
 
-
-#ifdef DEBUG
--      (void)webView:(UIWebView *)webView
-didFailLoadWithError:(NSError *)error
-{
-	DDLogError(@"Loading error: %@", error);
-	NSAssert(NO,
-			 @"This should never happen since the editor is a local HTML page of our own making.");
-}
-#endif
+//
+//#ifdef DEBUG
+//-      (void)webView:(UIWebView *)webView
+//didFailLoadWithError:(NSError *)error
+//{
+//	DDLogError(@"Loading error: %@", error);
+//	NSAssert(NO,
+//			 @"This should never happen since the editor is a local HTML page of our own making.");
+//}
+//#endif
 
 #pragma mark - Asset Picker
 

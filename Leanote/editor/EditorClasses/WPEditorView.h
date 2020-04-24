@@ -1,12 +1,13 @@
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 #import "ZSSTextView.h"
 
 @class WPEditorView;
 @class WPEditorField;
 @class WPImageMeta;
-
-@protocol WPEditorViewDelegate <UIWebViewDelegate>
+// @protocol WPEditorViewDelegate <UIWebViewDelegate>
+@protocol WPEditorViewDelegate <WKNavigationDelegate>
 @optional
 
 /**
