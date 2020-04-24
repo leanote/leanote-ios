@@ -13,8 +13,9 @@
 
 @interface WPTextFieldTableViewCell : WPTableViewCell
 
-@property (nonatomic, strong, readonly) UITextField *textField;
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL shouldDismissOnReturn;
 @property (nonatomic, weak) id<WPTextFieldTableViewCellDelegate> delegate;
+@property (nonatomic, assign) CGFloat minimumLabelWidth;
 
 @end
