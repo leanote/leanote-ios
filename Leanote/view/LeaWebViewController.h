@@ -4,7 +4,7 @@
 @interface LeaWebViewController : UIViewController<WKNavigationDelegate>
 
 // Interface
-@property (nonatomic,   weak) IBOutlet WKWebView *webView;
+@property (nonatomic,   strong) IBOutlet WKWebView *webView;
 //@property (nonatomic,   weak) IBOutlet WKWebView *wkView;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UIView *loadingView;

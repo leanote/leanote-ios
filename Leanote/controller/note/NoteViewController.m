@@ -24,6 +24,7 @@
 #import "UIImage+Util.h"
 #import "WPFontManager.h"
 #import "WPStyleGuide.h"
+
 #import <WPMediaPicker/WPMediaPicker.h>
 #import <QBImagePickerController/QBImagePickerController.h>
 
@@ -447,8 +448,8 @@ BOOL hiddenBar = NO;
 
 - (void)editorDidPressMedia:(WPEditorViewController *)editorController
 {
-//	[self showPhotoPickerForBetterDevice];
-//	return;
+	[self showPhotoPickerForBetterDevice];
+	return;
 	// iphone
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 		UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Photo", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Photo Library", nil),NSLocalizedString(@"Take Photo", nil), nil];
@@ -702,7 +703,7 @@ BOOL hiddenBar = NO;
 	QBImagePickerController *imagePickerController = [QBImagePickerController new];
 	imagePickerController.delegate = self;
 	imagePickerController.allowsMultipleSelection = YES;
-	imagePickerController.maximumNumberOfSelection = 6;
+	imagePickerController.maximumNumberOfSelection = 1;
 	imagePickerController.showsNumberOfSelectedAssets = YES;
 	imagePickerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 	[self presentViewController:imagePickerController animated:YES completion:NULL];
@@ -806,15 +807,20 @@ BOOL hiddenBar = NO;
 }
 - (void)addMediaAssets:(NSArray *)assets
 {
-	NSString *urls = @"[";
+	NSMutableArray * array = [[ NSMutableArray alloc]init];
+//	NSString *urls = @"[";
 	for (ALAsset *asset in assets) {
 		NSString *fileId = [self addImageAssetToContent:asset];
-		urls = [NSString stringWithFormat:@"%@'%@',", urls, [self getImageUrl:fileId]];
+//		urls = [NSString stringWithFormat:@"%@'%@',", urls, [self getImageUrl:fileId]];
+		[array addObject:[self getImageUrl:fileId]];
 	}
-	urls = [NSString stringWithFormat:@"%@]", urls];
+//	urls = [NSString stringWithFormat:@"%@]", urls];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.editorView insertImage:urls alt:@""];
+//		[self.editorView insertImage:urls alt:@""];
+		for (NSString *object in array) {
+			[self.editorView insertImage:object alt:@""];
+		}
 	});
 }
 

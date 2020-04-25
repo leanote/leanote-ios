@@ -373,6 +373,7 @@
 		return (content || '').trim().substr(0, 50);\
 	})();\
 	";
+	// js = @"document.body.outerHTML";
 	//执行JS
 	[self.webView evaluateJavaScript:js completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 		NSLog(@"get desc ret %@ %@", error, result);
@@ -599,17 +600,18 @@
     NSString* permaLink = [self getDocumentPermalink];
 
     NSString *title = [self getDocumentTitle];
+	dispatch_async(dispatch_get_main_queue(), ^{
 	[self getDocumentDesc:^(NSString *desc){
 		
-		NSLog(@"showLinkOptions desc: %@", desc);
+		NSLog(@"showLinkOptions link: %@, title: %@, desc: %@", permaLink, title, desc);
 		
 		NSMutableArray *activityItems = [NSMutableArray array];
 		if (title) {
 			[activityItems addObject:title];
 		}
-		if (desc) {
-			[activityItems addObject:desc];
-		}
+//		if (desc) {
+//			[activityItems addObject:desc];
+//		}
 		
 		// weixin
 		NSArray *activities = @[[[WeixinSessionActivity alloc] init], [[WeixinTimelineActivity alloc] init]];
@@ -624,7 +626,7 @@
 			if (!completed) {
 				return;
 			}
-			//        [WPActivityDefaults trackActivityType:activityType];
+			// [WPActivityDefaults trackActivityType:activityType];
 		};
 		
 		if (IS_IPAD) {
@@ -639,6 +641,7 @@
 			[self presentViewController:activityViewController animated:YES completion:nil];
 		}
 	}];
+	});
 }
 
 - (void)reload
