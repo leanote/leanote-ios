@@ -94,6 +94,12 @@
 	
 	NSString *vfl = @"V:|-0-[webView]-44-|"; // 上0, 下44
 	NSString *vfl1 = @"H:|-0-[webView]-0-|"; // 左右为0
+//	self.view.automaticallyAdjustsScrollViewInsets = YES;
+//	self.view.contentInsetAdjustmentBehavior = NO
+	
+	// 导航栏遮挡问题 ios10
+	[self.navigationController.navigationBar setTranslucent:NO];
+	
 	_webView.translatesAutoresizingMaskIntoConstraints = NO;
 	
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl options:0 metrics:nil views:dic]];
